@@ -10,8 +10,6 @@
     <packaging>war</packaging>
 
     <name>hurpodsblog Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
-    <url>https://github.com/Hurpods/hurpodsblog</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
