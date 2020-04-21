@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hurpods.ssm.blog.dao.CommentDao">
+    <resultMap id="CommentResultMap" type="com.hurpods.ssm.blog.models.Comment">
+        <id column="comment_id" property="commentId" jdbcType="INTEGER"/>
+        <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER"/>
+        <result column="comment_article_id" property="commentArticleId" jdbcType="INTEGER"/>
+        <result column="comment_author_nick_name" property="commentAuthorNickName" jdbcType="VARCHAR"/>
+        <result column="comment_author_avatar" property="commentAuthorAvatar" jdbcType="VARCHAR"/>
+        <result column="comment_content" property="commentContent" javaType="String"/>
+        <result column="comment_ip" property="commentIp" jdbcType="VARCHAR"/>
+        <result column="comment_time" property="commentTime" jdbcType="INTEGER"/>
+        <result column="comment_pre_nick_name" property="commentPreNickName" jdbcType="VARCHAR"/>
+        <result column="comment_pre_id" property="commentPreId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getUserAllCommentsById" resultMap="CommentResultMap" parameterType="java.lang.Integer">
+        select *
+        from comments
+        where comment_user_id = ${commentUserId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getArticleAllCommentsById" resultMap="CommentResultMap" parameterType="java.lang.Integer">
+        select *
+        from comments
+        where comment_article_id = ${commentArticleId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAllComments" resultMap="CommentResultMap">
+        select *
+        from comments
+    </select>
+
+    <delete id="deleteCommentById" parameterType="java.lang.Integer">
+        delete
+        from comments
+        where comment_id = ${commentId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getCommentsNumber" resultType="java.lang.Integer">
+        select count(*)
+        from comments;
+    </select>
+
+    <insert id="postComment" parameterType="com.hurpods.ssm.blog.models.Comment">
+        insert into comments(comment_id, comment_user_id, comment_article_id, comment_author_nick_name,
+                             comment_author_avatar,
+                             comment_content, comment_ip, comment_time, comment_pre_nick_name, comment_pre_Id)
+        values (#{commentId,jdbcType=INTEGER}, #{commentUserId,jdbcType=INTEGER},
+                #{commentArticleId,jdbcType=INTEGER}, #{commentAuthorNickName,jdbcType=VARCHAR},
+                #{commentAuthorAvatar,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR},
+                #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=INTEGER}, #{commentPreNickName,jdbcType=VARCHAR},
+                #{commentPreId,jdbcType=INTEGER})
+    </insert>
+
+    <update id="editComment" parameterType="com.hurpods.ssm.blog.models.Comment">
+        update comments
+        <set>
+            <if test="commentAuthorNickName != null">
+                comment_author_nick_name=${commentAuthorNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="commentAuthorAvatar != null">
+                comment_author_avatar=${commentAuthorAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="commentContent != null">comment_content=${commentContent,jdbcType=VARCHAR},</if>
+            <if test="commentIp != null">comment_ip=${commentIp,jdbcType=VARCHAR},</if>
+            <if test="commentTime != null">comment_time=${commentTime,jdbcType=INTEGER},</if>
+        </set>
+    </update>
+</mapper>

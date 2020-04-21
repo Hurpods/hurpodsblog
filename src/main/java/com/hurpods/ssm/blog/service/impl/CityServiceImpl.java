@@ -1,14 +1,15 @@
-package com.hurpods.ssm.blog.controller;
+package com.hurpods.ssm.blog.service.impl;
 
 import com.hurpods.ssm.blog.dao.CityDao;
 import com.hurpods.ssm.blog.models.City;
+import com.hurpods.ssm.blog.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Controller
-public class CityController {
+@Service
+public class CityServiceImpl implements CityService {
     @Autowired
     CityDao cityDao;
 

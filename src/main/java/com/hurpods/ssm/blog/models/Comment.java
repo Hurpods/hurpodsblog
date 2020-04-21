@@ -9,13 +9,11 @@ public class Comment implements Serializable {
     //唯一标识
     private Integer commentId;
     //用户标识
-    private Integer commentUID;
+    private Integer commentUserId;
     //评论文章
     private Integer commentArticleId;
     //评论者昵称
     private String commentAuthorNickName;
-    //评论者邮箱
-    private String commentAuthorEmail;
     //评论者头像
     private String commentAuthorAvatar;
     //评论内容
@@ -24,6 +22,8 @@ public class Comment implements Serializable {
     private String commentIp;
     //评论时间
     private Integer commentTime;
+    //层主标识
+    private Integer commentPreId;
     //层主昵称
     private String commentPreNickName;
 }

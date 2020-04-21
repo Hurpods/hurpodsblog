@@ -10,6 +10,7 @@ import java.security.MessageDigest;
 
 
 public class MyUtil {
+    //从request中获取IP信息
     public static String getIpAddress(HttpServletRequest request) {
         String ipAddress = request.getHeader("x-forwarded-for");
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
@@ -40,13 +41,15 @@ public class MyUtil {
         return ipAddress;
     }
 
+    //利用hash3-256算法和加盐再hash确保不被彩虹表破解
     public String hashPass(String str, String salt) {
-        String temp = sha3256(str);
-        temp += salt;
-        temp = sha3256(temp);
-        return temp;
+        String result = sha3256(str);
+        result += salt;
+        result = sha3256(result);
+        return result;
     }
 
+    //hash3-256摘要加密算法，用来脱敏密码
     public String sha3256(String str) {
         MessageDigest messageDigest;
         String encdeStr = "";

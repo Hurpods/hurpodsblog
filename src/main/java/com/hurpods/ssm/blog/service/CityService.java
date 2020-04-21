@@ -1,12 +1,9 @@
-package com.hurpods.ssm.blog.dao;
+package com.hurpods.ssm.blog.service;
 
 import com.hurpods.ssm.blog.models.City;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
-@Mapper
-public interface CityDao {
+public interface CityService {
     List<City> getAllCity();
 
     City getCityById(String id);

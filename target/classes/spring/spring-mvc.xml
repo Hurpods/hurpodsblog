@@ -18,7 +18,7 @@
 
 
 
-    <context:component-scan base-package="com.hurpods.ssm.blog" />
+    <context:component-scan base-package="com.hurpods.ssm.blog.dao" />
 
     <!-- 一个配置节解决映射器和适配器的配置注解配置 -->
     <mvc:annotation-driven></mvc:annotation-driven>
@@ -43,25 +43,25 @@
 
 
     <!-- 静态资源映射 -->
-    <mvc:resources mapping="/css/**" location="/resource/assets/css/"></mvc:resources>
-    <mvc:resources mapping="/js/**" location="/resource/assets/js/"></mvc:resources>
-    <mvc:resources mapping="/img/**" location="/resource/assets/img/"></mvc:resources>
-    <mvc:resources mapping="/plugin/**" location="/resource/assets/plugin/"></mvc:resources>
+<!--    <mvc:resources mapping="/css/**" location="/resource/assets/css/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/js/**" location="/resource/assets/js/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/img/**" location="/resource/assets/img/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/plugin/**" location="/resource/assets/plugin/"></mvc:resources>-->
 
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.hurpods.ssm.blog.interceptor.HomeResourceInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/admin"/>
-            <bean class="com.hurpods.ssm.blog.interceptor.SecurityInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/admin/**"/>
-            <bean class="com.hurpods.ssm.blog.interceptor.SecurityInterceptor"/>
-        </mvc:interceptor>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="com.hurpods.ssm.blog.interceptor.HomeResourceInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/admin"/>-->
+<!--            <bean class="com.hurpods.ssm.blog.interceptor.SecurityInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/admin/**"/>-->
+<!--            <bean class="com.hurpods.ssm.blog.interceptor.SecurityInterceptor"/>-->
+<!--        </mvc:interceptor>-->
 
-    </mvc:interceptors>
+<!--    </mvc:interceptors>-->
 </beans>

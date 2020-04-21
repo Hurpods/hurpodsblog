@@ -1,14 +1,15 @@
-package com.hurpods.ssm.blog.controller;
+package com.hurpods.ssm.blog.service.impl;
 
 import com.hurpods.ssm.blog.dao.ProvinceDao;
 import com.hurpods.ssm.blog.models.Province;
+import com.hurpods.ssm.blog.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Controller
-public class ProvinceController {
+@Service
+public class ProvinceServiceImpl implements ProvinceService {
     @Autowired
     ProvinceDao provinceDao;
 

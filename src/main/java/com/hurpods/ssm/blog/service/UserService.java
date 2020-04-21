@@ -1,16 +1,14 @@
-package com.hurpods.ssm.blog.dao;
+package com.hurpods.ssm.blog.service;
 
 import com.hurpods.ssm.blog.models.User;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface UserDao {
+public interface UserService {
     List<User>getAllUser();
     User getUserById(Integer id);
     User getUserByOthers(String param);
     void deleteUserById(Integer id);
-    void registerUser(User user);
+    User registerUser(User user);
     void updateUserInfo(User user);
 }

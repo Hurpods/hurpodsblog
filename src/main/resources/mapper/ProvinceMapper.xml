@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hurpods.ssm.blog.mapper.ProvinceMapper">
+<mapper namespace="com.hurpods.ssm.blog.dao.ProvinceDao">
     <resultMap id="ProvinceResultMap" type="com.hurpods.ssm.blog.models.Province">
         <id column="code_p" property="provinceCode" jdbcType="VARCHAR"/>
         <result column="id" property="provinceId" jdbcType="VARCHAR"/>
@@ -10,14 +10,14 @@
         select *
         from province;
     </select>
-    <select id="getProvinceById" resultMap="ProvinceResultMap" parameterMap="String">
+    <select id="getProvinceById" resultMap="ProvinceResultMap" parameterType="String">
         select *
         from province
-        where id = #{id};
+        where id = #{provinceId,jdbcType=VARCHAR};
     </select>
-    <select id="getProvinceByCode" resultMap="ProvinceResultMap" parameterMap="String">
+    <select id="getProvinceByCode" resultMap="ProvinceResultMap" parameterType="String">
         select *
         from province
-        where code_p = #{code_p};
+        where code_p = #{code_p,jdbcType=VARCHAR};
     </select>
 </mapper>
