@@ -1,0 +1,397 @@
+body {
+    margin: 0 0 0 0;
+    background: url("../img/bg.png");
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+img{
+    border-radius:10px;
+}
+a {
+    color: black;
+    text-decoration: none;
+    position: relative;
+}
+
+a:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #337AFC;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transition: all 0.3s ease 0s;
+}
+
+a:hover:after {
+    left: 0;
+    width: 100%;
+}
+
+header {
+    height: 60px;
+    width: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    font-size: 15px;
+    color: #9C9C9C;
+    line-height: 60px;
+    z-index: 10010;
+    top: 0;
+    box-shadow: 0 0 5px #666;
+}
+
+header .header {
+    height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 100px;
+    min-width: 1200px
+}
+
+header .header .logo {
+    margin: auto 0;
+}
+
+header .header .nav {
+    font-weight: bold;
+    font-size: 15px;
+    height: 60px
+}
+
+header .header .nav a {
+    color: #9C9C9C;
+    display: block;
+    padding: 0 20px;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+    float: left
+}
+
+header .header .nav a:hover {
+    color: #FFFFFF
+}
+
+header .header .nav .active {
+    color: #FFFFFF
+}
+
+header .header .header-right a {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    height: 60px;
+    font-weight: bold;
+    color: #9c9c9c;
+}
+
+header .header .header-right a:hover {
+    color: #FFFFFF
+}
+
+header .header .header-right .user-head {
+    margin-top: 14px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+header .header .header-right .user-head img {
+    border-radius: 50%;
+}
+
+header .header .header-right .user-head:hover .user-operator {
+    display: block;
+}
+
+header .header .header-right .user-head .user-operator {
+    display: none;
+    position: absolute;
+    box-shadow: 0 0 10px #666;
+    background: #ECF0F2;
+    width: 85px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+header .header .header-right .user-head .user-operator a {
+    color: #9c9c9c;
+    height: 35px;
+}
+
+header .header .header-right .user-head .user-operator a:hover {
+    color: black;
+}
+
+header .header .header-right .user-head .user-operator a:hover:after {
+    left: 10px;
+    width: 80%;
+}
+
+footer {
+    width: 100%;
+    height: 250px;
+    background: #282D36;
+    overflow: hidden;
+    color: #6c6c6c;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+.footer-content {
+    width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.footer-content .footer-left .logo {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    top: 7%;
+    left: 376px;
+}
+
+.footer-contact {
+    width: 158px;
+    height: 32px;
+    position: absolute;
+    top: 65%;
+    left:19%;
+}
+
+.footer-contact-weibo {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+
+.footer-contact-wechat {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 42px;
+}
+
+#show-wechat {
+    cursor: pointer;
+}
+
+.wechat-qrcode {
+    position: absolute;
+    z-index: 99;
+    width: 128px;
+    height: 128px;
+    /*background: url("../img/wechat_qrcode.png");*/
+    top: -120px;
+    left: 35px;
+    display: none;
+}
+
+.footer-contact-qq {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 84px;
+}
+
+.footer-contact-instagram {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 126px;
+}
+
+.instagram-qrcode {
+    position: absolute;
+    z-index: 99;
+    width: 128px;
+    height: 128px;
+    /*background: url("../img/instagram-qrcode.png");*/
+    top: -120px;
+    left: 35px;
+    display: none;
+}
+
+.footer-copyright {
+    position: absolute;
+    border-radius: 10px;
+    width: 181px;
+    height: 25px;
+    top: 85%;
+    left: 348px;
+    font-weight: 449;
+}
+
+.footer-middle {
+    position: absolute;
+    width: 230px;
+    height: 210px;
+    top: 7%;
+    left: 45%;
+}
+
+.relative {
+    position: absolute;
+    color: white;
+}
+
+.relative-site {
+    position: absolute;
+    width: 230px;
+    height: 168px;
+    top: 30%;
+    font-size: 12px;
+}
+
+.dgtle {
+    position: absolute;
+    width: 100px;
+    height: 32px;
+}
+
+.zol {
+    position: absolute;
+    width: 127px;
+    height: 32px;
+    top: 45px;
+}
+
+.csdn {
+    position: absolute;
+    width: 124px;
+    height: 32px;
+    top: 87px;
+}
+
+.footer-right {
+    position: absolute;
+    width: 230px;
+    height: 210px;
+    top: 7%;
+    left: 72%;
+}
+
+.relative-source {
+    position: absolute;
+    width: 230px;
+    height: 168px;
+    top: 30%;
+    font-size: 12px;
+}
+.relative-source img{
+    border-radius:0;
+}
+.iconfont {
+    width: 179px;
+    position: absolute;
+    top: 45px;
+}
+
+.icons8 {
+    position: absolute;
+}
+
+.button {
+    width: 228px;
+    height: 50px;
+    border: 0;
+    background: rgb(36, 97, 246);
+    border-radius: 4px;
+    position: absolute;
+    left: 42%;
+    top: 82%;
+    transition: all 0.3s ease 0s;
+}
+
+div.button:hover {
+    box-shadow: #666 0 0 10px;
+}
+
+.bttn {
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border: 0;
+    width: 228px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0);
+    outline: none;
+}
+
+.comment-box {
+    width: 1050px;
+    height: auto;
+    margin: 60px auto 60px;
+    position: relative;
+}
+
+.comment-input {
+    margin: 0 auto 60px;
+    position: relative;
+    height: 200px;
+}
+
+.comment-input textarea {
+    resize: none;
+    width: 1050px;
+    height: 100px;
+    font-size: 24px;
+}
+
+.comment-box ul {
+    list-style: none;
+    left: -40px;
+    position: relative;
+    width:1050px;
+}
+
+.comment-box ul li {
+    list-style: none;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #9c9c9c;
+    padding-bottom:10px;
+}
+
+.comment-detail {
+    width: 1050px;
+    height: 100px;
+    border-radius: 50%;
+    position:relative;
+}
+
+.comment-detail img {
+    position: relative;
+    width: 100px;
+    border-radius: 50%;
+}
+
+b.comment-user {
+    position: absolute;
+    display: inline;
+    /*top: -80px;*/
+    left: 120px;
+}
+
+span.comment-words {
+    position: absolute;
+    left: 120px;
+    top: 35px;
+}
+span.comment-time {
+    position: absolute;
+    right:0;
+    top: 70px;
+}

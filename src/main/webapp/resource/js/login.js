@@ -1,0 +1,314 @@
+let name_flag = Boolean(false);
+let psw_flag = Boolean(false);
+let tel_flag = Boolean(false);
+let email_flag = Boolean(false);
+let gender_flag = Boolean(false);
+let location_flag = Boolean(false);
+let check = Boolean(false);
+
+// function getProvince() {
+//     let province = $("#province");
+//     $.ajax({
+//         type: "get",
+//         data: "method=getProvince",
+//         url: "selecter",
+//         async: "false",
+//         dataType: "json",
+//         success: function (data) {
+//             let str = "";
+//             $.each(data, function (key, value) {
+//                 str += "<option value=" + value.code + ">" + value.name + "</option><br>";
+//             });
+//             province.empty();
+//             province.append("<option value = 0>--请选择--</option>");
+//             province.append(str);
+//         }
+//     });
+// }
+//
+// $(document).ready(function () {
+//     getProvince();
+//     $("#province").change(function () {
+//         let select = $("#province option:selected");
+//         let city = $("#city");
+//         let province = select.text();
+//         let code = select.val();
+//         if (province !== "--请选择--") {
+//             $.ajax({
+//                 type: "get",
+//                 data: {
+//                     "method": "getCity",
+//                     "select": code
+//                 },
+//                 url: "selecter",
+//                 async: false,
+//                 dataType: "json",
+//                 success: function (data) {
+//                     let str = "";
+//                     $.each(data, function (key, value) {
+//                         str += "<option>" + value.name + "</option><br>";
+//                     });
+//                     city.empty();
+//                     city.append("<option value = 0>--请选择--</option>");
+//                     city.append(str);
+//                 }
+//             });
+//         } else {
+//             city.empty();
+//         }
+//     });
+// });
+
+$("#switch-checkbox").change(function () {
+    let register_page = $(".register_right");
+    let login_page = $(".login_right");
+    let title = $("title");
+    if ($("#switch-checkbox").prop("checked")) {
+        register_page.slideDown(500);
+        login_page.slideUp();
+        title.html("用户注册");
+        $("#login")[0].reset();
+
+    } else {
+        login_page.slideDown(500);
+        register_page.slideUp();
+        title.html("用户登录");
+        $("#register")[0].reset();
+    }
+});
+
+//用户名判定
+$("#username").blur(function () {
+    let name = $("#username").val();
+    let error = $("#usnerror");
+    error.load(
+        "register",
+        {"name": name, "method": "checkName"},
+        function (response, status, xhr) {
+            if (response !== "available") {
+                name_flag = Boolean(false);
+                error.css("color", "red");
+                $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 10px red");
+                error.html(response);
+            } else {
+                name_flag = Boolean(true);
+                error.html("");
+                $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 0px");
+            }
+        });
+});
+
+//密码判定
+$("#repassword").blur(function () {
+    let error = $("#pswerror");
+    let psw = $("#password").val();
+    let repsw = $("#repassword").val();
+    if (psw.length < 6) {
+        psw_flag = Boolean(false);
+        error.css("color", "red");
+        $("#register-pswbox").css("-webkit-box-shadow", "0px 0px 10px red");
+        $("#register-repswbox").css("-webkit-box-shadow", "0px 0px 10px red");
+        error.html("密码不得小于6位")
+    } else if (psw !== repsw) {
+        psw_flag = Boolean(false);
+        error.css("color", "red");
+        $("#register-pswbox").css("-webkit-box-shadow", "0px 0px 10px red");
+        $("#register-repswbox").css("-webkit-box-shadow", "0px 0px 10px red");
+        error.html("两次密码不一致");
+    } else {
+        psw_flag = Boolean(true);
+        error.html("");
+        $("#register-pswbox").css("-webkit-box-shadow", "0px 0px 0px");
+        $("#register-repswbox").css("-webkit-box-shadow", "0px 0px 0px");
+    }
+});
+
+//电话判定
+$("#telnumber").blur(function () {
+    let number = $(this).val();
+    let error = $("#telerror");
+    if (number !== "") {
+        error.load(
+            "register",
+            {"telnumber": number, "method": "checkTel"},
+            function (response, status, xhr) {
+                if (response !== "available") {
+                    tel_flag = Boolean(false);
+                    error.css("color", "red");
+                    $("#register-telbox").css("-webkit-box-shadow", "0px 0px 10px red");
+                    error.html(response);
+                } else {
+                    tel_flag = Boolean(true);
+                    error.html("");
+                    $("#register-telbox").css("-webkit-box-shadow", "0px 0px 0px");
+                }
+            });
+    } else {
+        tel_flag = Boolean(true);
+        error.html("");
+        $("#register-telbox").css("-webkit-box-shadow", "0px 0px 0px");
+    }
+});
+
+//邮箱判定
+$("#e_mail").blur(function () {
+    let email = $("#e_mail").val();
+    let error = $("#emerror");
+    error.load(
+        "register",
+        {"email": email, "method": "checkEmail"},
+        function (response, status, xhr) {
+            if (response !== "available") {
+                email_flag = Boolean(false);
+                error.css("color", "red");
+                $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 10px red");
+                error.html(response);
+            } else {
+                email_flag = Boolean(true);
+                error.html("");
+                $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 0px");
+            }
+        });
+});
+
+//protocol判定
+$("#protocol").blur(function () {
+    if (!$("#protocol").is(":checked")) {
+        check = Boolean(false);
+        $("#register-protocolbox").css("-webkit-box-shadow", "0px 0px 10px red");
+    } else {
+        check = Boolean(true);
+        $("#register-protocolbox").css("-webkit-box-shadow", "0px 0px 0px");
+    }
+});
+
+function register() {
+    let url = location.search.substr(1).split("=")[1];
+    if ($("#gender option:selected").val() === "0") {
+        gender_flag = Boolean(false);
+    } else {
+        gender_flag = Boolean(true);
+    }
+    if (!check) {
+        alert("请勾选同意用户使用协议");
+    } else if (!(name_flag && psw_flag && email_flag)) {
+        alert("请完成必填项");
+    } else {
+        $.ajax({
+            type: "post",
+            url: "",
+            data: $("#register").serialize(),
+            cache: false,
+            success: function () {
+                window.location.replace("login.jsp?now=" + url);
+            }
+        })
+    }
+}
+
+function login() {
+    let url = location.search.substr(1).split("=")[1];
+    let identity = $("#login-identity").val();
+    let password = $("#login-password").val();
+    if (identity === "") {
+        alert("登录名不能为空");
+    } else if (password === "") {
+        alert("密码不能为空");
+    } else {
+        $.ajax({
+            type: "post",
+            url: "login",
+            data: $("#login").serialize(),
+            cache: false,
+            dataType: "text",
+            success: function (result) {
+                if (result === "error") {
+                    alert("登录名或密码错误")
+                } else if (result.indexOf(",") !== -1) {
+                    let data = result.split(",");
+                    sessionStorage.username = data[1];
+                    window.location.replace(url + ".jsp");
+                }
+            }
+        })
+    }
+}
+
+$(document).keyup(function (event) {
+    let display = $(".login_right").css('display');
+    if (event.keyCode === 13) {
+        if (display === "none") {
+            $("#register-button").click();
+        } else {
+            $("#login-button").click();
+        }
+    }
+});
+
+$(document).ready(function () {
+    let picli = $(".pic .img li");
+    let img = $(".pic .img");
+    let index = 0;
+    let clone = picli.first().clone();
+    img.append(clone);
+    let size = picli.length;
+    let list=$(".pic .num li");
+    for (let j = 0; j < size; j++) {
+        $(".pic .num").append("<li></li>")
+    }
+
+    list.first().addClass("on");
+
+    let auto = setInterval(function () {
+        index++;
+        move();
+    }, 2000);
+
+    $(".pic").hover(function () {
+        list.css("display", "inline-block");
+        clearInterval(auto);
+    }, function () {
+        list.hide();
+        auto = setInterval(function () {
+            index++;
+            move();
+        }, 2000);
+    });
+
+    list.hover(function () {
+        let thisIndex = $(this).index();
+        index = thisIndex;
+        img.stop().animate({left: -thisIndex * 200}, 500);
+        $(this).addClass("on").siblings().removeClass("on");
+    });
+
+    $(".pic .btn-left").click(function () {
+        index--;
+        move();
+    });
+
+    $(".pic .btn-right").click(function () {
+        index++;
+        move();
+    });
+
+    function move() {
+        if (index === size + 1) {
+            img.css("left", 0);
+            index = 1;
+        }
+
+        if (index === -1) {
+            img.css("left", -(size) * 200);
+            index = size - 1;
+        }
+
+        img.stop().animate({left: -index * 200}, 200);
+
+        if (index === size) {
+            list.eq(0).addClass("on").siblings().removeClass("on");
+        } else {
+            list.eq(index).addClass("on").siblings().removeClass("on");
+        }
+    }
+});
