@@ -135,7 +135,7 @@
                     </div>
                     <input type="checkbox" id="protocol" style="margin-top:19px;margin-left:8px">
                     <label for="protocol">
-                        我已阅读并同意<a href="/" target="_blank">《使用协议》</a>
+                        我已阅读并同意<a href="/" target="_blank">《用户使用协议》</a>
                     </label>
                 </div>
                 <br/>
