@@ -26,21 +26,22 @@
     <select id="getUserById" resultMap="UserResultMap" parameterType="java.lang.Integer">
         select *
         from users
-        where user_id = ${id,jdbcType=INTEGER}
+        where user_id = #{id,jdbcType=INTEGER}
     </select>
+
     <select id="getUserByOthers" resultMap="UserResultMap" parameterType="java.lang.String">
         select *
         from users
-        where user_name = ${value}
-           OR user_email = ${value}
-           OR user_tel = ${value}
+        <where>
+            user_name = #{value} OR user_email = #{value} OR user_tel = #{value}
+        </where>
     </select>
 
     <!--  注销用户  -->
     <delete id="deleteUserById" parameterType="java.lang.Integer">
         delete
         from users
-        where user_id = ${user_id,jdbcType=INTEGER}
+        where user_id = #{user_id,jdbcType=INTEGER}
     </delete>
 
     <!--  注册用户  -->
@@ -59,8 +60,8 @@
     <update id="updateUserInfo" parameterType="com.hurpods.ssm.blog.models.User">
         update users
         <set>
-            <if test="userPsw != null">user_psw=${userPsw,jdbcType=VARCHAR},</if>
-            <if test="userNickName != null">user_nick_name=${userNickName,jdbcType=VARCHAR},</if>
+            <if test="userPsw != null">user_psw=#{userPsw,jdbcType=VARCHAR},</if>
+            <if test="userNickName != null">user_nick_name=#{userNickName,jdbcType=VARCHAR},</if>
             <if test="userEmail != null">user_email=#{userEmail,jdbcType=VARCHAR},</if>
             <if test="userTel != null">user_tel=#{userTel,jdbcType=VARCHAR},</if>
             <if test="userAvatar != null">user_avatar=#{userAvatar,jdbcType=VARCHAR},</if>

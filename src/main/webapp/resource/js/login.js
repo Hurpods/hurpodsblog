@@ -2,8 +2,6 @@ let name_flag = Boolean(false);
 let psw_flag = Boolean(false);
 let tel_flag = Boolean(false);
 let email_flag = Boolean(false);
-let gender_flag = Boolean(false);
-let location_flag = Boolean(false);
 let check = Boolean(false);
 
 // function getProvince() {
@@ -77,25 +75,36 @@ $("#switch-checkbox").change(function () {
     }
 });
 
+let tokenData;
+
+function checkToken(token, type) {
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/checkToken",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        data: {"token": token, "type": type},
+        dataType: "json",
+        success: function (data) {
+            tokenData = data;
+        }
+    })
+}
+
 //用户名判定
 $("#username").blur(function () {
     let name = $("#username").val();
     let error = $("#usnerror");
-    error.load(
-        "register",
-        {"name": name, "method": "checkName"},
-        function (response, status, xhr) {
-            if (response !== "available") {
-                name_flag = Boolean(false);
-                error.css("color", "red");
-                $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 10px red");
-                error.html(response);
-            } else {
-                name_flag = Boolean(true);
-                error.html("");
-                $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 0px");
-            }
-        });
+    checkToken(name, "userName");
+    if (tokenData.code === "0") {
+        name_flag = Boolean(true);
+        $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 0px");
+    } else {
+        name_flag = Boolean(false);
+        error.css("color", "red");
+        $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 10px red");
+    }
+    error.html(tokenData.msg);
 });
 
 //密码判定
@@ -125,50 +134,34 @@ $("#repassword").blur(function () {
 
 //电话判定
 $("#telnumber").blur(function () {
-    let number = $(this).val();
+    let tel = $(this).val();
     let error = $("#telerror");
-    if (number !== "") {
-        error.load(
-            "register",
-            {"telnumber": number, "method": "checkTel"},
-            function (response, status, xhr) {
-                if (response !== "available") {
-                    tel_flag = Boolean(false);
-                    error.css("color", "red");
-                    $("#register-telbox").css("-webkit-box-shadow", "0px 0px 10px red");
-                    error.html(response);
-                } else {
-                    tel_flag = Boolean(true);
-                    error.html("");
-                    $("#register-telbox").css("-webkit-box-shadow", "0px 0px 0px");
-                }
-            });
-    } else {
+    checkToken(tel, "userTel");
+    if (tokenData.code === "0") {
         tel_flag = Boolean(true);
-        error.html("");
         $("#register-telbox").css("-webkit-box-shadow", "0px 0px 0px");
+    } else {
+        tel_flag = Boolean(false);
+        error.css("color", "red");
+        $("#register-telbox").css("-webkit-box-shadow", "0px 0px 10px red");
     }
+    error.html(tokenData.msg);
 });
 
 //邮箱判定
 $("#e_mail").blur(function () {
     let email = $("#e_mail").val();
     let error = $("#emerror");
-    error.load(
-        "register",
-        {"email": email, "method": "checkEmail"},
-        function (response, status, xhr) {
-            if (response !== "available") {
-                email_flag = Boolean(false);
-                error.css("color", "red");
-                $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 10px red");
-                error.html(response);
-            } else {
-                email_flag = Boolean(true);
-                error.html("");
-                $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 0px");
-            }
-        });
+    checkToken(email, "userEmail");
+    if (tokenData.code === "0") {
+        email_flag = Boolean(true);
+        $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 0px");
+    } else {
+        email_flag = Boolean(false);
+        error.css("color", "red");
+        $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 10px red");
+    }
+    error.html(tokenData.msg);
 });
 
 //protocol判定
@@ -183,12 +176,7 @@ $("#protocol").blur(function () {
 });
 
 function register() {
-    let url = location.search.substr(1).split("=")[1];
-    if ($("#gender option:selected").val() === "0") {
-        gender_flag = Boolean(false);
-    } else {
-        gender_flag = Boolean(true);
-    }
+    //let url = location.search.substr(1).split("=")[1];
     if (!check) {
         alert("请勾选同意用户使用协议");
     } else if (!(name_flag && psw_flag && email_flag)) {
@@ -252,7 +240,7 @@ $(document).ready(function () {
     let clone = picli.first().clone();
     img.append(clone);
     let size = picli.length;
-    let list=$(".pic .num li");
+    let list = $(".pic .num li");
     for (let j = 0; j < size; j++) {
         $(".pic .num").append("<li></li>")
     }
