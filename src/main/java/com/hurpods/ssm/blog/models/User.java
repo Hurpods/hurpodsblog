@@ -3,6 +3,8 @@ package com.hurpods.ssm.blog.models;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 @Data
 public class User implements Serializable {
     private static final long serialVersionUID = -8119893934996632553L;
@@ -23,9 +25,9 @@ public class User implements Serializable {
     //用户最后登录的IP
     private String userLastLoginIp;
     //用户注册时间
-    private Integer userRegisterTime;
+    private Timestamp userRegisterTime;
     //用户最后登录时间
-    private Integer userLastLoginTime;
+    private Timestamp userLastLoginTime;
     //地理位置
     private String province;
     private String city;

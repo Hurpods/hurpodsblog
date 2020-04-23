@@ -183,12 +183,12 @@ function register() {
         alert("请完成必填项");
     } else {
         $.ajax({
-            type: "post",
-            url: "",
+            type: "POST",
+            url: "/register",
             data: $("#register").serialize(),
             cache: false,
             success: function () {
-                window.location.replace("login.jsp?now=" + url);
+                alert("success");
             }
         })
     }

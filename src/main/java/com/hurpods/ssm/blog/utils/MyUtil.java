@@ -7,11 +7,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Random;
 
 
 public class MyUtil {
     //从request中获取IP信息
-    public static String getIpAddress(HttpServletRequest request) {
+    public String getIpAddress(HttpServletRequest request) {
         String ipAddress = request.getHeader("x-forwarded-for");
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");
@@ -61,5 +62,17 @@ public class MyUtil {
             e.printStackTrace();
         }
         return encdeStr;
+    }
+    
+    //随机产生用户名作为初始用户名
+    public String getRandomString(int length){
+        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random=new Random();
+        StringBuilder stringBuilder=new StringBuilder();
+        for(int i=0;i<length;i++){
+            int number=random.nextInt(62);
+            stringBuilder.append(str.charAt(number));
+        }
+        return stringBuilder.toString();
     }
 }

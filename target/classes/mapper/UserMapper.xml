@@ -10,8 +10,8 @@
         <result column="user_tel" property="userTel" jdbcType="VARCHAR"/>
         <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR"/>
         <result column="user_last_login_ip" property="userLastLoginIp" jdbcType="VARCHAR"/>
-        <result column="user_register_time" property="userRegisterTime" jdbcType="INTEGER"/>
-        <result column="user_last_login_time" property="userLastLoginTime" jdbcType="INTEGER"/>
+        <result column="user_register_time" property="userRegisterTime" jdbcType="TIMESTAMP"/>
+        <result column="user_last_login_time" property="userLastLoginTime" jdbcType="TIMESTAMP"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
     </resultMap>
@@ -26,46 +26,46 @@
     <select id="getUserById" resultMap="UserResultMap" parameterType="java.lang.Integer">
         select *
         from users
-        where user_id = ${id,jdbcType=INTEGER}
+        where user_id = #{id,jdbcType=INTEGER}
     </select>
+
     <select id="getUserByOthers" resultMap="UserResultMap" parameterType="java.lang.String">
         select *
         from users
-        where user_name = ${value}
-           OR user_email = ${value}
-           OR user_tel = ${value}
+        <where>
+            user_name = #{value} OR user_email = #{value} OR user_tel = #{value}
+        </where>
     </select>
 
     <!--  注销用户  -->
     <delete id="deleteUserById" parameterType="java.lang.Integer">
         delete
         from users
-        where user_id = ${user_id,jdbcType=INTEGER}
+        where user_id = #{user_id,jdbcType=INTEGER}
     </delete>
 
     <!--  注册用户  -->
     <insert id="registerUser" parameterType="com.hurpods.ssm.blog.models.User" useGeneratedKeys="true"
             keyProperty="userId">
-        insert into users(user_id, user_name, user_psw, user_nick_name, user_email, user_tel, user_avatar,
-                          user_last_login_ip, user_register_time, user_last_login_time, province, city)
-        values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPsw,jdbcType=VARCHAR},
+        insert into users(user_name, user_psw, user_nick_name, user_email, user_tel, user_avatar,
+                          user_last_login_ip, user_register_time, user_last_login_time)
+        values (#{userName,jdbcType=VARCHAR}, #{userPsw,jdbcType=VARCHAR},
                 #{userNickName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR},
                 #{userAvatar,jdbcType=VARCHAR}, #{userLastLoginIp,jdbcType=VARCHAR},
-                #{userRegisterTime,jdbcType=INTEGER}, #{userLastLoginTime,jdbcType=INTEGER},
-                #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
+                #{userRegisterTime,jdbcType=TIMESTAMP}, #{userLastLoginTime,jdbcType=TIMESTAMP})
     </insert>
 
     <!--  更改状态/资料  -->
     <update id="updateUserInfo" parameterType="com.hurpods.ssm.blog.models.User">
         update users
         <set>
-            <if test="userPsw != null">user_psw=${userPsw,jdbcType=VARCHAR},</if>
-            <if test="userNickName != null">user_nick_name=${userNickName,jdbcType=VARCHAR},</if>
+            <if test="userPsw != null">user_psw=#{userPsw,jdbcType=VARCHAR},</if>
+            <if test="userNickName != null">user_nick_name=#{userNickName,jdbcType=VARCHAR},</if>
             <if test="userEmail != null">user_email=#{userEmail,jdbcType=VARCHAR},</if>
             <if test="userTel != null">user_tel=#{userTel,jdbcType=VARCHAR},</if>
             <if test="userAvatar != null">user_avatar=#{userAvatar,jdbcType=VARCHAR},</if>
             <if test="userLastLoginIp != null">user_last_login_ip=#{#userLastLoginIp,jdbcType=VARCHAR},</if>
-            <if test="userLastLoginTime != null">user_last_login_time=#{userLastLoginTime.jdbcType=INTEGER},</if>
+            <if test="userLastLoginTime != null">user_last_login_time=#{userLastLoginTime.jdbcType=TIMESTAMP},</if>
             <if test="province != null">province=#{province,jdbcType=VARCHAR},</if>
             <if test="city != null">city=#{city,jdbcType=VARCHAR}</if>
         </set>

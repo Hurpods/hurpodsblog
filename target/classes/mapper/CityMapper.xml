@@ -11,7 +11,7 @@
         select *
         from city
     </select>
-    <select id="getCityById" resultMap="CityResultMap" parameterMap="String">
+    <select id="getCityById" resultMap="CityResultMap" parameterType="String">
         select *
         from city
         where id = ${cityId,jdbcType=VARCHAR}
@@ -26,7 +26,7 @@
         from city
         where code_p = ${code_p,jdbcType=VARCHAR}
     </select>
-    <select id="getCityCodeByProvince" resultMap="String" parameterType="String">
+    <select id="getCityCodeByProvince" resultType="String" parameterType="String">
         select code_c
         from city
         where code_p = ${provinceCode,jdbcType=VARCHAR}

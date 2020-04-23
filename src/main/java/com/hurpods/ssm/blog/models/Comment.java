@@ -3,6 +3,8 @@ package com.hurpods.ssm.blog.models;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 @Data
 public class Comment implements Serializable {
     private static final long serialVersionUID = 6436639512695674934L;
@@ -21,7 +23,7 @@ public class Comment implements Serializable {
     //评论时的IP
     private String commentIp;
     //评论时间
-    private Integer commentTime;
+    private Timestamp commentTime;
     //层主标识
     private Integer commentPreId;
     //层主昵称

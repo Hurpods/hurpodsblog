@@ -9,7 +9,7 @@
         <result column="comment_author_avatar" property="commentAuthorAvatar" jdbcType="VARCHAR"/>
         <result column="comment_content" property="commentContent" javaType="String"/>
         <result column="comment_ip" property="commentIp" jdbcType="VARCHAR"/>
-        <result column="comment_time" property="commentTime" jdbcType="INTEGER"/>
+        <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP"/>
         <result column="comment_pre_nick_name" property="commentPreNickName" jdbcType="VARCHAR"/>
         <result column="comment_pre_id" property="commentPreId" jdbcType="INTEGER"/>
     </resultMap>
@@ -49,7 +49,7 @@
         values (#{commentId,jdbcType=INTEGER}, #{commentUserId,jdbcType=INTEGER},
                 #{commentArticleId,jdbcType=INTEGER}, #{commentAuthorNickName,jdbcType=VARCHAR},
                 #{commentAuthorAvatar,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR},
-                #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=INTEGER}, #{commentPreNickName,jdbcType=VARCHAR},
+                #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP}, #{commentPreNickName,jdbcType=VARCHAR},
                 #{commentPreId,jdbcType=INTEGER})
     </insert>
 
@@ -64,7 +64,7 @@
             </if>
             <if test="commentContent != null">comment_content=${commentContent,jdbcType=VARCHAR},</if>
             <if test="commentIp != null">comment_ip=${commentIp,jdbcType=VARCHAR},</if>
-            <if test="commentTime != null">comment_time=${commentTime,jdbcType=INTEGER},</if>
+            <if test="commentTime != null">comment_time=${commentTime,jdbcType=TIMESTAMP},</if>
         </set>
     </update>
 </mapper>

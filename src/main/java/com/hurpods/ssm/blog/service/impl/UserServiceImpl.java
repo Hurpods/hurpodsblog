@@ -99,11 +99,12 @@ public class UserServiceImpl implements UserService {
                 pattern = Pattern.compile(pat);
                 Matcher matcher = pattern.matcher(token);
                 boolean isTel = matcher.matches();
-                if (token.length() != 11 && token.length() != 0) {
+                boolean isEmpty = token.length() == 0;
+                if (token.length() != 11 && !isEmpty) {
                     msg = "手机号码位数错误";
                     status = "false";
                     break;
-                } else if (!isTel) {
+                } else if (!isTel && !isEmpty) {
                     msg = "手机号码格式错误";
                     status = "false";
                     break;
