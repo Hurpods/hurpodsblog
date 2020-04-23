@@ -11,7 +11,7 @@ public class Comment implements Serializable {
     //唯一标识
     private Integer commentId;
     //用户标识
-    private Integer commentUserId;
+    private Integer commentAuthorId;
     //评论文章
     private Integer commentArticleId;
     //评论者昵称

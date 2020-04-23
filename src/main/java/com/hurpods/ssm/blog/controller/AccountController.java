@@ -4,7 +4,6 @@ import com.hurpods.ssm.blog.models.User;
 import com.hurpods.ssm.blog.service.CommentService;
 import com.hurpods.ssm.blog.service.UserService;
 import com.hurpods.ssm.blog.utils.MyUtil;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +25,9 @@ public class AccountController {
     @Autowired
     CommentService commentService;
 
-    @RequestMapping("/login")
+    @RequestMapping("/loginPage")
     @ResponseBody
-    public String login() {
+    public String loginPage() {
         return "public/login";
     }
 
@@ -47,21 +46,20 @@ public class AccountController {
         if (status) {
             User user = userService.getUserByOthers(userToken);
             if (user != null) {
-                map.put("code", "1");
+                map.put("status", "false");
                 map.put("msg", "该" + tokenType + "已被注册！");
             } else {
-                map.put("code", "0");
+                map.put("status", "true");
                 map.put("msg", "");
             }
         } else {
-            map.put("code", "1");
+            map.put("status", "false");
             map.put("msg", hashMap.get("msg"));
         }
         return new JSONObject(map).toString();
     }
 
-    @RequestMapping("/register")
-    @ResponseBody
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void registerUser(HttpServletRequest req) {
         MyUtil myUtil = new MyUtil();
         Timestamp nowTime = new Timestamp(new Date().getTime());
@@ -87,5 +85,34 @@ public class AccountController {
         user.setUserLastLoginIp(myUtil.getIpAddress(req));
 
         userService.registerUser(user);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String login(HttpServletRequest req) {
+        String token = req.getParameter("token");
+        String psw = req.getParameter("password");
+        String msg;
+        MyUtil myUtil = new MyUtil();
+        Map<String, String> map = new HashMap<>();
+        User user = userService.getUserByOthers(token);
+
+        if (user != null) {
+            String name = user.getUserName();
+            psw = myUtil.hashPass(psw, name);
+            if (psw.equals(user.getUserPsw())) {
+                map.put("status", "true");
+                msg = "";
+                req.getSession().setAttribute("user",user);
+            } else {
+                map.put("status", "false");
+                msg = "账号或密码错误";
+            }
+        } else {
+            map.put("status", "false");
+            msg = "该账号未注册";
+        }
+        map.put("msg", msg);
+        return new JSONObject(map).toString();
     }
 }

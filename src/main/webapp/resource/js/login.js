@@ -96,7 +96,7 @@ $("#username").blur(function () {
     let name = $("#username").val();
     let error = $("#usnerror");
     checkToken(name, "userName");
-    if (tokenData.code === "0") {
+    if (tokenData.status === "true") {
         name_flag = Boolean(true);
         $("#register-usnbox").css("-webkit-box-shadow", "0px 0px 0px");
     } else {
@@ -137,7 +137,7 @@ $("#telnumber").blur(function () {
     let tel = $(this).val();
     let error = $("#telerror");
     checkToken(tel, "userTel");
-    if (tokenData.code === "0") {
+    if (tokenData.status === "true") {
         tel_flag = Boolean(true);
         $("#register-telbox").css("-webkit-box-shadow", "0px 0px 0px");
     } else {
@@ -153,7 +153,7 @@ $("#e_mail").blur(function () {
     let email = $("#e_mail").val();
     let error = $("#emerror");
     checkToken(email, "userEmail");
-    if (tokenData.code === "0") {
+    if (tokenData.status === "true") {
         email_flag = Boolean(true);
         $("#register-emailbox").css("-webkit-box-shadow", "0px 0px 0px");
     } else {
@@ -195,27 +195,25 @@ function register() {
 }
 
 function login() {
-    let url = location.search.substr(1).split("=")[1];
-    let identity = $("#login-identity").val();
+    //let url = location.search.substr(1).split("=")[1];
+    let token = $("#login-identity").val();
     let password = $("#login-password").val();
-    if (identity === "") {
+    if (token === "") {
         alert("登录名不能为空");
     } else if (password === "") {
         alert("密码不能为空");
     } else {
         $.ajax({
-            type: "post",
-            url: "login",
+            type: "POST",
+            url: "/login",
             data: $("#login").serialize(),
-            cache: false,
-            dataType: "text",
+            dataType: "json",
             success: function (result) {
-                if (result === "error") {
-                    alert("登录名或密码错误")
-                } else if (result.indexOf(",") !== -1) {
-                    let data = result.split(",");
-                    sessionStorage.username = data[1];
-                    window.location.replace(url + ".jsp");
+                console.log(result);
+                if (result.status === "false") {
+                    alert(result.msg);
+                } else {
+                    alert("success");
                 }
             }
         })

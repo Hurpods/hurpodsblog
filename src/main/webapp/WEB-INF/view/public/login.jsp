@@ -56,12 +56,12 @@
         <div class="login_right">
             <label style="font-size: 24px;position: absolute;left: 60px;top: 8px;">登陆</label>
             <form id="login">
-                <div class="inputbox" id="login-identitybox">
+                <div class="inputbox" id="login-tokenbox">
                     <div class="block" style="float:left">
                         <img src="/img/icon/user.png" width="45px" height="45px" style="margin:5px 3px 3px 2px">
                     </div>
-                    <input class="inputbar" id="login-identity"
-                           name="identity" type="text" size="38" style="font-size:15px" placeholder="用户名/手机号/邮箱">
+                    <input class="inputbar" id="login-token"
+                           name="token" type="text" size="38" style="font-size:15px" placeholder="用户名/手机号/邮箱">
                 </div>
                 <br>
                 <div class="inputbox" id="login-passwordbox">
