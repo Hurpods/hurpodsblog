@@ -26,9 +26,16 @@ public class AccountController {
     @Autowired
     CommentService commentService;
 
+    static String DEFAULT_AVATAR="/img/avatar/0.png" ;
+
     @RequestMapping("/loginPage")
     public String loginPage() {
         return "public/login";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(){
+        return "admin/profile";
     }
 
     @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
@@ -79,7 +86,7 @@ public class AccountController {
         user.setUserEmail(email);
         String defaultNickName = "用户" + myUtil.getRandomString(8);
         user.setUserNickName(defaultNickName);
-        user.setUserAvatar("/img/avatar/default.png");
+        user.setUserAvatar(DEFAULT_AVATAR);
         user.setUserRegisterTime(nowTime);
         user.setUserLastLoginTime(nowTime);
         user.setUserLastLoginIp(myUtil.getIpAddress(req));
@@ -116,10 +123,10 @@ public class AccountController {
         return new JSONObject(map).toString();
     }
 
-    @RequestMapping(value="/logout",method=RequestMethod.POST)
+    @RequestMapping(value="/logout",method=RequestMethod.GET)
     public String logout(HttpSession session){
         session.removeAttribute("user");
         session.invalidate();
-        return "/";
+        return "public/index";
     }
 }

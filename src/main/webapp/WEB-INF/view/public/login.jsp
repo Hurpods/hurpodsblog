@@ -13,11 +13,15 @@
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/login.css" type="text/css"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <meta name="discription" content="Hurpods的个人Blog">
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
     <title>用户登陆</title>
 </head>
+<c:if test="${sessionScope.user!=null}">
+    <jsp:forward page="/profile"/>
+</c:if>
+
 <body style="overflow: hidden;height: 100%;">
 <div style="width:1920px; height:980px;padding:0;margin:0;">
     <div class="left">

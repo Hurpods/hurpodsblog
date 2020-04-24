@@ -188,7 +188,7 @@ function register() {
             data: $("#register").serialize(),
             cache: false,
             success: function () {
-                alert("success");
+                window.location.href="/profile";
             }
         })
     }
@@ -213,7 +213,7 @@ function login() {
                 if (result.status === "false") {
                     alert(result.msg);
                 } else {
-                    alert("success");
+                    window.location.href="/";
                 }
             }
         })

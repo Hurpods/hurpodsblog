@@ -1,0 +1,184 @@
+.banner {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    left: 0;
+    top: 0;
+    background: url("/img/banner.png");
+}
+
+.user-index {
+    flex: 1;
+}
+
+.user-info {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+
+.user-avatarpic {
+    position: absolute;
+    background: white;
+    border: 1px #dedede solid;
+    width: 160px;
+    height: 160px;
+    top: -80px;
+    left: 200px;
+    border-radius: 50%;
+}
+
+.user-avatarpic img {
+    border-radius: 50%;
+}
+
+.user-name {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    top: -35px;
+    left: 400px;
+}
+
+.user-edit {
+    position: absolute;
+    width: 102px;
+    height: 36px;
+    top: -18px;
+    right: 200px;
+}
+
+.user-delete {
+    position: absolute;
+    width: 102px;
+    height: 36px;
+    top: -18px;
+    right: 50px;
+}
+
+.delete-confirm {
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    text-align: center;
+    font-size: 24px;
+    color: red;
+    z-index: 50;
+    left: 35%;
+    top: -150px;
+    background: #dedede;
+    border-radius: 10px;
+    display: none;
+}
+
+.delete-shadow {
+    position: absolute;
+    width: 100%;
+    height: 1580px;
+    z-index: 49;
+    background: RGBA(0, 0, 0, 0.3);
+    display: none;
+}
+
+input#delete-password {
+    margin-top: 20px;
+    border: 0;
+    border-bottom: 2px solid #9c9c9c;
+    background: RGBA(0, 0, 0, 0);
+    font-size: 23px;
+    outline: none;
+}
+
+.user-delete input {
+    font-size: 23px;
+    margin-top: 20px;
+    border: 0;
+    border-bottom: 2px solid #9c9c9c;
+    background: RGBA(0, 0, 0, 0);
+    outline: none;
+}
+
+.delete-confirm-button {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+}
+
+.delete-cancel-button {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+}
+
+.user-detail {
+    width: 400px;
+    height: auto;
+    position: relative;
+    left: 400px;
+    display: none;
+    top: -100px;
+}
+
+.user-detail ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-detail ul li {
+    height: 64px;
+    border-bottom: 1px solid #9c9c9c;
+}
+
+.user-detail ul li div span {
+    color: #9c9c9c;
+    font-size: 15px;
+}
+
+.user-detail ul li div p {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.detail-left {
+    position: absolute;
+    width: 200px;
+    height: 64px;
+}
+
+.detail-right {
+    width: 200px;
+    height: 64px;
+    position: absolute;
+    right: 0;
+}
+
+.show-or-hide-user-detail {
+    position: absolute;
+    left: 400px;
+    top: 10px;
+    cursor: pointer;
+    color: #9C9C9C;
+}
+
+.comment-time {
+    background: RGBA(0, 0, 0, 0);
+    border: 0;
+    border-bottom: 1px solid;
+    text-align: center;
+    outline: none;
+    font-size: 18px;
+}
+
+.user-comment {
+    margin: 0 auto 60px;
+    width: 1100px;
+    height: 600px;
+    position: relative;
+    font-size: 20px;
+}
+
+.user-comment .recent-comment {
+    font-size: 16px;
+}
