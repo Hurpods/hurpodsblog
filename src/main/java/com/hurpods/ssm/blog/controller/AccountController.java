@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,7 +27,6 @@ public class AccountController {
     CommentService commentService;
 
     @RequestMapping("/loginPage")
-    @ResponseBody
     public String loginPage() {
         return "public/login";
     }
@@ -114,5 +114,12 @@ public class AccountController {
         }
         map.put("msg", msg);
         return new JSONObject(map).toString();
+    }
+
+    @RequestMapping(value="/logout",method=RequestMethod.POST)
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
+        session.invalidate();
+        return "/";
     }
 }
