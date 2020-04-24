@@ -26,7 +26,7 @@ public class AccountController {
     @Autowired
     CommentService commentService;
 
-    static String DEFAULT_AVATAR="/img/avatar/0.png" ;
+    private static final String DEFAULT_AVATAR="/img/avatar/0.png" ;
 
     @RequestMapping("/loginPage")
     public String loginPage() {

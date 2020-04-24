@@ -91,6 +91,14 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/error/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/view/error/500.jsp</location>
+    </error-page>
 
     <!-- 使用Rest风格的URI，将页面普通的post请求转为指定的delete或者put请求 -->
     <filter>

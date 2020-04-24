@@ -77,17 +77,17 @@
     <div class="user-detail">
         <ul>
             <li>
-                <div>
+                <div class="detail-left">
                     <span>UID</span>
                     <p id="UID"></p>
                 </div>
+                <div class="detail-right">
+                    <span>用户名</span>
+                    <p id="user_name"></p>
+                </div>
             </li>
             <li>
-                <div class="detail-left">
-                    <span>性别</span>
-                    <p id="sex"></p>
-                </div>
-                <div class="detail-right">
+                <div>
                     <span>注册时间</span>
                     <p id="register_date"></p>
                 </div>
