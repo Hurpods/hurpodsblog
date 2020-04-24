@@ -18,9 +18,11 @@
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
     <title>用户登陆</title>
 </head>
-<c:if test="${sessionScope.user!=null}">
-    <jsp:forward page="/profile"/>
-</c:if>
+<%
+    if(request.getSession().getAttribute("user")!=null){
+        response.sendRedirect("/profile");
+    }
+%>
 
 <body style="overflow: hidden;height: 100%;">
 <div style="width:1920px; height:980px;padding:0;margin:0;">

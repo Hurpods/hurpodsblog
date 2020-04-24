@@ -30,8 +30,8 @@ function getUserComment() {
         dataType: "json",
         sync: false,
         success: function (data) {
-            var ul = $("#recent-comment");
-            var str = "";
+            let ul = $("#recent-comment");
+            let str = "";
             $.each(data, function (key, value) {
                 if (!(value.status === "none")) {
                     str += "<li style='font-size:20px;font-weight:bold;'>"
@@ -51,13 +51,13 @@ function getUserComment() {
 }
 
 $("#show-detail").click(function () {
-    var detail = $(".user-detail");
+    let detail = $(".user-detail");
     detail.slideDown(400);
     $("#show-detail").hide();
     $("#hide-detail").show();
 });
 $("#hide-detail").click(function () {
-    var detail = $(".user-detail");
+    let detail = $(".user-detail");
     detail.slideUp(400);
     $("#show-detail").show();
     $("#hide-detail").hide();
@@ -78,7 +78,7 @@ $("#delete-cancel").click(function () {
 });
 
 $("#delete-confirm").click(function () {
-    var password = $("#delete-password").val();
+    let password = $("#delete-password").val();
     $.ajax({
         type: "post",
         url: "change",

@@ -27,13 +27,14 @@
                     <div class="user-avatar">
                         <img src="${sessionScope.user.userAvatar}" id="user-avatar" width="32px"/>
                     </div>
-                    <div class="user-operator">
-                        <a href="/profile">个人信息</a>
-                        <a href="/logout" id="logout">退出</a>
-                    </div>
                 </c:otherwise>
             </c:choose>
+            <div class="user-operator">
+                <a href="/profile" style="top: 3px;">个人信息</a>
+                <a href="/logout" style="top: 2px;" id="logout">退出</a>
+            </div>
         </div>
     </div>
 </header>
+
 

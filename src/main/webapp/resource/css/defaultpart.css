@@ -110,30 +110,29 @@ header .header .header-right .user-avatar img {
     border-radius: 50%;
 }
 
-header .header .header-right .user-avatar:hover .user-operator {
-    display: block;
-}
 
-header .header .header-right .user-avatar .user-operator {
+header .header .header-right .user-operator {
     display: none;
     position: absolute;
     box-shadow: 0 0 10px #666;
     background: #ECF0F2;
     width: 85px;
     border-radius: 10px;
-    transition: .3s;
+    top: 65px;
+    right: 84px;
+    height: 75px;
 }
 
-header .header .header-right .user-avatar .user-operator a {
+header .header .header-right  .user-operator a {
     color: #9c9c9c;
     height: 35px;
 }
 
-header .header .header-right .user-avatar .user-operator a:hover {
+header .header .header-right  .user-operator a:hover {
     color: black;
 }
 
-header .header .header-right .user-avatar .user-operator a:hover:after {
+header .header .header-right  .user-operator a:hover:after {
     left: 10px;
     width: 80%;
 }

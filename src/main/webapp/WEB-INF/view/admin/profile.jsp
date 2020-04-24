@@ -19,11 +19,13 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.user==null}">
-    <jsp:forward page="/login"/>
-</c:if>
+<%
+    if (request.getSession().getAttribute("user") == null) {
+        response.sendRedirect("/loginPage");
+    }
+%>
 
-<%@ include file="../public/header.jsp"%>
+<%@ include file="../public/header.jsp" %>
 <div class="user-index">
     <div class="banner">
 
@@ -117,9 +119,11 @@
     </div>
 </div>
 <div class="delete-shadow"></div>
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="../public/footer.jsp" %>
 </body>
 
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
+<script type="text/javascript" src="/js/defaultpart.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
+
 </html>

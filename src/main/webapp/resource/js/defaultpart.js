@@ -6,9 +6,9 @@ function getComment() {
             type: "get",
             sync: false,
             url: "comment",
-            data:{
-                "method":"getComment",
-                "page":page
+            data: {
+                "method": "getComment",
+                "page": page
             },
             dataType: "json",
             success: function (data) {
@@ -55,11 +55,11 @@ function postComment() {
         type: "post",
         sync: false,
         url: "comment",
-        data:{
-            "method":"postComment",
-            "words":words,
-            "page":page,
-            "head":head
+        data: {
+            "method": "postComment",
+            "words": words,
+            "page": page,
+            "head": head
         },
         success: function () {
             textarea.val("");
@@ -80,3 +80,11 @@ function changeTextarea() {
         textarea.removeProp("readonly");
     }
 }
+
+$("#user-avatar").hover(function () {
+    $(".user-operator").slideDown();
+},function(){
+    $(".header-right").hover(function(){},function(){
+        $(".user-operator").slideUp();
+    })
+})

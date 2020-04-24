@@ -127,6 +127,6 @@ public class AccountController {
     public String logout(HttpSession session){
         session.removeAttribute("user");
         session.invalidate();
-        return "public/index";
+        return "redirect:/";
     }
 }
