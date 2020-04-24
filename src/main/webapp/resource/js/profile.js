@@ -1,27 +1,3 @@
-function getUserDetail() {
-    $.ajax({
-        type: "get",
-        url: "query",
-        data: "method=getUserDetail",
-        dataType: "json",
-        sync: false,
-        success: function (data) {
-            $.each(data, function (key, value) {
-                $("#UID").html(value.uid);
-                if (value.sex === "male") {
-                    $("#sex").html("男");
-                } else {
-                    $("#sex").html("女")
-                }
-                $("#register_date").html(value.register_date);
-                $("#location").html(value.location);
-                $("#telnumber").html(value.telnumber);
-                $("#email").html(value.email);
-            });
-        }
-    });
-}
-
 function getUserComment() {
     $.ajax({
         type: "get",

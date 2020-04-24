@@ -79,33 +79,33 @@
             <li>
                 <div class="detail-left">
                     <span>UID</span>
-                    <p id="UID"></p>
+                    <p id="UID">${sessionScope.user.userId}</p>
                 </div>
                 <div class="detail-right">
                     <span>用户名</span>
-                    <p id="user_name"></p>
+                    <p id="user_name">${sessionScope.user.userName}</p>
                 </div>
             </li>
             <li>
                 <div>
                     <span>注册时间</span>
-                    <p id="register_date"></p>
+                    <p id="register_date">${sessionScope.user.userRegisterTime}</p>
                 </div>
             </li>
             <li>
                 <div>
                     <span>所在地</span>
-                    <p id="location"></p>
+                    <p id="location">${sessionScope.user.province}${sessionScope.user.city}</p>
                 </div>
             </li>
             <li>
                 <div class="detail-left">
                     <span>手机号</span>
-                    <p id="telnumber"></p>
+                    <p id="telnumber">${sessionScope.user.userTel}</p>
                 </div>
                 <div class="detail-right">
                     <span>邮箱</span>
-                    <p id="email"></p>
+                    <p id="email">${sessionScope.user.userEmail}</p>
                 </div>
             </li>
         </ul>
