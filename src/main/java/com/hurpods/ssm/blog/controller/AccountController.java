@@ -1,7 +1,9 @@
 package com.hurpods.ssm.blog.controller;
 
 import com.hurpods.ssm.blog.models.User;
+import com.hurpods.ssm.blog.service.CityService;
 import com.hurpods.ssm.blog.service.CommentService;
+import com.hurpods.ssm.blog.service.ProvinceService;
 import com.hurpods.ssm.blog.service.UserService;
 import com.hurpods.ssm.blog.utils.MyUtil;
 import org.json.JSONObject;
@@ -26,11 +28,17 @@ public class AccountController {
     @Autowired
     CommentService commentService;
 
-    private static final String DEFAULT_AVATAR="/img/avatar/0.png" ;
+    @Autowired
+    ProvinceService provinceService;
+
+    @Autowired
+    CityService cityService;
+
+    private static final String DEFAULT_AVATAR = "/img/avatar/0.png";
 
     @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
     @ResponseBody
-    public String checkUserName(HttpServletRequest req) {
+    public String checkToken(HttpServletRequest req) {
         Map<String, String> map = new HashMap<>();
         HashMap<String, String> hashMap = new HashMap<>();
         String userToken = req.getParameter("token");
@@ -100,7 +108,7 @@ public class AccountController {
             if (psw.equals(user.getUserPsw())) {
                 map.put("status", "true");
                 msg = "";
-                req.getSession().setAttribute("user",user);
+                req.getSession().setAttribute("user", user);
             } else {
                 map.put("status", "false");
                 msg = "账号或密码错误";
@@ -113,12 +121,46 @@ public class AccountController {
         return new JSONObject(map).toString();
     }
 
-    @RequestMapping(value="/logout",method=RequestMethod.GET)
-    public String logout(HttpSession session){
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
         session.removeAttribute("user");
         session.invalidate();
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+    public String updateUser(HttpServletRequest req) {
+        String nickName = req.getParameter("update_nickname");
+        String provinceCode = req.getParameter("province_code");
+        String province = provinceService.getProvinceByCode(provinceCode).getProvinceName();
+        String cityCode = req.getParameter("city_code");
+        String city = cityService.getCityByCode(cityCode).getCityName();
+        String email = req.getParameter("update_email");
+        String tel = req.getParameter("update_tel");
 
+        User user = (User) req.getSession().getAttribute("user");
+
+        if (!nickName.equals("")) {
+            user.setUserNickName(nickName);
+        }
+        if (!email.equals("")) {
+            user.setUserEmail(email);
+        }
+        if (!tel.equals("")) {
+            user.setUserTel(tel);
+        }
+        if (!province.equals("")) {
+            user.setProvince(province);
+        }
+        if (!city.equals("")) {
+            user.setCity(city);
+        }
+
+        userService.updateUserInfo(user);
+
+        logout(req.getSession());
+        req.getSession().setAttribute("user", user);
+
+        return "redirect:/profile";
+    }
 }

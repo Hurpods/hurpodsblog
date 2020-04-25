@@ -20,7 +20,7 @@
 <%@ include file="../public/header.jsp" %>
 <div class="edit-header">
     <div class="back-to-profile">
-        <a href="/profile" class="button-link">
+        <a href="/profile">
             <img src="/img/icon/back.png" style="vertical-align: middle"/>
             <span style="position: absolute;width: 108px;height: 24px;top: 2px;">返回个人中心</span>
         </a>
@@ -28,7 +28,7 @@
     <hr style="width:75%;position:absolute;left:13%;top:135px">
     <ul class="switch-ul">
         <li style="margin-right: 90px;color:black;border-bottom: 2px solid" id="common">基本资料</li>
-        <li id="change-password">更改密码</li>
+        <li id="update-password">更改密码</li>
     </ul>
 </div>
 <div class="basic">
@@ -47,9 +47,9 @@
     </div>
     <form class="edit-other">
         <div>
-            <span>用户名</span>
+            <span>昵称</span>
             <div>
-                <input type="text" maxlength="20" size="25" name="change_username" id="change-username">
+                <input type="text" maxlength="20" size="25" name="update_nickname" id="update-nickname">
             </div>
         </div>
         <div>
@@ -58,28 +58,28 @@
                 <pre style="margin: 5px 0;">省份</pre>
                 <select id="province" name="province_code"></select>
                 <pre style="margin: 5px 0;">市/区</pre>
-                <select id="city" name="city"></select>
+                <select id="city" name="city_code"></select>
             </div>
         </div>
         <div>
             <span>手机号</span>
             <div>
-                <input type="text" maxlength="11" size="25" id="change-telnumber" name="change_telnumber">
+                <input type="text" maxlength="11" size="25" id="update-tel" name="update_tel">
             </div>
         </div>
         <div>
             <span>邮箱</span>
             <div>
-                <input type="text" size="25" id="change-email" name="change_email">
+                <input type="text" size="25" id="update-email" name="update_email">
             </div>
         </div>
     </form>
     <div class="error-box-common"></div>
     <div class="button" style="height: 50px;width: 100px;position: absolute;top:85%;left:515px">
-        <button type="button" class="bttn" style="width:100px" id="change-other-save">保存更改</button>
+        <button type="button" class="bttn" style="width:100px" id="update-other-save">保存更改</button>
     </div>
 </div>
-<div class="change-password">
+<div class="update-password">
     <div>
         <span>原始密码</span>
         <input name="old-password" type="password" maxlength="20" size="25" id="old-password">
@@ -90,7 +90,7 @@
     </div>
     <div class="error-box-password" style="text-align:center;height:30px;font-size:18px;color:red"></div>
     <div class="button" style="height: 50px;width: 100px;position: absolute;top: 55%;left: 255px;">
-        <button type="button" class="bttn" style="width:100px" id="change-password-save">保存更改</button>
+        <button type="button" class="bttn" style="width:100px" id="update-password-save">保存更改</button>
     </div>
 </div>
 <%@ include file="../public/footer.jsp" %>

@@ -24,7 +24,12 @@ a:after {
     left: 50%;
     transition: all 0.3s ease 0s;
 }
-
+.edit-header .back-to-profile a:after{
+    background:rgba(0,0,0,0);
+}
+.user-index .user-info .user-edit .button a:after{
+    background:rgba(0,0,0,0);
+}
 a:hover:after {
     left: 0;
     width: 100%;

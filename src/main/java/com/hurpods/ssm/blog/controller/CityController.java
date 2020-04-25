@@ -21,7 +21,6 @@ public class CityController {
     @ResponseBody
     public String getCityByProvince(@RequestParam(value="code")String code) {
         List<City> allCity = cityService.getCityByProvince(code);
-        System.out.println(allCity);
         return JSON.toJSONString(allCity);
     }
 }

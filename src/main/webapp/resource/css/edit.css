@@ -135,7 +135,7 @@
     text-align: center;
 }
 
-.change-password {
+.update-password {
     position: relative;
     height: 474px;
     width: 355px;
@@ -145,17 +145,17 @@
     display: none;
 }
 
-.change-password div {
+.update-password div {
     width: 355px;
     height: 64px;
     margin-bottom: 20px;
 }
 
-.change-password span {
+.update-password span {
     font-weight: bold;
 }
 
-.change-password input {
+.update-password input {
     font-size: 23px;
     border-bottom: 2px solid #9c9c9c;
     border-top: 0;
