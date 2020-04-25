@@ -12,7 +12,6 @@ function getProvince() {
         async: "false",
         dataType: "json",
         success: function (data) {
-            console.log(data);
             let str = "";
             $.each(data, function (key, value) {
                 str += "<option value=" + value.provinceCode + ">" + value.provinceName + "</option><br>";
@@ -32,11 +31,14 @@ $(document).ready(function () {
         if (code !== "0") {
             $.ajax({
                 type: "get",
-                data: "code=" + code,
+                data: {
+                    "code": code
+                },
                 url: "/getCityByProvince",
-                async: false,
+                async: "false",
                 dataType: "json",
                 success: function (data) {
+                    console.log(data);
                     let str = "";
                     $.each(data, function (key, value) {
                         str += "<option value=" + value.cityCode + ">" + value.cityName + "</option><br>";
@@ -73,10 +75,10 @@ $("#change-password").click(function () {
     $(".change-password").fadeIn(400);
 });
 
-$(".edit-head").hover(function () {
-    $(".head-shadow").fadeOut(300);
+$(".edit-avatar").hover(function () {
+    $(".avatar-shadow").fadeOut(300);
 }, function () {
-    $(".head-shadow").fadeIn(300);
+    $(".avatar-shadow").fadeIn(300);
 });
 
 function uploadFile() {

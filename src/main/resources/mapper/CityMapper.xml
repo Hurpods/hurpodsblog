@@ -14,21 +14,21 @@
     <select id="getCityById" resultMap="CityResultMap" parameterType="String">
         select *
         from city
-        where id = ${cityId,jdbcType=VARCHAR}
+        where id = #{cityId,jdbcType=VARCHAR}
     </select>
     <select id="getCityByCode" resultMap="CityResultMap" parameterType="String">
         select *
         from city
-        where code_c = ${code_c,jdbcType=VARCHAR}
+        where code_c = #{cityCode,jdbcType=VARCHAR}
     </select>
     <select id="getCityByProvince" resultMap="CityResultMap" parameterType="String">
         select *
         from city
-        where code_p = ${code_p,jdbcType=VARCHAR}
+        where code_p = #{provinceCode,jdbcType=VARCHAR}
     </select>
     <select id="getCityCodeByProvince" resultType="String" parameterType="String">
         select code_c
         from city
-        where code_p = ${provinceCode,jdbcType=VARCHAR}
+        where code_p = #{provinceCode,jdbcType=VARCHAR}
     </select>
 </mapper>

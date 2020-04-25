@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>编辑资料</title>
-</head>
+</head>>
 <body>
 <%@ include file="../public/header.jsp" %>
 <div class="edit-header">
     <div class="back-to-profile">
-        <a href="/profile">
+        <a href="/profile" class="button-link">
             <img src="/img/icon/back.png" style="vertical-align: middle"/>
             <span style="position: absolute;width: 108px;height: 24px;top: 2px;">返回个人中心</span>
         </a>
@@ -33,16 +33,16 @@
 </div>
 <div class="basic">
     <div class="tips-info">请填写更改项，留空为不更改</div>
-    <div class="edit-head">
-        <div class="head-shadow">
+    <div class="edit-avatar">
+        <div class="avatar-shadow">
             <span>修改头像</span>
         </div>
-        <div id="collect-head" style="height:100%;width:100%">
+        <div id="collect-avatar" style="height:100%;width:100%">
             <form method="post" enctype="multipart/form-data" action="upload">
-                <input style="display:none" type="file" name="head" accept="image/jpg,image/jpeg,image/png" id="file">
+                <input style="display:none" type="file" name="avatar" accept="image/jpg,image/jpeg,image/png" id="file">
                 <input type="submit" style="display:none" id="submit-button">
             </form>
-            <img id="user-headpic" src="${sessionScope.user.userAvatar}" onclick="uploadFile()" style="position:absolute;top:0">
+            <img id="user-avatarpic" src="${sessionScope.user.userAvatar}" onclick="uploadFile()" style="position:absolute;top:0">
         </div>
     </div>
     <form class="edit-other">
