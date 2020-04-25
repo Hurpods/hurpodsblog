@@ -10,7 +10,7 @@ public interface CityService {
 
     City getCityByCode(String code);
 
-    City getCityByProvince(String province);
+    List<City> getCityByProvince(String province);
 
     String getCityCodeByProvince(String province);
 }

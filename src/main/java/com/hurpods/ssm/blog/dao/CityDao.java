@@ -13,7 +13,7 @@ public interface CityDao {
 
     City getCityByCode(String code);
 
-    City getCityByProvince(String province);
+    List<City> getCityByProvince(String province);
 
     String getCityCodeByProvince(String province);
 }

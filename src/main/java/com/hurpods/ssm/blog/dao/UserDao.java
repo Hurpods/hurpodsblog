@@ -13,4 +13,5 @@ public interface UserDao {
     void deleteUserById(Integer id);
     void registerUser(User user);
     void updateUserInfo(User user);
+    void updateUserPsw(User user);
 }

@@ -117,7 +117,11 @@ public class UserServiceImpl implements UserService {
         result.put("status", status);
         result.put("msg", msg);
         result.put("type", returnType);
-        System.out.println(result);
         return result;
+    }
+
+    @Override
+    public void updateUserPsw(User user) {
+
     }
 }

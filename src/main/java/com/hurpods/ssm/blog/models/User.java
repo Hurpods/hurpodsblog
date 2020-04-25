@@ -31,4 +31,6 @@ public class User implements Serializable {
     //地理位置
     private String province;
     private String city;
+    //权限
+    private boolean isAdmin;
 }

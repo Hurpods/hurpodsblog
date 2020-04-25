@@ -1,0 +1,166 @@
+.edit-header {
+    flex: 1;
+    margin-top: 60px;
+}
+
+.back-to-profile {
+    position: absolute;
+    top: 100px;
+    left: 12%;
+    font-size: 18px;
+    cursor: pointer;
+    width: 142px;
+    color: #9c9c9c;
+    transition: .3s
+}
+
+.back-to-profile:hover {
+    color: black;
+}
+
+.edit-header ul {
+    position: absolute;
+    list-style: none;
+    top: 20%;
+    left: 830px;
+    padding: 0;
+    font-size: 18px;
+    color: #9c9c9c;
+}
+
+.edit-header ul li {
+    display: inline;
+    cursor: pointer;
+}
+
+.tips-info {
+    position: absolute;
+    left: 255px;
+    top: 20px;
+    color: blue;
+    cursor: default;
+}
+
+.basic {
+    position: relative;
+    height: 860px;
+    margin: 185px 30% 0;
+}
+
+.edit-head {
+    position: relative;
+    background: white;
+    border: 1px #dedede solid;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 40px;
+}
+
+.head-shadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: RGBA(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+}
+
+.head-shadow span {
+    position: absolute;
+    left: 30px;
+    top: 55px;
+}
+
+.edit-head img {
+    border-radius: 50%;
+}
+
+.edit-other {
+    position: absolute;
+    width: 355px;
+    top: 80px;
+    left: 260px;
+    font-size: 18px;
+}
+
+.edit-other div {
+    margin-bottom: 20px;
+}
+
+.edit-other span {
+    font-weight: bold;
+}
+
+.edit-other input {
+    border-width: 0 0 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(156, 156, 156);
+    background: RGBA(0, 0, 0, 0);
+    outline: none;
+    font-size: 23px;
+    height: 35px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.edit-other select {
+    border-width: 0 0 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(156, 156, 156);
+    background: RGBA(0, 0, 0, 0);
+    outline: none;
+    height: 35px;
+    width: 355px;
+    text-align: center;
+    text-align-last: center;
+    font-size: 23px;
+}
+
+.error-box-common {
+    position: absolute;
+    width: 246px;
+    height: 25px;
+    top: 30%;
+    left: -35px;
+    font-size: 18px;
+    color: red;
+    text-align: center;
+}
+
+.change-password {
+    position: relative;
+    height: 474px;
+    width: 355px;
+    margin: 15% auto;
+    left: 55px;
+    font-size: 18px;
+    display: none;
+}
+
+.change-password div {
+    width: 355px;
+    height: 64px;
+    margin-bottom: 20px;
+}
+
+.change-password span {
+    font-weight: bold;
+}
+
+.change-password input {
+    font-size: 23px;
+    border-bottom: 2px solid #9c9c9c;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    background: RGBA(0, 0, 0, 0);
+    outline: none;
+}

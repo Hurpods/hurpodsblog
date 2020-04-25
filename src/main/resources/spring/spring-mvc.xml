@@ -30,7 +30,7 @@
 
     <!--  文件上传  -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--  设置上传最大尺寸为50MB  -->
+        <!--  设置上传最大尺寸为5MB  -->
         <property name="maxUploadSizePerFile" value="5242880"/>
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="resolveLazily" value="true"/>

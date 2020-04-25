@@ -18,5 +18,7 @@ public interface UserService {
 
     void updateUserInfo(User user);
 
-    HashMap<String,String> verifyCorrect(String token, String type);
+    HashMap<String, String> verifyCorrect(String token, String type);
+
+    void updateUserPsw(User user);
 }

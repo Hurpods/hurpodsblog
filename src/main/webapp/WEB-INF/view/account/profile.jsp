@@ -45,7 +45,9 @@
         </div>
         <div class="user-edit">
             <div class="button" style="width: 102px;height: 36px;position: static;border-radius: 40px;">
-                <button class="bttn" id="edit" type="button" style="width: 102px;height: 36px;">修改资料</button>
+                <a href="/edit">
+                    <button class="bttn" id="edit" type="button" style="width: 102px;height: 36px;">修改资料</button>
+                </a>
             </div>
         </div>
         <div class="user-delete">

@@ -4,59 +4,6 @@ let tel_flag = Boolean(false);
 let email_flag = Boolean(false);
 let check = Boolean(false);
 
-// function getProvince() {
-//     let province = $("#province");
-//     $.ajax({
-//         type: "get",
-//         data: "method=getProvince",
-//         url: "selecter",
-//         async: "false",
-//         dataType: "json",
-//         success: function (data) {
-//             let str = "";
-//             $.each(data, function (key, value) {
-//                 str += "<option value=" + value.code + ">" + value.name + "</option><br>";
-//             });
-//             province.empty();
-//             province.append("<option value = 0>--请选择--</option>");
-//             province.append(str);
-//         }
-//     });
-// }
-//
-// $(document).ready(function () {
-//     getProvince();
-//     $("#province").change(function () {
-//         let select = $("#province option:selected");
-//         let city = $("#city");
-//         let province = select.text();
-//         let code = select.val();
-//         if (province !== "--请选择--") {
-//             $.ajax({
-//                 type: "get",
-//                 data: {
-//                     "method": "getCity",
-//                     "select": code
-//                 },
-//                 url: "selecter",
-//                 async: false,
-//                 dataType: "json",
-//                 success: function (data) {
-//                     let str = "";
-//                     $.each(data, function (key, value) {
-//                         str += "<option>" + value.name + "</option><br>";
-//                     });
-//                     city.empty();
-//                     city.append("<option value = 0>--请选择--</option>");
-//                     city.append(str);
-//                 }
-//             });
-//         } else {
-//             city.empty();
-//         }
-//     });
-// });
-
 $("#switch-checkbox").change(function () {
     let register_page = $(".register_right");
     let login_page = $(".login_right");

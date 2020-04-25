@@ -25,7 +25,7 @@ public class CityServiceImpl implements CityService {
         return cityDao.getCityByCode(code);
     }
 
-    public City getCityByProvince(String province) {
+    public List<City> getCityByProvince(String province) {
         return cityDao.getCityByProvince(province);
     }
 

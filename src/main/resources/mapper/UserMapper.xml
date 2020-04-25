@@ -14,6 +14,7 @@
         <result column="user_last_login_time" property="userLastLoginTime" jdbcType="TIMESTAMP"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="is_admin" property="isAdmin" jdbcType="TINYINT"/>
     </resultMap>
 
     <!--  获取所有用户  -->
@@ -48,18 +49,18 @@
     <insert id="registerUser" parameterType="com.hurpods.ssm.blog.models.User" useGeneratedKeys="true"
             keyProperty="userId">
         insert into users(user_name, user_psw, user_nick_name, user_email, user_tel, user_avatar,
-                          user_last_login_ip, user_register_time, user_last_login_time)
+                          user_last_login_ip, user_register_time, user_last_login_time, is_admin)
         values (#{userName,jdbcType=VARCHAR}, #{userPsw,jdbcType=VARCHAR},
                 #{userNickName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR},
                 #{userAvatar,jdbcType=VARCHAR}, #{userLastLoginIp,jdbcType=VARCHAR},
-                #{userRegisterTime,jdbcType=TIMESTAMP}, #{userLastLoginTime,jdbcType=TIMESTAMP})
+                #{userRegisterTime,jdbcType=TIMESTAMP}, #{userLastLoginTime,jdbcType=TIMESTAMP},
+                #{isAdmin,jdbcType=TINYINT})
     </insert>
 
     <!--  更改状态/资料  -->
     <update id="updateUserInfo" parameterType="com.hurpods.ssm.blog.models.User">
         update users
         <set>
-            <if test="userPsw != null">user_psw=#{userPsw,jdbcType=VARCHAR},</if>
             <if test="userNickName != null">user_nick_name=#{userNickName,jdbcType=VARCHAR},</if>
             <if test="userEmail != null">user_email=#{userEmail,jdbcType=VARCHAR},</if>
             <if test="userTel != null">user_tel=#{userTel,jdbcType=VARCHAR},</if>
@@ -72,5 +73,15 @@
         where user_id=#{userId,jdbcType=INTEGER}
     </update>
 
+    <!--  更改密码  -->
+    <update id="updateUserPsw" parameterType="com.hurpods.ssm.blog.models.User">
+        update users
+        <set>
+            <if test='userPsw != "" and userPsw != ""'>
+                user_psw=#{userPsw,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where user_id=#{userId,jdbcType=INTEGER}
+    </update>
 
 </mapper>

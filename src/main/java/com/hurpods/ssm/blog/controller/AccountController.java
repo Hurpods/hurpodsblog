@@ -28,16 +28,6 @@ public class AccountController {
 
     private static final String DEFAULT_AVATAR="/img/avatar/0.png" ;
 
-    @RequestMapping("/loginPage")
-    public String loginPage() {
-        return "public/login";
-    }
-
-    @RequestMapping("/profile")
-    public String profile(){
-        return "admin/profile";
-    }
-
     @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
     @ResponseBody
     public String checkUserName(HttpServletRequest req) {
@@ -129,4 +119,6 @@ public class AccountController {
         session.invalidate();
         return "redirect:/";
     }
+
+
 }
