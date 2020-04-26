@@ -3,15 +3,15 @@
     flex: 1
 }
 
-.first-box {
-    width: 1320px;
+.top-box {
+    width: 1355px;
     height: 400px;
     margin: 0 auto;
     display: block;
     position: relative;
 }
 
-.content {
+.daily {
     width: 655px;
     height: 400px;
     position: absolute;
@@ -19,7 +19,7 @@
     border-radius: 10px
 }
 
-.content-img {
+.daily-img {
     position: absolute;
 }
 
@@ -32,7 +32,7 @@
     filter: brightness(0.5) contrast(80%);
 }
 
-.content-words {
+.daily-words {
     width: 550px;
     z-index: 1;
     position: absolute;
@@ -43,7 +43,7 @@
     top: 175px;
 }
 
-.content-sign {
+.daily-sign {
     width: 200px;
     z-index: 1;
     position: absolute;
@@ -54,11 +54,10 @@
     left: 402px;
 }
 
-.situation {
-    width: 350px;
-    height: 350px;
+.daily-life {
+    width: 655px;
+    height: 400px;
     position: absolute;
-    top: 25px;
-    left: 700px;
-    cursor:default;
+    right: 0;
+    cursor: default;
 }

@@ -6,7 +6,6 @@
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/home.css" type="text/css"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css">
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ufWwqovNTxL849zG6HdEFWXiaxwamLit"></script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="description" content="Hurpods的个人Blog">
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
@@ -15,20 +14,25 @@
 <body>
 <%@ include file="../public/header.jsp" %>
 <div class="inner">
-    <div class="first-box">
-        <div class="content">
-            <div class="content-img">
-                <img class="img-cover" id="content-img" src="https://unsplash.it/1600/900?random">
+    <div class="top-box">
+        <div class="daily">
+            <div class="daily-img">
+                <img class="img-cover" id="daily-img" src="http://bing.getlove.cn/bingImage" alt="每日一言图片">
             </div>
-            <div class="content-words" id="content-words">
+            <div class="daily-words" id="daily-words">
 
             </div>
-            <div class="content-sign" id="content-sign">
+            <div class="daily-sign" id="daily-sign">
 
             </div>
         </div>
-        <div class="situation">
+        <div class="daily-life">
+            <div class="daily-life-img">
+                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">
+            </div>
+            <div class="daily-life-summary" id="daily-life-summary">
 
+            </div>
         </div>
     </div>
 </div>
