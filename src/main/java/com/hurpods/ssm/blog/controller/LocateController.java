@@ -8,7 +8,7 @@ public class LocateController {
 
     @RequestMapping("/")
     public String index() {
-        return "public/index";
+        return "public/home";
     }
 
     @RequestMapping("/loginPage")

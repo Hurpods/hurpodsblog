@@ -1,0 +1,64 @@
+.inner {
+    margin-top: 110px;
+    flex: 1
+}
+
+.first-box {
+    width: 1320px;
+    height: 400px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+
+.content {
+    width: 655px;
+    height: 400px;
+    position: absolute;
+    margin: auto;
+    border-radius: 10px
+}
+
+.content-img {
+    position: absolute;
+}
+
+.img-cover {
+    width: 655px;
+    height: 400px;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    filter: brightness(0.5) contrast(80%);
+}
+
+.content-words {
+    width: 550px;
+    z-index: 1;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    line-height: 34px;
+    left: 50px;
+    top: 175px;
+}
+
+.content-sign {
+    width: 200px;
+    z-index: 1;
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    top: 350px;
+    text-align: right;
+    left: 402px;
+}
+
+.situation {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 25px;
+    left: 700px;
+    cursor:default;
+}

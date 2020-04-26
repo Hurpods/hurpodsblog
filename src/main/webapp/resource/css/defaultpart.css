@@ -5,9 +5,11 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-img{
-    border-radius:10px;
+
+img {
+    border-radius: 10px;
 }
+
 a {
     color: black;
     text-decoration: none;
@@ -24,12 +26,23 @@ a:after {
     left: 50%;
     transition: all 0.3s ease 0s;
 }
-.edit-header .back-to-profile a:after{
-    background:rgba(0,0,0,0);
+
+.edit-header .back-to-profile a:after {
+    background: rgba(0, 0, 0, 0);
 }
-.user-index .user-info .user-edit .button a:after{
-    background:rgba(0,0,0,0);
+
+.user-index .user-info .user-edit .button a:after {
+    background: rgba(0, 0, 0, 0);
 }
+
+.header .logo a:after {
+    background: rgba(0, 0, 0, 0);
+}
+
+.footer-content .footer-left .logo a:after {
+    background: rgba(0, 0, 0, 0);
+}
+
 a:hover:after {
     left: 0;
     width: 100%;
@@ -128,16 +141,16 @@ header .header .header-right .user-operator {
     height: 75px;
 }
 
-header .header .header-right  .user-operator a {
+header .header .header-right .user-operator a {
     color: #9c9c9c;
     height: 35px;
 }
 
-header .header .header-right  .user-operator a:hover {
+header .header .header-right .user-operator a:hover {
     color: black;
 }
 
-header .header .header-right  .user-operator a:hover:after {
+header .header .header-right .user-operator a:hover:after {
     left: 10px;
     width: 80%;
 }
@@ -146,10 +159,8 @@ footer {
     width: 100%;
     height: 250px;
     background: #282D36;
-    overflow: hidden;
     color: #6c6c6c;
     position: relative;
-    left: 0;
     bottom: 0;
 }
 
@@ -235,21 +246,21 @@ div.button:hover {
     list-style: none;
     left: -40px;
     position: relative;
-    width:1050px;
+    width: 1050px;
 }
 
 .comment-box ul li {
     list-style: none;
     margin-bottom: 25px;
     border-bottom: 2px solid #9c9c9c;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
 
 .comment-detail {
     width: 1050px;
     height: 100px;
     border-radius: 50%;
-    position:relative;
+    position: relative;
 }
 
 .comment-detail img {
@@ -270,8 +281,9 @@ span.comment-words {
     left: 120px;
     top: 35px;
 }
+
 span.comment-time {
     position: absolute;
-    right:0;
+    right: 0;
     top: 70px;
 }

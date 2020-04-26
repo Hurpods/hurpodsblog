@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/login.css" type="text/css"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css"/>
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    <meta name="discription" content="Hurpods的个人Blog">
+    <meta name="description" content="Hurpods的个人Blog">
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
     <title>用户登陆</title>
 </head>

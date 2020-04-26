@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -209,9 +210,12 @@ public class AccountController {
         User user = (User) req.getSession().getAttribute("user");
         if (user.getUserPsw().equals(myUtil.hashPass(password, user.getUserName()))) {
             userService.deleteUserById(user.getUserId());
+            if (!user.getUserAvatar().equals(DEFAULT_AVATAR)) {
+                File file = new File(req.getContextPath() + user.getUserAvatar());
+                file.delete();
+            }
             map.put("status", "true");
             msg = "删除账号成功，即将返回首页";
-
             logout(req.getSession());
         } else {
             map.put("status", "false");
