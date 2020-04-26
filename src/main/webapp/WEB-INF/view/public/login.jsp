@@ -147,7 +147,7 @@
                 <br/>
             </form>
             <div class="button" style="left: 28%;top: 89%;">
-                <button class="bttn" onclick="register()" type="button" id="register-button">立即注册</button>
+                <button class="bttn" type="button" id="register-button">立即注册</button>
             </div>
         </div>
         <div class="copyright">

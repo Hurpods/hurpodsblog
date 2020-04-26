@@ -27,7 +27,7 @@
     <select id="getUserById" resultMap="UserResultMap" parameterType="java.lang.Integer">
         select *
         from users
-        where user_id = #{id,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
     <select id="getUserByOthers" resultMap="UserResultMap" parameterType="java.lang.String">
@@ -42,7 +42,7 @@
     <delete id="deleteUserById" parameterType="java.lang.Integer">
         delete
         from users
-        where user_id = #{user_id,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
     </delete>
 
     <!--  注册用户  -->

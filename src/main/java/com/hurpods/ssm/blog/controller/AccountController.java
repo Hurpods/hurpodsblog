@@ -67,6 +67,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
     public void registerUser(HttpServletRequest req) {
         Timestamp nowTime = new Timestamp(new Date().getTime());
         User user = new User();
@@ -91,6 +92,8 @@ public class AccountController {
         user.setUserLastLoginIp(myUtil.getIpAddress(req));
 
         userService.registerUser(user);
+
+        req.getSession().setAttribute("user", user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -193,6 +196,26 @@ public class AccountController {
                 map.put("status", "false");
                 msg = "原始密码错误";
             }
+        }
+        map.put("msg", msg);
+        return new JSONObject(map).toString();
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteUser(@RequestParam(value = "password") String password, HttpServletRequest req) {
+        Map<String, String> map = new HashMap<>();
+        String msg;
+        User user = (User) req.getSession().getAttribute("user");
+        if (user.getUserPsw().equals(myUtil.hashPass(password, user.getUserName()))) {
+            userService.deleteUserById(user.getUserId());
+            map.put("status", "true");
+            msg = "删除账号成功，即将返回首页";
+
+            logout(req.getSession());
+        } else {
+            map.put("status", "false");
+            msg = "密码错误，请重新输入";
         }
         map.put("msg", msg);
         return new JSONObject(map).toString();

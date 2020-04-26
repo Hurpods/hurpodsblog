@@ -52,22 +52,20 @@ $("#delete-cancel").click(function () {
 $("#delete-confirm").click(function () {
     let password = $("#delete-password").val();
     $.ajax({
-        type: "post",
-        url: "change",
+        type: "POST",
+        url: "/deleteUser",
         data: {
-            "method":"delete",
             "password":password
         },
         sync: "false",
-        dataType: "text",
-        success: function (result) {
-            if (result === "error") {
-                alert("密码错误，请重新输入");
+        dataType: "JSON",
+        success: function (data) {
+            if (data.status === "false") {
+                alert(data.msg);
                 $("#delete-password").html("");
             } else {
-                sessionStorage.clear();
-                alert("账号成功删除，即将返回首页");
-                window.location.replace("home.jsp");
+                alert(data.msg);
+                window.location.replace("/");
             }
         }
     })

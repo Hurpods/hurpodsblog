@@ -159,9 +159,9 @@ $("#update-password-save").click(function () {
         dataType: "JSON",
         success: function (data) {
             if (data.status === "false") {
-                alert("密码更改失败");
+                alert("密码修改失败");
             } else {
-                alert("密码更改成功，请重新登陆");
+                alert("密码修改成功，请重新登陆");
                 window.location.replace("/loginPage");
             }
             error.html(data.msg);

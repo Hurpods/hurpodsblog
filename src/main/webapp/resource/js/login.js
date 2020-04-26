@@ -122,23 +122,27 @@ $("#protocol").blur(function () {
     }
 });
 
-function register() {
+$("#register-button").click(function () {
     if (!check) {
         alert("请勾选同意用户使用协议");
     } else if (!(name_flag && psw_flag && email_flag)) {
         alert("请完成必填项");
+        $("#username").blur();
+        $("#repassword").blur();
+        $("#e_mail").blur();
+
     } else {
         $.ajax({
             type: "POST",
             url: "/register",
             data: $("#register").serialize(),
-            cache: false,
             success: function () {
-                window.location.href="/profile";
+                window.location.href = "/profile";
             }
         })
     }
-}
+});
+
 
 function login() {
     //let url = location.search.substr(1).split("=")[1];
@@ -159,7 +163,7 @@ function login() {
                 if (result.status === "false") {
                     alert(result.msg);
                 } else {
-                    window.location.href="/";
+                    window.location.href = "/";
                 }
             }
         })
