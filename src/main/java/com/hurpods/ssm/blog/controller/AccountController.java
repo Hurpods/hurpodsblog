@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,7 @@ public class AccountController {
     @Autowired
     CityService cityService;
 
+    private final MyUtil myUtil = new MyUtil();
     private static final String DEFAULT_AVATAR = "/img/avatar/0.png";
 
     @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
@@ -66,7 +68,6 @@ public class AccountController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void registerUser(HttpServletRequest req) {
-        MyUtil myUtil = new MyUtil();
         Timestamp nowTime = new Timestamp(new Date().getTime());
         User user = new User();
 
@@ -98,7 +99,6 @@ public class AccountController {
         String token = req.getParameter("token");
         String psw = req.getParameter("password");
         String msg;
-        MyUtil myUtil = new MyUtil();
         Map<String, String> map = new HashMap<>();
         User user = userService.getUserByOthers(token);
 
@@ -162,5 +162,39 @@ public class AccountController {
         req.getSession().setAttribute("user", user);
 
         return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/updatePsw", method = RequestMethod.POST)
+    @ResponseBody
+    public String updatePsw(@RequestParam(value = "oldPassword") String oldPassword,
+                            @RequestParam(value = "newPassword") String newPassword, HttpServletRequest req) {
+
+        Map<String, String> map = new HashMap<>();
+        String msg;
+        if (oldPassword.equals("") || newPassword.equals("")) {
+            map.put("status", "false");
+            msg = "新密码或原始密码为空";
+        } else if (oldPassword.equals(newPassword)) {
+            map.put("status", "false");
+            msg = "新密码不得与原始密码相同";
+        } else if (newPassword.length() < 6) {
+            map.put("status", "false");
+            msg = "新密码位数不得小于6位";
+        } else {
+            User user = (User) req.getSession().getAttribute("user");
+            if (user.getUserPsw().equals(myUtil.hashPass(oldPassword, user.getUserName()))) {
+                user.setUserPsw(myUtil.hashPass(newPassword, user.getUserName()));
+                userService.updateUserPsw(user);
+                map.put("status", "true");
+                msg = "";
+
+                logout(req.getSession());
+            } else {
+                map.put("status", "false");
+                msg = "原始密码错误";
+            }
+        }
+        map.put("msg", msg);
+        return new JSONObject(map).toString();
     }
 }

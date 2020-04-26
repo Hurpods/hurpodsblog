@@ -123,7 +123,6 @@ $("#protocol").blur(function () {
 });
 
 function register() {
-    //let url = location.search.substr(1).split("=")[1];
     if (!check) {
         alert("请勾选同意用户使用协议");
     } else if (!(name_flag && psw_flag && email_flag)) {

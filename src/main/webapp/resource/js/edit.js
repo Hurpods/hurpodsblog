@@ -1,5 +1,3 @@
-let password_flag = Boolean(false);
-
 function getProvince() {
     let province = $("#province");
     $.ajax({
@@ -138,25 +136,6 @@ $("#update-email").blur(function () {
     }
 });
 
-$("#new-password").blur(function () {
-    let oldp = $("#old-password").val();
-    let newp = $("#new-password").val();
-    let error = $(".error-box-password");
-    if (oldp === "" || newp === "") {
-        error.html("新密码和原始密码不得为空");
-        password_flag = Boolean(false);
-    } else if (oldp === newp) {
-        error.html("两次密码不得相同");
-        password_flag = Boolean(false);
-    } else if (newp.length < 6) {
-        error.html("新密码不得小于6位");
-        password_flag = Boolean(false);
-    } else {
-        error.html("");
-        password_flag = Boolean(true);
-    }
-});
-
 $("#old-password").blur(function () {
     if ($(this).val() !== "") {
         $(".error-box-password").html("");
@@ -165,33 +144,29 @@ $("#old-password").blur(function () {
 });
 
 $("#update-password-save").click(function () {
-    let oldp = $("#old-password").val();
-    let newp = $("#new-password").val();
-    if (password_flag) {
-        $.ajax({
-            type: "post",
-            sync: false,
-            url: "update",
-            data: {
-                "oldp": oldp,
-                "newp": newp,
-                "method": "updatep"
-            },
-            cache: false,
-            dataType: "text",
-            success: function (data) {
-                if (data === "error") {
-                    alert("原始密码错误");
-                    $("#new-password").val("");
-                    $("#old-password").val("");
-                } else {
-                    alert("密码更改成功，请重新登陆");
-                    sessionStorage.clear();
-                    window.location.replace("home.jsp");
-                }
+    let oldPassword = $("#old-password").val();
+    let newPassword = $("#new-password").val();
+    let error = $(".error-box-password");
+    $.ajax({
+        type: "post",
+        sync: "false",
+        url: "updatePsw",
+        data: {
+            "oldPassword": oldPassword,
+            "newPassword": newPassword
+        },
+        cache: false,
+        dataType: "JSON",
+        success: function (data) {
+            if (data.status === "false") {
+                alert("密码更改失败");
+            } else {
+                alert("密码更改成功，请重新登陆");
+                window.location.replace("/loginPage");
             }
-        })
-    }
+            error.html(data.msg);
+        }
+    })
 });
 
 $("#update-other-save").click(function () {

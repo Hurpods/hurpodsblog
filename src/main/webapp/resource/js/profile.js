@@ -39,10 +39,6 @@ $("#hide-detail").click(function () {
     $("#hide-detail").hide();
 });
 
-// $("#edit").click(function () {
-//     window.location.replace("/edit");
-// });
-
 $("#delete").click(function () {
     $(".delete-confirm").slideDown();
     $(".delete-shadow").show();

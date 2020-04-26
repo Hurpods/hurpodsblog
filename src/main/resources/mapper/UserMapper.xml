@@ -77,7 +77,7 @@
     <update id="updateUserPsw" parameterType="com.hurpods.ssm.blog.models.User">
         update users
         <set>
-            <if test='userPsw != "" and userPsw != ""'>
+            <if test='userPsw != "" and userPsw != null'>
                 user_psw=#{userPsw,jdbcType=VARCHAR}
             </if>
         </set>
