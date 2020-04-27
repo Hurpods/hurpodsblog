@@ -61,3 +61,86 @@
     right: 0;
     cursor: default;
 }
+
+.site-main{
+    position: relative;
+    width: 1355px;
+    height: auto;
+    margin: 60px auto;
+}
+
+.article-style1{
+    height: 180px;
+    margin-bottom: 25px;
+    border: solid 1px;
+    border-radius: 15px;
+}
+.article-style1 .thumb{
+    height: 160px;
+    width: 160px;
+    top: 10px;
+    left: 10px;
+    position: relative;
+}
+.article-style1 .content{
+    position: relative;
+    width: 1165px;
+    height: 130px;
+    left: 170px;
+    top: -150px;
+}
+.article-style1 .content .summary{
+    top: 10px;
+    position: relative;
+}
+.article-style1 .tags{
+    position: relative;
+    width: 1165px;
+    height: 40px;
+    left: 170px;
+    top: -160px;
+}
+.article-style1 .tags .tag{
+    border: solid 1px;
+    border-radius: 15px;
+    background: red;
+    width: 55px;
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+}
+.article-style1 .tags .time{
+    position: absolute;
+    width: 195px;
+    right: 0;
+    bottom: 0;
+}
+.article-style2{
+    margin-bottom: 25px;
+    height: 500px;
+    border: solid 1px;
+    border-radius: 15px;
+}
+.article-style2 .content{
+    position: relative;
+    width: 1165px;
+    height: 130px;
+    top: 60%;
+    left: 10px;
+}
+.article-style2 .tags{
+    top: 60%;
+    height: 40px;
+    width: 1320px;
+    position: relative;
+    left: 10px;
+}
+.article-style2 .tags .tag{
+    position: absolute;
+    bottom: 0;
+}
+.article-style2 .tags .time{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

@@ -28,13 +28,42 @@
         </div>
         <div class="daily-life">
             <div class="daily-life-img">
-                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">
+<%--                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">--%>
             </div>
             <div class="daily-life-summary" id="daily-life-summary">
 
             </div>
         </div>
     </div>
+    <main id="main" class="site-main">
+        <article class="article-style1">
+            <div class="thumb">
+                <img alt="style-1" src=""/>
+            </div>
+            <div class="content">
+                <a href="/article/">title</a>
+                <div class="summary">
+                    testtesttest
+                </div>
+            </div>
+            <div class="tags">
+                <div class="tag">#java</div>
+                <div class="time">发表时间：2020年4月27日</div>
+            </div>
+        </article>
+        <article class="article-style2">
+            <div class="content">
+                <a href="/article/">title</a>
+                <div class="summary">
+                    testtesttest
+                </div>
+            </div>
+            <div class="tags">
+                <div class="tag">#java</div>
+                <div class="time">发表时间：2020年4月27日</div>
+            </div>
+        </article>
+    </main>
 </div>
 <%@ include file="../public/footer.jsp" %>
 </body>

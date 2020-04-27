@@ -4,14 +4,14 @@ function getTalks() {
         dataType:"json",
         async:true,
         success:function(data){
-            var str;
+            let str;
             if(data.from_who!==null){
                 str="——《"+data.from+"》"+data.from_who;
             }else{
                 str="——《"+data.from+"》";
             }
-            $("#content-words").html(data.hitokoto);
-            $("#content-sign").html(str);
+            $("#daily-words").html(data.hitokoto);
+            $("#daily-sign").html(str);
         }
     })
 }
