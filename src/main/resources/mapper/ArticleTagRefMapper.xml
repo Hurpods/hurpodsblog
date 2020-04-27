@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hurpods.ssm.blog.dao.ArticleTagRefDao">
+    <resultMap id="ArticleTagRefResultMap" type="com.hurpods.ssm.blog.models.ArticleTagRef">
+        <id column="article_tag_ref_id" property="articleTagRefId" jdbcType="INTEGER"/>
+        <result column="article_id" property="articleId" jdbcType="INTEGER"/>
+        <result column="tag_id" property="tagId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="createArticleTagRef" useGeneratedKeys="true" keyProperty="articleTagRefId"
+            parameterType="com.hurpods.ssm.blog.models.ArticleTagRef">
+        insert into article_tag_ref (article_id, tag_id)
+        VALUES (#{articleId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})
+    </insert>
+
+    <delete id="deleteByArticleId">
+        delete
+        from article_tag_ref
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getTagsByArticleId" resultType="com.hurpods.ssm.blog.models.Tag">
+        select tag.*
+        from tag,
+             article_tag_ref
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

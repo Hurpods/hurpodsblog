@@ -1,6 +1,7 @@
 package com.hurpods.ssm.blog.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Article implements Serializable {
     private static final long serialVersionUID = 2791917326900161857L;
@@ -15,7 +16,7 @@ public class Article implements Serializable {
     //浏览数
     private Integer articleViewCount;
     //评论数
-    private Integer articleCommentCount;
+    private Integer articleCommentsCount;
     //文章状态
     private Integer articleStatus;
     //创建时间
@@ -24,4 +25,6 @@ public class Article implements Serializable {
     private Integer articleUpdateTime;
     //文章摘要
     private String articleSummary;
+    //多对多级联
+    private List<Tag> tagList;
 }
