@@ -16,6 +16,7 @@
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css">
     <link rel="stylesheet" href="/css/backstage.css" type="text/css">
+    <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
     <title>HurpodsBlog后台</title>
 </head>
 <body>
@@ -69,5 +70,4 @@
 
 </rapid:block>
 </body>
-<script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
 </html>

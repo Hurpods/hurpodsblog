@@ -1,8 +1,10 @@
 package com.hurpods.ssm.blog.utils;
 
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -64,7 +66,7 @@ public class MyUtil {
         return encdeStr;
     }
     
-    //随机产生用户名作为初始用户名
+    //随机产生字符串
     public String getRandomString(int length){
         String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random=new Random();

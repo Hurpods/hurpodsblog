@@ -41,6 +41,7 @@
     <mvc:resources mapping="/css/**" location="resource/css/"/>
     <mvc:resources mapping="/js/**" location="resource/js/"/>
     <mvc:resources mapping="/img/**" location="resource/img/"/>
+    <mvc:resources mapping="/plugin/**" location="resource/plugin/"/>
 
     <!--  mvc过滤器  -->
 <!--    <mvc:interceptors>-->

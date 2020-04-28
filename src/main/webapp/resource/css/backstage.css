@@ -60,19 +60,43 @@
 /*左侧菜单栏end*/
 
 /*文章攥写start*/
-.article-title {
+.article-header {
     position: relative;
     width: auto;
-    height: 75px;
+    height: auto;
     border-radius: 6px;
     border: solid 2px #9c9c9c;
     background: rgba(242, 242, 242,0.7);
 }
+
 .title-input {
     position: relative;
     float: right;
     top: 19px;
     right: 10px;
+    width: 95%;
+}
+ul.article-tagList {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    left: 65px;
+    width: 95%;
+}
+.article-tagList label{
+    margin-right: 15px;
+}
+
+label.tags-tag {
+    position: relative;
+    left: -35px;
+    top: 50px;
+}
+ul.article-tagList {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    left: 65px;
     width: 95%;
 }
 .article-content {
