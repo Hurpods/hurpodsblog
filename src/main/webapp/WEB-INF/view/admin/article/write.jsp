@@ -38,27 +38,49 @@
     </div>
 </rapid:override>
 <rapid:override name="script">
-    <script type="text/javascript" src="/plugin/HandyEditor/HandyEditor.min.js"></script>
+    <script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
-        let he = HE.getEditor("content", {
-            height: '1010px',
-            autoHeight: true,
-            autoFloat: true,
-            topOffset: 0,
-            uploadPhoto: true,
-            uploadPhotoHandler: '/uploadPic',
-            uploadPhotoSize: 5120,
-            uploadPhotoType: 'gif,png,jpg,jpeg',
-            uploadPhotoSizeError : '不能上传大于5MB的图片',
-            uploadPhotoTypeError : '只能上传gif,png,jpg,jpeg格式的图片',
-            lang : 'zh-jian',
-            skin : 'HandyEditor',
-            externalSkin : '',
-            item: ['bold', 'italic', 'strike', 'underline', 'fontSize', 'fontName', 'paragraph', 'color', 'backColor', '|', 'center', 'left', 'right', 'full', 'indent', 'outdent', '|', 'link', 'unlink', 'textBlock', 'code', 'selectAll', 'removeFormat', 'trash', '|', 'image', 'expression', 'subscript', 'superscript', 'horizontal', 'orderedList', 'unorderedList', '|', 'undo', 'redo', '|', 'html']
-        });
+        let myEditor=null;
+        ClassicEditor
+            .create(document.querySelector('#content'), {
+                alignment: {
+                    options: [ 'left', 'right' ,'center','justify']
+                },
+                toolbar:[
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'alignment:left',
+                    'alignment:right',
+                    'alignment:center',
+                    'alignment:justify',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'indent',
+                    'outdent',
+                    'indentBlock',
+                    'outdentBlock',
+                    '|',
+                    'imageUpload',
+                    'blockQuote',
+                    'insertTable',
+                    'mediaEmbed',
+                    'undo',
+                    'redo'
+                ]
+            })
+            .then(editor =>{
+                myEditor=editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
-        $("#article-submit").click(function(){
-            let serializeData=$("#article").serialize()
+        $("#article-submit").click(function () {
+            let serializeData = $("#article").serialize()
             console.log(serializeData);
         });
     </script>

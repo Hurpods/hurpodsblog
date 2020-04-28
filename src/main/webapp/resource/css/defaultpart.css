@@ -162,6 +162,7 @@ footer {
     color: #6c6c6c;
     position: relative;
     bottom: 0;
+    margin-top: auto;
 }
 
 .footer-content {

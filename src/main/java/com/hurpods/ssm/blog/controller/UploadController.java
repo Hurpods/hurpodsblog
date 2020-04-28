@@ -1,6 +1,7 @@
 package com.hurpods.ssm.blog.controller;
 
 import com.hurpods.ssm.blog.utils.MyUtil;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -20,6 +20,7 @@ import java.util.Map;
 public class UploadController {
     @Autowired
     ServletContext context;
+
     private static final String UPLOAD_DIRECTORY = "resource" + File.separator + "img" + File.separator + "articlePic";
 
     @RequestMapping("/uploadPic")
@@ -28,16 +29,12 @@ public class UploadController {
         MyUtil myUtil = new MyUtil();
         Logger logger = org.slf4j.LoggerFactory.getLogger(UploadController.class);
         Map<Object, Object> map = new HashMap<>();
-        String msg = "";
-        String codeEnum = "FAILURE";
-        int code = 0;
+        String msg;
+        String codeEnum;
+        int code;
         String[] data = new String[]{""};
-        boolean success = false;
-        map.put("msg", msg);
-        map.put("codeEnum", codeEnum);
-        map.put("code", code);
-        map.put("data", data);
-        map.put("success", success);
+        boolean success;
+
 
         //取文件后缀
         //文件的完整名称
@@ -69,12 +66,42 @@ public class UploadController {
         //写入文件
         try {
             file.transferTo(descFile);
+            msg="上传成功";
+            map.put("msg", msg);
+
+            codeEnum="SUCCESS";
+            map.put("codeEnum", codeEnum);
+
+            code=1;
+            map.put("code", code);
+
+            data[0]=descFile.getPath();
+            map.put("data", data);
+
+            success=true;
+            map.put("success",success);
+
+            System.out.println(descFile.getPath());
+            return new JSONObject(map).toString();
         } catch (Exception e) {
             logger.error("上传失败，cause:{}", e.getMessage());
+
+            msg="上传文件失败："+e.getMessage();
+            map.put("msg", msg);
+
+            codeEnum="FAILURE";
+            map.put("codeEnum", codeEnum);
+
+            code=0;
+            map.put("code", code);
+
+            data[0]="null";
+            map.put("data", data);
+
+            success=false;
+            map.put("success", success);
+
+            return new JSONObject(map).toString();
         }
-
-        System.out.println(descFile.getPath());
-
-        return descFile.getPath();
     }
 }

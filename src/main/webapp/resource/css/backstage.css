@@ -99,6 +99,9 @@ ul.article-tagList {
     left: 65px;
     width: 95%;
 }
+.ck-content {
+    min-height: 520px;
+}
 .article-content {
     position: relative;
     margin: 15px 0;
