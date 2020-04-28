@@ -72,8 +72,9 @@
 .article-style1{
     height: 180px;
     margin-bottom: 25px;
-    border: solid 1px;
+    border: solid 2px #9c9c9c;
     border-radius: 15px;
+    background: rgba(237, 233, 232,0.5);
 }
 .article-style1 .thumb{
     height: 160px;
@@ -86,39 +87,31 @@
     position: relative;
     width: 1165px;
     height: 130px;
-    left: 170px;
+    left: 180px;
     top: -150px;
 }
 .article-style1 .content .summary{
     top: 10px;
     position: relative;
+    font-size: 24px;
 }
 .article-style1 .tags{
     position: relative;
     width: 1165px;
     height: 40px;
-    left: 170px;
+    left: 180px;
     top: -160px;
-}
-.article-style1 .tags .tag{
-    border: solid 1px;
-    border-radius: 15px;
-    background: red;
-    width: 55px;
-    text-align: center;
-    bottom: 0;
-    position: absolute;
 }
 .article-style1 .tags .time{
     position: absolute;
     width: 195px;
-    right: 0;
+    right: 10px;
     bottom: 0;
 }
 .article-style2{
     margin-bottom: 25px;
     height: 500px;
-    border: solid 1px;
+    border: solid 2px #9c9c9c;
     border-radius: 15px;
 }
 .article-style2 .content{
@@ -128,19 +121,41 @@
     top: 60%;
     left: 10px;
 }
+.summary{
+    top: 10px;
+    position: relative;
+    font-size: 24px;
+}
 .article-style2 .tags{
-    top: 60%;
+    top: 64%;
     height: 40px;
     width: 1320px;
     position: relative;
     left: 10px;
 }
-.article-style2 .tags .tag{
-    position: absolute;
-    bottom: 0;
-}
+
 .article-style2 .tags .time{
     position: absolute;
     right: 0;
     bottom: 0;
+    transform: translateY(-40%);
+}
+a.article-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+.tagList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
+.tag-link{
+    cursor: pointer;
+    font-weight: 500;
+}
+.tagList li{
+    display: block;
+    float: left;
+    margin-right: 20px;
 }

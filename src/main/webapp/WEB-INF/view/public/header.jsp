@@ -30,8 +30,11 @@
                 </c:otherwise>
             </c:choose>
             <div class="user-operator">
-                <a href="/profile" style="top: 3px;">个人信息</a>
-                <a href="/logout" style="top: 2px;" id="logout">退出</a>
+                <a href="/profile">个人信息</a>
+                <c:if test="${sessionScope.user.admin}">
+                    <a href="/admin">进入后台</a>
+                </c:if>
+                <a href="/logout">退出</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,81 @@
+/*左侧菜单栏start*/
+.side-menu{
+    width: 310px;
+    height: auto;
+    background: rgb(75, 80, 93);
+    float: left;
+    border-radius: 0 15px 15px 0;
+    transition: 0.3s;
+}
+.admin-info {
+    height: auto;
+    position: relative;
+    color: floralwhite;
+}
+.admin-avatar {
+    width: 160px;
+    height: 160px;
+    margin: 35px auto 15px;
+    position: relative;
+}
+.admin-nickname {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+}
+.main-content{
+    height: auto;
+    width: 83%;
+    float: left;
+    left: 10px;
+    position: relative;
+    transition: 0.3s;
+}
+.side-list{
+    list-style: none;
+    padding: 0;
+    margin-top: 45px;
+}
+.side-cat{
+    display: block;
+    background: rgba(57, 61, 73,0.5);
+    color: rgb(255, 246, 214);
+    overflow: hidden;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.side-list-child dd{
+    display: block;
+    margin-bottom: 6px;
+}
+.menu-link{
+    color:#9c9c9c;
+    cursor: pointer;
+}
+.side-list-meta{
+    display: block;
+}
+/*左侧菜单栏end*/
+
+/*文章攥写start*/
+.article-title {
+    position: relative;
+    width: auto;
+    height: 75px;
+    border-radius: 6px;
+    border: solid 2px #9c9c9c;
+    background: rgba(242, 242, 242,0.7);
+}
+.title-input {
+    position: relative;
+    float: right;
+    top: 19px;
+    right: 10px;
+    width: 95%;
+}
+.article-content {
+    position: relative;
+    margin: 15px 0;
+}

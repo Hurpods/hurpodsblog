@@ -12,6 +12,7 @@
         <result column="article_create_time" property="articleCreateTime" jdbcType="TIMESTAMP"/>
         <result column="article_update_time" property="articleUpdateTime" jdbcType="TIMESTAMP"/>
         <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
+        <result column="has_pic" property="hasPic" jdbcType="TINYINT"/>
     </resultMap>
 
     <select id="getAllArticle" resultMap="ArticleResultMap">
@@ -40,14 +41,15 @@
     <insert id="insertArticle" parameterType="com.hurpods.ssm.blog.models.Article" useGeneratedKeys="true"
             keyProperty="articleId">
         insert into article(article_author_id, article_title, article_content, article_status, article_create_time,
-                            article_update_time, article_summary)
+                            article_update_time, article_summary,has_pic)
         values (#{articleAuthorId,jdbcType=INTEGER},
                 #{articleTitle,jdbcType=VARCHAR},
                 #{articleContent,jdbcType=LONGVARCHAR},
                 #{articleStatus,jdbcType=INTEGER},
                 #{articleCreateTime,jdbcType=TIMESTAMP},
                 #{articleUpdateTime,jdbcType=TIMESTAMP},
-                #{articleSummary,jdbcType=VARCHAR})
+                #{articleSummary,jdbcType=VARCHAR},
+                #{hasPic,jdbcType=TINYINT})
     </insert>
 
     <update id="updateArticle" parameterType="com.hurpods.ssm.blog.models.Article">
@@ -59,7 +61,8 @@
             <if test="articleCommentsCount!=null">article_comments_count=#{articleCommentsCount,jdbcType=INTEGER},</if>
             <if test="articleStatus!=null">article_status=#{article_status,jdbcType=INTEGER},</if>
             <if test="articleUpdateTime!=null">article_update_time=#{articleUpdateTime,jdbcType=TIMESTAMP},</if>
-            <if test="articleSummary!=null">article_summary=#{articleSummary,jdbcType=TIMESTAMP}</if>
+            <if test="articleSummary!=null">article_summary=#{articleSummary,jdbcType=TIMESTAMP},</if>
+            <if test="hasPic!=null">has_pic=#{hasPic,jdbcType=TINYINT}</if>
         </set>
         where article_id=#{articleId,jdbcType=INTEGER}
     </update>

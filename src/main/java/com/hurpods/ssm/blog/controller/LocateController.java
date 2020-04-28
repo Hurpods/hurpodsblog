@@ -21,8 +21,13 @@ public class LocateController {
         return "account/profile";
     }
 
-    @RequestMapping("/edit")
-    public String edit() {
-        return "account/edit";
+    @RequestMapping("/update")
+    public String update() {
+        return "account/update";
+    }
+
+    @RequestMapping("/admin")
+    public String backstage(){
+        return "admin/backstage";
     }
 }

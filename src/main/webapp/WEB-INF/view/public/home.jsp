@@ -41,25 +41,51 @@
                 <img alt="style-1" src=""/>
             </div>
             <div class="content">
-                <a href="/article/">title</a>
+                <a href="/article/" class="article-title">title</a>
                 <div class="summary">
                     testtesttest
                 </div>
             </div>
             <div class="tags">
-                <div class="tag">#java</div>
+                <ul class="tagList">
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                </ul>
                 <div class="time">发表时间：2020年4月27日</div>
             </div>
         </article>
         <article class="article-style2">
             <div class="content">
-                <a href="/article/">title</a>
+                <a href="/article/" class="article-title">title</a>
                 <div class="summary">
                     testtesttest
                 </div>
             </div>
             <div class="tags">
-                <div class="tag">#java</div>
+                <ul class="tagList">
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                    <li>
+                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
+                        <a class="tag-link">#java</a>
+                    </li>
+                </ul>
                 <div class="time">发表时间：2020年4月27日</div>
             </div>
         </article>

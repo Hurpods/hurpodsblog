@@ -25,6 +25,9 @@ public class Article implements Serializable {
     private Integer articleUpdateTime;
     //文章摘要
     private String articleSummary;
+
+    private Integer hasPic;
+
     //多对多级联
     private List<Tag> tagList;
 }
