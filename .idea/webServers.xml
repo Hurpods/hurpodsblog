@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="82bafa62-6892-416d-acb9-50319b802f9d" name="Hurpods" url="http://121.196.194.177">
+        <fileTransfer accessType="SFTP" host="121.196.194.177" port="22" sshConfigId="ed65a0df-931b-4f17-bd2f-1370329b39be" sshConfig="root@121.196.194.177:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

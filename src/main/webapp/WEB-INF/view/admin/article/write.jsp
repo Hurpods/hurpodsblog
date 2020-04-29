@@ -39,13 +39,26 @@
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
+    <script type="module">
         let myEditor=null;
+
         ClassicEditor
             .create(document.querySelector('#content'), {
+                ckfinder:{
+                    uploadUrl:"/uploadPic?command=QuickUpload&type=Files&responseType=json'"
+                },
                 alignment: {
                     options: [ 'left', 'right' ,'center','justify']
                 },
+                image: {
+                    toolbar: [
+                        'imageStyle:full',
+                        'imageStyle:side',
+                        '|',
+                        'imageTextAlternative'
+                    ]
+                },
+                language: 'zh-cn',
                 toolbar:[
                     'heading',
                     '|',
@@ -80,7 +93,9 @@
             });
 
         $("#article-submit").click(function () {
-            let serializeData = $("#article").serialize()
+            let serializeData = $("#article").serialize();
+            serializeData+="&htmlContent="+myEditor.getData();
+            serializeData=decodeURIComponent(serializeData);
             console.log(serializeData);
         });
     </script>

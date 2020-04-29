@@ -25,17 +25,13 @@ public class UploadController {
 
     @RequestMapping("/uploadPic")
     @ResponseBody
-    public String uploadPic(@RequestParam("file") MultipartFile file) {
+    public String uploadPic(@RequestParam("upload") MultipartFile file) {
         MyUtil myUtil = new MyUtil();
         Logger logger = org.slf4j.LoggerFactory.getLogger(UploadController.class);
-        Map<Object, Object> map = new HashMap<>();
+        Map<Object,Object> map = new HashMap<>();
+        boolean uploaded;
+        String url;
         String msg;
-        String codeEnum;
-        int code;
-        String[] data = new String[]{""};
-        boolean success;
-
-
         //取文件后缀
         //文件的完整名称
         String filename = file.getOriginalFilename();
@@ -66,41 +62,27 @@ public class UploadController {
         //写入文件
         try {
             file.transferTo(descFile);
-            msg="上传成功";
-            map.put("msg", msg);
+            uploaded=true;
+            map.put("uploaded",uploaded);
 
-            codeEnum="SUCCESS";
-            map.put("codeEnum", codeEnum);
+            url=descFile.getPath();
+            map.put("url",url);
 
-            code=1;
-            map.put("code", code);
-
-            data[0]=descFile.getPath();
-            map.put("data", data);
-
-            success=true;
-            map.put("success",success);
-
+            msg="success";
+            map.put("msg",msg);
             System.out.println(descFile.getPath());
             return new JSONObject(map).toString();
         } catch (Exception e) {
             logger.error("上传失败，cause:{}", e.getMessage());
 
-            msg="上传文件失败："+e.getMessage();
-            map.put("msg", msg);
+            uploaded=false;
+            map.put("uploaded",uploaded);
 
-            codeEnum="FAILURE";
-            map.put("codeEnum", codeEnum);
+            msg="failure";
+            map.put("msg",msg);
 
-            code=0;
-            map.put("code", code);
-
-            data[0]="null";
-            map.put("data", data);
-
-            success=false;
-            map.put("success", success);
-
+            map.put("url","/");
+            System.out.println(e.getMessage());
             return new JSONObject(map).toString();
         }
     }
