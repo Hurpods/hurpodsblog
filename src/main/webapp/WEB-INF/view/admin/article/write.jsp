@@ -95,7 +95,17 @@
         $("#article-submit").click(function () {
             let serializeData = $("#article").serialize();
             serializeData+="&htmlContent="+myEditor.getData();
+            serializeData+="&summary="+$(myEditor.getData()).text();
             serializeData=decodeURIComponent(serializeData);
+            $.ajax({
+                type:"POST",
+                url:"/admin/article/saveArticle",
+                data:serializeData,
+                dataType:"JSON",
+                success:function(data){
+
+                }
+            })
             console.log(serializeData);
         });
     </script>

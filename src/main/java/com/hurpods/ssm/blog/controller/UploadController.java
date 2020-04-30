@@ -65,7 +65,7 @@ public class UploadController {
             uploaded=true;
             map.put("uploaded",uploaded);
 
-            url=descFile.getPath();
+            url=descFile.getPath().split("resource")[1];
             map.put("url",url);
 
             msg="success";

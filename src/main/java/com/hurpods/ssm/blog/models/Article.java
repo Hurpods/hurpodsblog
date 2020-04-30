@@ -1,14 +1,17 @@
 package com.hurpods.ssm.blog.models;
 
-import java.io.Serializable;
-import java.util.List;
+import lombok.Data;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
+@Data
 public class Article implements Serializable {
     private static final long serialVersionUID = 2791917326900161857L;
     //文章ID
     private Integer articleId;
     //文章作者
-    private String articleAuthorId;
+    private Integer articleAuthorId;
     //文章标题
     private String articleTitle;
     //文章内容
@@ -20,9 +23,9 @@ public class Article implements Serializable {
     //文章状态
     private Integer articleStatus;
     //创建时间
-    private Integer articleCreateTime;
+    private Timestamp articleCreateTime;
     //最后修改时间
-    private Integer articleUpdateTime;
+    private Timestamp articleUpdateTime;
     //文章摘要
     private String articleSummary;
 
