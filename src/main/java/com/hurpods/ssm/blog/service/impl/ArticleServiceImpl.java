@@ -41,32 +41,37 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int getArticleCount() {
+    public Integer getArticleCount() {
         return articleDao.getArticleCount();
     }
 
     @Override
-    public int getArticleView() {
+    public Integer getArticleView() {
         return articleDao.getArticleView();
     }
 
     @Override
+    public Integer getArticleComment(){
+        return articleDao.getArticleComment();
+    }
+
+    @Override
     public List<Article> getArticleByPage(Integer status, Integer pageIndex, Integer pageSize) {
-        return null;
+        return articleDao.getArticleByPage(status,pageIndex,pageSize);
     }
 
     @Override
     public Article getNextArticle(Integer articleId) {
-        return null;
+        return articleDao.getNextArticle(articleId);
     }
 
     @Override
     public Article getPreArticle(Integer articleId) {
-        return null;
+        return articleDao.getPreArticle(articleId);
     }
 
     @Override
     public void updateCommentCount(Integer articleId) {
-
+        articleDao.updateCommentCount(articleId);
     }
 }

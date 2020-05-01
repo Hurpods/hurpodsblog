@@ -41,7 +41,7 @@
     <insert id="insertArticle" parameterType="com.hurpods.ssm.blog.models.Article" useGeneratedKeys="true"
             keyProperty="articleId">
         insert into article(article_author_id, article_title, article_content, article_status, article_create_time,
-                            article_update_time, article_summary,has_pic)
+                            article_update_time, article_summary, has_pic)
         values (#{articleAuthorId,jdbcType=INTEGER},
                 #{articleTitle,jdbcType=VARCHAR},
                 #{articleContent,jdbcType=LONGVARCHAR},
@@ -75,6 +75,12 @@
 
     <select id="getArticleView" resultType="java.lang.Integer">
         select sum(article_view_count)
+        from article
+        where article_status = 1
+    </select>
+
+    <select id="getArticleComment" resultType="java.lang.Integer">
+        select sum(article_comments_count)
         from article
         where article_status = 1
     </select>

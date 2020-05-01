@@ -6,6 +6,8 @@
     float: left;
     border-radius: 0 15px 15px 0;
     transition: 0.3s;
+    position: relative;
+    top:10px;
 }
 .admin-info {
     height: auto;
@@ -28,6 +30,7 @@
     width: 83%;
     float: left;
     left: 10px;
+    top:10px;
     position: relative;
     transition: 0.3s;
 }
@@ -58,6 +61,25 @@
     display: block;
 }
 /*左侧菜单栏end*/
+
+/*文章列表start*/
+.article{
+    position: relative;
+    float: left;
+    top: 10px;
+    border: solid 2px #9c9c9c;
+    border-radius: 15px;
+    padding: 10px;
+    width: 45%;
+    margin: 0 27px 20px;
+}
+.article-title{
+    font-size: 30px;
+    position: relative;
+    width: 60%;
+}
+
+
 
 /*文章攥写start*/
 .article-header {
@@ -106,3 +128,4 @@ ul.article-tagList {
     position: relative;
     margin: 15px 0;
 }
+/*文章攥写end*/

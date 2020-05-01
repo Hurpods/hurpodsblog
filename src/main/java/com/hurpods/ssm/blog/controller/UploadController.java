@@ -29,7 +29,7 @@ public class UploadController {
         MyUtil myUtil = new MyUtil();
         Logger logger = org.slf4j.LoggerFactory.getLogger(UploadController.class);
         Map<Object,Object> map = new HashMap<>();
-        boolean uploaded;
+
         String url;
         String msg;
         //取文件后缀
@@ -62,8 +62,8 @@ public class UploadController {
         //写入文件
         try {
             file.transferTo(descFile);
-            uploaded=true;
-            map.put("uploaded",uploaded);
+
+            map.put("uploaded", true);
 
             url=descFile.getPath().split("resource")[1];
             map.put("url",url);
@@ -75,8 +75,7 @@ public class UploadController {
         } catch (Exception e) {
             logger.error("上传失败，cause:{}", e.getMessage());
 
-            uploaded=false;
-            map.put("uploaded",uploaded);
+            map.put("uploaded", false);
 
             msg="failure";
             map.put("msg",msg);

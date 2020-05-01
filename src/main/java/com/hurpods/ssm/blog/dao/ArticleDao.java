@@ -16,10 +16,11 @@ public interface ArticleDao {
 
     Article updateArticle(Article article);
 
-    int getArticleCount();
+    Integer getArticleCount();
 
-    int getArticleView();
+    Integer getArticleView();
 
+    Integer getArticleComment();
     List<Article> getArticleByPage(@Param(value = "status") Integer status,
                                    @Param(value = "pageIndex") Integer pageIndex,
                                    @Param(value = "pageSize") Integer pageSize);

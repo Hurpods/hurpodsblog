@@ -90,11 +90,7 @@
     left: 180px;
     top: -150px;
 }
-.article-style1 .content .summary{
-    top: 10px;
-    position: relative;
-    font-size: 24px;
-}
+
 .article-style1 .tags{
     position: relative;
     width: 1165px;
@@ -116,15 +112,15 @@
 }
 .article-style2 .content{
     position: relative;
-    width: 1165px;
+    width: 1330px;
     height: 130px;
-    top: 60%;
+    top: 65%;
     left: 10px;
 }
 .summary{
     top: 10px;
     position: relative;
-    font-size: 24px;
+    font-size: 17px;
 }
 .article-style2 .tags{
     top: 64%;
@@ -141,7 +137,7 @@
     transform: translateY(-40%);
 }
 a.article-title {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: 600;
 }
 .tagList{

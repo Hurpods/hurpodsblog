@@ -33,9 +33,10 @@
             <textarea name="articleContent" id="content"></textarea>
         </div>
     </form>
-    <div class="button" style="position: relative;margin: 15px;">
+    <div class="button" style="position: relative;margin: 15px 0 25px;">
         <button class="bttn" type="button" id="article-submit">提交</button>
     </div>
+    <div class="operator-shadow"></div>
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
@@ -46,9 +47,6 @@
             .create(document.querySelector('#content'), {
                 ckfinder:{
                     uploadUrl:"/uploadPic?command=QuickUpload&type=Files&responseType=json'"
-                },
-                alignment: {
-                    options: [ 'left', 'right' ,'center','justify']
                 },
                 image: {
                     toolbar: [
@@ -74,13 +72,10 @@
                     '|',
                     'indent',
                     'outdent',
-                    'indentBlock',
-                    'outdentBlock',
                     '|',
                     'imageUpload',
                     'blockQuote',
                     'insertTable',
-                    'mediaEmbed',
                     'undo',
                     'redo'
                 ]
@@ -103,11 +98,17 @@
                 data:serializeData,
                 dataType:"JSON",
                 success:function(data){
-
+                    alert(data.msg);
                 }
             })
             console.log(serializeData);
         });
+        $(document).ready(function(){
+            myEditor.setData('<h2 style="text-align:center;">hello,world</h2>');
+        });
+        myEditor.model.document.on( 'change:data', () => {
+            console.log( 'The data has changed!' );
+        } );
     </script>
 </rapid:override>
 <%@ include file="../backstage.jsp" %>

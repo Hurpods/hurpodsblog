@@ -8,7 +8,7 @@ import java.util.List;
 public interface ArticleService {
     List<Article> getAllArticle();
 
-    void deleteById(@Param(value="articleId") Integer articleId);
+    void deleteById(@Param(value = "articleId") Integer articleId);
 
     void batchDelete(List<Integer> idList);
 
@@ -16,16 +16,19 @@ public interface ArticleService {
 
     Article updateArticle(Article article);
 
-    int getArticleCount();
+    Integer getArticleCount();
 
-    int getArticleView();
+    Integer getArticleView();
+
+    Integer getArticleComment();
 
     List<Article> getArticleByPage(@Param(value = "status") Integer status,
                                    @Param(value = "pageIndex") Integer pageIndex,
                                    @Param(value = "pageSize") Integer pageSize);
 
-    Article getNextArticle(@Param(value="articleId") Integer articleId);
-    Article getPreArticle(@Param(value="articleId") Integer articleId);
+    Article getNextArticle(@Param(value = "articleId") Integer articleId);
 
-    void updateCommentCount(@Param(value="articleId") Integer articleId);
+    Article getPreArticle(@Param(value = "articleId") Integer articleId);
+
+    void updateCommentCount(@Param(value = "articleId") Integer articleId);
 }

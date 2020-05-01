@@ -41,9 +41,9 @@
                 <img alt="style-1" src=""/>
             </div>
             <div class="content">
-                <a href="/article/" class="article-title">title</a>
+                <a href="/article/" class="article-title">此处应是一个标题</a>
                 <div class="summary">
-                    testtesttest
+                    确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实
                 </div>
             </div>
             <div class="tags">
@@ -66,9 +66,9 @@
         </article>
         <article class="article-style2">
             <div class="content">
-                <a href="/article/" class="article-title">title</a>
+                <a href="/article/" class="article-title">此处应是一个标题</a>
                 <div class="summary">
-                    testtesttest
+                    确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实
                 </div>
             </div>
             <div class="tags">
@@ -94,7 +94,7 @@
 <%@ include file="../public/footer.jsp" %>
 </body>
 
-<script type="text/javascript" src="<c:url value="js/jquery-3.2.1.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
 <script type="text/javascript" src="/js/defaultpart.js"></script>
 <script type="text/javascript" src="/js/home.js"></script>
 <script type="text/javascript">

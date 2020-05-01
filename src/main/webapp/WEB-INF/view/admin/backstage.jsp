@@ -28,31 +28,30 @@
                     <img src="${sessionScope.user.userAvatar}" alt="admin-avatar" style="border-radius: 50%">
                 </div>
                 <div class="admin-nickname">
-                    <span>${sessionScope.user.userNickName}</span>
+                    <span><a href="/profile">${sessionScope.user.userNickName}</a></span>
                 </div>
             </div>
             <ul class="side-list">
                 <li class="side-list-meta">
                     <a class="side-cat">文章</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link">全部文章</a></dd>
+                        <dd><a class="menu-link" href="/admin/article/getAllArticle">全部文章</a></dd>
                         <dd><a class="menu-link" href="/admin/article/write">攥写文章</a></dd>
-                        <dd><a class="menu-link">Tag管理</a></dd>
-                        <dd><a class="menu-link">修改文章</a></dd>
+                        <dd><a class="menu-link" href="/admin/article/tags">Tag管理</a></dd>
                     </dl>
                 </li>
                 <li class="side-list-meta">
                     <a class="side-cat">评论</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link">全部评论</a></dd>
-                        <dd><a class="menu-link">评论管理</a></dd>
+                        <dd><a class="menu-link" href="/admin/comment/getAllComment">全部评论</a></dd>
+                        <dd><a class="menu-link" href="/admin/comment/commentManager">评论管理</a></dd>
                     </dl>
                 </li>
                 <li class="side-list-meta">
                     <a class="side-cat">用户</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link">全部用户</a></dd>
-                        <dd><a class="menu-link">用户管理</a></dd>
+                        <dd><a class="menu-link" href="/admin/user/list">全部用户</a></dd>
+                        <dd><a class="menu-link" href="/admin/user/userManager">用户管理</a></dd>
                     </dl>
                 </li>
             </ul>
