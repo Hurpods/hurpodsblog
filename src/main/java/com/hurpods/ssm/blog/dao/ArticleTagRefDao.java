@@ -9,7 +9,9 @@ import java.util.List;
 public interface ArticleTagRefDao {
     void createArticleTagRef(ArticleTagRef articleTagRef);
 
-    void deleteByArticleId(@Param(value = "articleId") String articleId);
+    void deleteByArticleId(@Param(value = "articleId") Integer articleId);
 
-    List<Tag> getTagsByArticleId(@Param(value = "articleId") String articleId);
+    List<Tag> getTagsByArticleId(@Param(value = "articleId") Integer articleId);
+
+    List<Tag> getTagsByTagId(@Param(value = "tagId") Integer tagId);
 }

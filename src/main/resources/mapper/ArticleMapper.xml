@@ -22,6 +22,12 @@
         order by article_id DESC
     </select>
 
+    <select id="getArticleById" resultMap="ArticleResultMap">
+        select *
+        from article
+        where article_id = ${articleId,jdbcType=INTEGER}
+    </select>
+
     <delete id="deleteById">
         delete
         from article

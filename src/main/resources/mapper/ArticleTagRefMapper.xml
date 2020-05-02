@@ -22,8 +22,15 @@
     <select id="getTagsByArticleId" resultType="com.hurpods.ssm.blog.models.Tag">
         select tag.*
         from tag,
-             article_tag_ref
+             article_tag_ref as atr
         where article_id = #{articleId,jdbcType=INTEGER}
+          and atr.tag_id = tag.tag_id
     </select>
 
+    <select id="getTagsByTagId" resultType="com.hurpods.ssm.blog.models.Tag">
+        select tag.*
+        from tag,
+             article_tag_ref as atr
+        where atr.tag_id = #{tagId,jdbcType=INTEGER}
+    </select>
 </mapper>

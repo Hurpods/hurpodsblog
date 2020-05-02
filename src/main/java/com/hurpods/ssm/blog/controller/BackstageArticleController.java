@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -24,6 +23,7 @@ public class BackstageArticleController {
 
     @Autowired
     ArticleService articleService;
+
 
     @RequestMapping("/write")
     public String writeArticle(Model model) {
@@ -39,28 +39,33 @@ public class BackstageArticleController {
                               @RequestParam("htmlContent") String htmlContent,
                               @RequestParam("summary") String summary) {
         Article article = new Article();
-        Timestamp nowTime = new Timestamp(new Date().getTime());
         List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
-
+        String summ="";
 
         article.setArticleTitle(articleTitle);
         article.setArticleAuthorId(0);
         article.setArticleContent(htmlContent);
-        article.setArticleCreateTime(nowTime);
-        article.setArticleUpdateTime(nowTime);
+
         if (htmlContent.contains("<img")) {
             article.setHasPic(1);
         } else {
             article.setHasPic(0);
         }
+
+        article.setArticleStatus(1);
+        if(summary.length()<122){
+            article.setArticleSummary(summary);
+        }else{
+            article.setArticleSummary(summary.substring(0, 122) + "... ...");
+        }
+
         for (int i : articleTagIds) {
             tagList.add(tagService.getTagById(i));
         }
-        article.setTagList(tagList);
-        article.setArticleStatus(1);
-        article.setArticleSummary(summary.substring(0, 122) + "... ...");
 
+
+        article.setTagList(tagList);
         try {
             articleService.insertArticle(article);
             System.out.println(article.toString());
@@ -76,20 +81,26 @@ public class BackstageArticleController {
 
     @RequestMapping("/modifyArticle")
     @ResponseBody
-    public String modifyArticle() {
+    public String modifyArticle(@RequestParam("articleId") Integer articleId, HttpServletRequest req) {
+        Article article = articleService.getArticleById(articleId);
+        req.setAttribute("article", article);
         return "";
     }
 
     @RequestMapping("/getAllArticle")
     public String getAllArticle(HttpServletRequest req) {
         List<Article> articleList = articleService.getAllArticle();
-        req.setAttribute("articleList", articleList);
-
         Map<String, Integer> map = new HashMap<>();
+
+        for (Article article : articleList) {
+            article.setTagList(articleService.getTagsByArticleId(article.getArticleId()));
+        }
 
         map.put("count", articleService.getArticleCount());
         map.put("view", articleService.getArticleView());
         map.put("comment", articleService.getArticleComment());
+
+        req.setAttribute("articleList", articleList);
         req.setAttribute("status", map);
 
         return "admin/article/list";

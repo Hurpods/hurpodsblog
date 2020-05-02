@@ -16,7 +16,7 @@
             <label style="position: relative;left: 10px;line-height: 75px;">标题 <span
                     style="color: #FF5722; ">*</span></label>
             <div class="title-input">
-                <input type="text" name="articleTitle" autocomplete="off" placeholder="请输入标题" maxlength="50"
+                <input type="text" name="articleTitle" autocomplete="off" placeholder="请输入标题" maxlength="50" value="<c:if test="${requestScope.article!=null}">${requestScope.article.articleTitle}</c:if>"
                        style="font-size: 17px;border: solid 1px #9c9c9c;height: 35px;padding: 15px;width: 100%;">
             </div>
             <label class="tags-tag">标签</label>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="article-content">
-            <textarea name="articleContent" id="content"></textarea>
+            <textarea name="articleContent" id="content"><c:if test="${requestScope.article!=null}">${requestScope.article.articleContent}</c:if></textarea>
         </div>
     </form>
     <div class="button" style="position: relative;margin: 15px 0 25px;">
@@ -98,6 +98,7 @@
                 data:serializeData,
                 dataType:"JSON",
                 success:function(data){
+                    $("#article")[0].reset();
                     alert(data.msg);
                 }
             })
@@ -106,9 +107,6 @@
         $(document).ready(function(){
             myEditor.setData('<h2 style="text-align:center;">hello,world</h2>');
         });
-        myEditor.model.document.on( 'change:data', () => {
-            console.log( 'The data has changed!' );
-        } );
     </script>
 </rapid:override>
 <%@ include file="../backstage.jsp" %>

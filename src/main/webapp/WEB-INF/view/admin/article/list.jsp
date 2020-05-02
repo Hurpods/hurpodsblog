@@ -13,25 +13,41 @@
 
 <rapid:override name="content">
     <span style="position: relative;display: block;left: 27px;width: fit-content;">文章总数：${requestScope.status.count}，观看总数：${requestScope.status.view}，评论总数：${requestScope.status.comment}</span>
-    <div class="article">
-        <div class="article-title">这是一个测试用的</div>
-        <div>
-            <img src="/img/icon/tag.png" style="vertical-align: middle;"/>#java
-            <img src="/img/icon/tag.png" style="vertical-align: middle;"/>#java
-            <img src="/img/icon/tag.png" style="vertical-align: middle;"/>#java
-        </div>
-        <div class="article-create-time">攥写时间：2020年4月27日</div>
-        <div class="article-update-time">修改时间：2020年5月1日</div>
-        <div class="button" style="top: 10px;left: 67.5%;">
-            <button class="bttn" type="button" >修改</button>
-        </div>
-        <div class="button" style="top: 60%;left: 67.5%;background: red">
-            <button class="bttn" type="button">删除</button>
-        </div>
-    </div>
+    <c:if test="${requestScope.articleList!=null}">
+        <c:forEach items="${requestScope.articleList}"  var="article">
+            <div class="article">
+                <div class="article-title">${article.articleTitle}</div>
+                <div>
+                    <c:forEach items="${article.tagList}" var="tag">
+                        <img src="/img/icon/tag.png" style="vertical-align: middle;"/>${tag.tagName}
+                    </c:forEach>
+                </div>
+                <div class="article-create-time">攥写时间：${article.articleCreateTime}</div>
+                <div class="article-update-time">修改时间：${article.articleUpdateTime}</div>
+                <div class="button" style="top: 10px;left: 67.5%;">
+                    <button class="bttn" type="button" onclick="modifyArticle(${article.articleId})">修改</button>
+                </div>
+                <div class="button" style="top: 60%;left: 67.5%;background: red">
+                    <button class="bttn" type="button">删除</button>
+                </div>
+            </div>
+        </c:forEach>
+    </c:if>
+
 
 </rapid:override>
 <rapid:override name="script">
-
+    <script type="text/javascript">
+        function modifyArticle(articleId){
+            $.ajax({
+                url:"/modifyArticle",
+                data:{
+                    "articleId":articleId
+                },
+                async:"false",
+                dataType:"JSON"
+            });
+        }
+    </script>
 </rapid:override>
 <%@ include file="../backstage.jsp" %>

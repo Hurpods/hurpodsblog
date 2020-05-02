@@ -33,4 +33,5 @@ public class Article implements Serializable {
 
     //多对多级联
     private List<Tag> tagList;
+
 }

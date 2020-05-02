@@ -1,6 +1,8 @@
 package com.hurpods.ssm.blog.service;
 
 import com.hurpods.ssm.blog.models.Article;
+import com.hurpods.ssm.blog.models.ArticleTagRef;
+import com.hurpods.ssm.blog.models.Tag;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -8,11 +10,13 @@ import java.util.List;
 public interface ArticleService {
     List<Article> getAllArticle();
 
+    Article getArticleById(Integer articleId);
+
     void deleteById(@Param(value = "articleId") Integer articleId);
 
     void batchDelete(List<Integer> idList);
 
-    Article insertArticle(Article article);
+    void insertArticle(Article article);
 
     Article updateArticle(Article article);
 
@@ -31,4 +35,12 @@ public interface ArticleService {
     Article getPreArticle(@Param(value = "articleId") Integer articleId);
 
     void updateCommentCount(@Param(value = "articleId") Integer articleId);
+
+    void createArticleTagRef(ArticleTagRef articleTagRef);
+
+    void deleteByArticleId(Integer articleId);
+
+    List<Tag> getTagsByArticleId(Integer articleId);
+
+    List<Tag> getTagsByTagId(Integer tagId);
 }
