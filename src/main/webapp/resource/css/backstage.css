@@ -118,14 +118,14 @@ ul.article-tagList {
 
 label.tags-tag {
     position: relative;
-    left: -35px;
+    left: -30px;
     top: 50px;
 }
 ul.article-tagList {
     position: relative;
     margin: 0;
     padding: 0;
-    left: 65px;
+    left: 69px;
     width: 95%;
 }
 .ck-content {

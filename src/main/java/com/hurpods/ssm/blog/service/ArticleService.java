@@ -18,7 +18,7 @@ public interface ArticleService {
 
     void insertArticle(Article article);
 
-    Article updateArticle(Article article);
+    void updateArticle(Article article);
 
     Integer getArticleCount();
 
@@ -36,11 +36,8 @@ public interface ArticleService {
 
     void updateCommentCount(@Param(value = "articleId") Integer articleId);
 
-    void createArticleTagRef(ArticleTagRef articleTagRef);
-
     void deleteByArticleId(Integer articleId);
 
     List<Tag> getTagsByArticleId(Integer articleId);
 
-    List<Tag> getTagsByTagId(Integer tagId);
 }

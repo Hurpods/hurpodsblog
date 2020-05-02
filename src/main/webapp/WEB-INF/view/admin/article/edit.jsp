@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Hurpods
-  Date: 2020/4/28
-  Time: 13:18
+  Date: 2020/5/2
+  Time: 20:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,31 +17,39 @@
                     style="color: #FF5722; ">*</span></label>
             <div class="title-input">
                 <input type="text" name="articleTitle" autocomplete="off" placeholder="请输入标题" maxlength="50"
+                       value="<c:if test="${article!=null}">${article.articleTitle}</c:if>"
                        style="font-size: 17px;border: solid 1px #9c9c9c;height: 35px;padding: 15px;width: 100%;">
             </div>
             <label class="tags-tag">标签</label>
             <ul class="article-tagList">
                 <c:forEach items="${requestScope.tagList}" var="tag">
                     <label>
-                        <input type="checkbox" name="articleTagIds" value="${tag.tagId}">#${tag.tagName}
+                        <input type="checkbox" name="articleTagIds" value="${tag.tagId}"
+                        <c:if test="${tagIds!=null}">
+                        <c:forEach items="${tagIds}" var="tagId">
+                               <c:if test="${tagId == tag.tagId}">checked</c:if>
+                        </c:forEach>
+                        </c:if>
+                        >#${tag.tagName}
                     </label>
                 </c:forEach>
             </ul>
         </div>
 
         <div class="article-content">
-            <textarea name="articleContent" id="content"></textarea>
+            <textarea name="articleContent" id="content"><c:if
+                    test="${article!=null}">${article.articleContent}</c:if></textarea>
         </div>
 
     </form>
     <div class="button" style="position: relative;margin: 15px 0 25px;">
-        <button class="bttn" type="button" id="article-submit">提交</button>
+        <button class="bttn" type="button" id="article-submit" onclick="modifyArticle(${article.articleId})">提交</button>
     </div>
     <div class="operator-shadow"></div>
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
-    <script type="module">
+    <script type="text/javascript">
         let myEditor = null;
 
         ClassicEditor
@@ -88,14 +96,15 @@
                 console.error(error);
             });
 
-        $("#article-submit").click(function () {
+        function modifyArticle(articleId) {
             let serializeData = $("#article").serialize();
             serializeData += "&htmlContent=" + myEditor.getData();
             serializeData += "&summary=" + $(myEditor.getData()).text();
+            serializeData += "&articleId=" + articleId;
             serializeData = decodeURIComponent(serializeData);
             $.ajax({
                 type: "POST",
-                url: "/admin/article/saveArticle",
+                url: "/admin/article/modifyArticle",
                 data: serializeData,
                 dataType: "JSON",
                 success: function (data) {
@@ -106,10 +115,7 @@
                     });
                 }
             })
-        });
-        $(document).ready(function () {
-            myEditor.setData('<h2 style="text-align:center;">hello,world</h2>');
-        });
+        }
     </script>
 </rapid:override>
 <%@ include file="../backstage.jsp" %>

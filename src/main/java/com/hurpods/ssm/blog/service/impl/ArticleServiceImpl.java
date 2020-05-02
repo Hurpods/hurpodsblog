@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -55,9 +56,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article updateArticle(Article article) {
+    public void updateArticle(Article article) {
         articleDao.updateArticle(article);
-        return article;
+        atrDao.deleteByArticleId(article.getArticleId());
+
+        for (Tag tag : article.getTagList()) {
+            ArticleTagRef atr = new ArticleTagRef(article.getArticleId(), tag.getTagId());
+            atrDao.createArticleTagRef(atr);
+        }
     }
 
     @Override
@@ -96,11 +102,6 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void createArticleTagRef(ArticleTagRef articleTagRef) {
-        atrDao.createArticleTagRef(articleTagRef);
-    }
-
-    @Override
     public void deleteByArticleId(Integer articleId) {
         atrDao.deleteByArticleId(articleId);
     }
@@ -108,10 +109,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Tag> getTagsByArticleId(Integer articleId) {
         return atrDao.getTagsByArticleId(articleId);
-    }
-
-    @Override
-    public List<Tag> getTagsByTagId(Integer tagId) {
-        return atrDao.getTagsByTagId(tagId);
     }
 }

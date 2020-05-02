@@ -25,7 +25,7 @@
     <select id="getArticleById" resultMap="ArticleResultMap">
         select *
         from article
-        where article_id = ${articleId,jdbcType=INTEGER}
+        where article_id = #{articleId,jdbcType=INTEGER}
     </select>
 
     <delete id="deleteById">
@@ -65,7 +65,7 @@
             <if test="articleContent!=null">article_content = #{articleContent,jdbcType=LONGVARCHAR},</if>
             <if test="articleViewCount!=null">article_view_count = #{articleViewCount,jdbcType=INTEGER},</if>
             <if test="articleCommentsCount!=null">article_comments_count=#{articleCommentsCount,jdbcType=INTEGER},</if>
-            <if test="articleStatus!=null">article_status=#{article_status,jdbcType=INTEGER},</if>
+            <if test="articleStatus!=null">article_status=#{articleStatus,jdbcType=INTEGER},</if>
             <if test="articleUpdateTime!=null">article_update_time=#{articleUpdateTime,jdbcType=TIMESTAMP},</if>
             <if test="articleSummary!=null">article_summary=#{articleSummary,jdbcType=TIMESTAMP},</if>
             <if test="hasPic!=null">has_pic=#{hasPic,jdbcType=TINYINT}</if>

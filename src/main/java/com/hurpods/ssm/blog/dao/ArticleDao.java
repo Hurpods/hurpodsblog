@@ -16,7 +16,7 @@ public interface ArticleDao {
 
     void insertArticle(Article article);
 
-    Article updateArticle(Article article);
+    void updateArticle(Article article);
 
     Integer getArticleCount();
 

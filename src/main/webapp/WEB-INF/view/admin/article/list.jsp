@@ -15,7 +15,7 @@
     <span style="position: relative;display: block;left: 27px;width: fit-content;">文章总数：${requestScope.status.count}，观看总数：${requestScope.status.view}，评论总数：${requestScope.status.comment}</span>
     <c:if test="${requestScope.articleList!=null}">
         <c:forEach items="${requestScope.articleList}" var="article">
-            <div class="article">
+            <div class="article" id="article-${article.articleId}">
                 <div class="article-title">${article.articleTitle}</div>
                 <div>
                     <c:forEach items="${article.tagList}" var="tag">
@@ -24,10 +24,13 @@
                 </div>
                 <div class="article-create-time">攥写时间：${article.articleCreateTime}</div>
                 <div class="article-update-time">修改时间：${article.articleUpdateTime}</div>
-                <div class="button" style="top: 10px;left: 66.5%;">
-                    <button class="bttn" type="button" onclick="modifyArticle(${article.articleId})">修改</button>
-                </div>
-                <div class="button" style="top: 60%;left: 66.5%;background: red">
+                <a href="/admin/article/editPage/${article.articleId}"
+                   style="display: block;position: relative;bottom: 132px;left: 3px;">
+                    <div class="button" style="top: 10px;left: 66.5%;">
+                        <button class="bttn" type="button">修改</button>
+                    </div>
+                </a>
+                <div class="button" style="top: 58%;left: 66.5%;background: red">
                     <button class="bttn" type="button" onclick="deleteArticle(${article.articleId})">删除</button>
                 </div>
             </div>
@@ -38,41 +41,33 @@
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript">
-        function modifyArticle(articleId) {
-            $.ajax({
-                url: "/modifyArticle",
-                data: {
-                    "articleId": articleId
-                },
-                async: "false",
-            });
-        }
+
 
         function deleteArticle(articleId) {
             $.confirm({
                 title: '删除确认!',
                 content: '此操作不可逆，确认删除该文章？',
                 type: 'red',
-                confirmButtonClass:'btn-danger',
-                cancelButtonClass:'btn-info',
-                buttons:{
-                    ok:{
-                        text:"确认",
-                        action:function(){
+                confirmButtonClass: 'btn-danger',
+                cancelButtonClass: 'btn-info',
+                buttons: {
+                    ok: {
+                        text: "确认",
+                        action: function () {
                             $.ajax({
-                                url: "/deleteArticle",
+                                url: "/admin/article/deleteArticle",
                                 data: {
                                     articleId: articleId
                                 },
                                 async: "false",
-                                success:function(){
+                                success: function () {
                                     alert("删除成功")
                                 }
                             });
                         }
                     },
-                    cancel:{
-                        text:"取消"
+                    cancel: {
+                        text: "取消"
                     }
                 }
             });

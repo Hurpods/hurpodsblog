@@ -7,12 +7,14 @@ import com.hurpods.ssm.blog.service.TagService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -26,9 +28,9 @@ public class BackstageArticleController {
 
 
     @RequestMapping("/write")
-    public String writeArticle(Model model) {
+    public String writeArticle(HttpServletRequest req) {
         List<Tag> tagList = tagService.getAllTags();
-        model.addAttribute("tagList", tagList);
+        req.setAttribute("tagList", tagList);
         return "admin/article/write";
     }
 
@@ -53,16 +55,15 @@ public class BackstageArticleController {
         }
 
         article.setArticleStatus(1);
-        if(summary.length()<122){
+        if (summary.length() < 122) {
             article.setArticleSummary(summary);
-        }else{
+        } else {
             article.setArticleSummary(summary.substring(0, 122) + "... ...");
         }
 
         for (int i : articleTagIds) {
             tagList.add(tagService.getTagById(i));
         }
-
 
         article.setTagList(tagList);
         try {
@@ -78,12 +79,70 @@ public class BackstageArticleController {
         return new JSONObject(map).toString();
     }
 
+    @RequestMapping("/editPage/{articleId}")
+    public ModelAndView editPage(@PathVariable("articleId") Integer articleId,HttpServletRequest req) {
+        ModelAndView modelAndView = new ModelAndView();
+        Article article = articleService.getArticleById(articleId);
+        List<Tag> tagList = articleService.getTagsByArticleId(articleId);
+        List<Integer> tagIds = new ArrayList<>();
+        for (Tag tag : tagList) {
+            tagIds.add(tag.getTagId());
+        }
+        List<Tag> tagsList = tagService.getAllTags();
+        req.setAttribute("tagList", tagsList);
+
+        modelAndView.addObject("article", article);
+        modelAndView.addObject("tagIds", tagIds);
+        modelAndView.setViewName("admin/article/edit");
+
+        return modelAndView;
+    }
+
     @RequestMapping("/modifyArticle")
     @ResponseBody
-    public String modifyArticle(@RequestParam("articleId") Integer articleId, HttpServletRequest req) {
+    public String modifyArticle(@RequestParam("articleTitle") String articleTitle,
+                                @RequestParam("articleTagIds") Integer[] articleTagIds,
+                                @RequestParam("htmlContent") String htmlContent,
+                                @RequestParam("summary") String summary,
+                                @RequestParam("articleId") Integer articleId) {
         Article article = articleService.getArticleById(articleId);
-        req.setAttribute("article", article);
-        return "";
+        Timestamp nowTime = new Timestamp(new Date().getTime());
+        List<Tag> tagList = new ArrayList<>();
+        Map<String, String> map = new HashMap<>();
+
+        article.setArticleTitle(articleTitle);
+        article.setArticleUpdateTime(nowTime);
+        article.setArticleContent(htmlContent);
+
+        if (htmlContent.contains("<img")) {
+            article.setHasPic(1);
+        } else {
+            article.setHasPic(0);
+        }
+
+        article.setArticleStatus(1);
+        if (summary.length() < 122) {
+            article.setArticleSummary(summary);
+        } else {
+            article.setArticleSummary(summary.substring(0, 122) + "... ...");
+        }
+
+        for (int i : articleTagIds) {
+            tagList.add(tagService.getTagById(i));
+        }
+
+        article.setTagList(tagList);
+
+        try {
+            System.out.println(article);
+            map.put("status", "true");
+            map.put("msg", "更新成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
+
+        return new JSONObject(map).toString();
     }
 
     @RequestMapping("/getAllArticle")
@@ -103,5 +162,11 @@ public class BackstageArticleController {
         req.setAttribute("status", map);
 
         return "admin/article/list";
+    }
+
+    @RequestMapping("/deleteArticle")
+    public void deleteArticle(@RequestParam(value = "articleId") Integer articleId) {
+        articleService.deleteById(articleId);
+        articleService.deleteByArticleId(articleId);
     }
 }
