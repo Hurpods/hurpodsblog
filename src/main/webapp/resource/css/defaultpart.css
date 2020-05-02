@@ -16,6 +16,26 @@ a {
     position: relative;
 }
 
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:active {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
 a:after {
     content: "";
     width: 0;

@@ -12,6 +12,8 @@
 <head>
     <link rel="shortcut icon" href="/img/logo/black_128.png" type="image/x-icon"/>
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugin/jquery-confirm/jquery-confirm.min.css" type="text/css"/>
     <link rel="stylesheet" href="/css/profile.css" type="text/css"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css">
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
@@ -56,25 +58,25 @@
             </div>
         </div>
 
-        <div class="delete-confirm">
-            <br>
-            <p></p>
-            <label>删除账号为敏感操作，请输入当前密码：</label>
-            <input type="password" size="38" id="delete-password">
-            <div class="delete-confirm-button">
-                <div class="button"
-                     style="width: 102px;height: 36px;position: static;border-radius: 40px;background:red">
-                    <button class="bttn" id="delete-confirm" type="button" style="width: 102px;height: 36px;">确认删除
-                    </button>
-                </div>
-            </div>
-            <div class="delete-cancel-button">
-                <div class="button" style="width: 102px;height: 36px;position: static;border-radius: 40px;">
-                    <button class="bttn" id="delete-cancel" type="button" style="width: 102px;height: 36px;">取消操作
-                    </button>
-                </div>
-            </div>
-        </div>
+<%--        <div class="delete-confirm">--%>
+<%--            <br>--%>
+<%--            <p></p>--%>
+<%--            <label>删除账号为敏感操作，请输入当前密码：</label>--%>
+<%--            <input type="password" size="38" id="delete-password">--%>
+<%--            <div class="delete-confirm-button">--%>
+<%--                <div class="button"--%>
+<%--                     style="width: 102px;height: 36px;position: static;border-radius: 40px;background:red">--%>
+<%--                    <button class="bttn" id="delete-confirm" type="button" style="width: 102px;height: 36px;">确认删除--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="delete-cancel-button">--%>
+<%--                <div class="button" style="width: 102px;height: 36px;position: static;border-radius: 40px;">--%>
+<%--                    <button class="bttn" id="delete-cancel" type="button" style="width: 102px;height: 36px;">取消操作--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
     <div class="user-detail">
         <ul>
@@ -120,12 +122,11 @@
         </div>
     </div>
 </div>
-<div class="delete-shadow"></div>
 <%@ include file="../public/footer.jsp" %>
 </body>
 
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
 <script type="text/javascript" src="/js/defaultpart.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
-
+<script type="text/javascript" src="/plugin/jquery-confirm/jquery-confirm.min.js"></script>
 </html>

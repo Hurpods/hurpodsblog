@@ -11,15 +11,17 @@
 <head>
     <link rel="shortcut icon" href="/img/logo/black_128.png" type="image/x-icon"/>
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/login.css" type="text/css"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css"/>
+    <link rel="stylesheet" href="/plugin/jquery-confirm/jquery-confirm.min.css" type="text/css"/>
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <meta name="description" content="Hurpods的个人Blog">
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
     <title>用户登陆</title>
 </head>
 <%
-    if(request.getSession().getAttribute("user")!=null){
+    if (request.getSession().getAttribute("user") != null) {
         response.sendRedirect("/profile");
     }
 %>
@@ -38,8 +40,8 @@
             <ul class="num">
 
             </ul>
-            <div class="btn btn-left"></div>
-            <div class="btn btn-right"></div>
+            <div class="mybtn mybtn-left"></div>
+            <div class="mybtn mybtn-right"></div>
         </div>
         <div class="words">
             <h3>本站由Java Web驱动</h3>
@@ -159,4 +161,5 @@
 
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
 <script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/plugin/jquery-confirm/jquery-confirm.min.js"></script>
 </html>

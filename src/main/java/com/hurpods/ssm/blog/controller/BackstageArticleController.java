@@ -41,7 +41,6 @@ public class BackstageArticleController {
         Article article = new Article();
         List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
-        String summ="";
 
         article.setArticleTitle(articleTitle);
         article.setArticleAuthorId(0);

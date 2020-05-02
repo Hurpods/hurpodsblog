@@ -14,21 +14,21 @@
 <rapid:override name="content">
     <span style="position: relative;display: block;left: 27px;width: fit-content;">文章总数：${requestScope.status.count}，观看总数：${requestScope.status.view}，评论总数：${requestScope.status.comment}</span>
     <c:if test="${requestScope.articleList!=null}">
-        <c:forEach items="${requestScope.articleList}"  var="article">
+        <c:forEach items="${requestScope.articleList}" var="article">
             <div class="article">
                 <div class="article-title">${article.articleTitle}</div>
                 <div>
                     <c:forEach items="${article.tagList}" var="tag">
-                        <img src="/img/icon/tag.png" style="vertical-align: middle;"/>${tag.tagName}
+                        <img src="/img/icon/tag.png" style="vertical-align: middle;"/>#${tag.tagName}
                     </c:forEach>
                 </div>
                 <div class="article-create-time">攥写时间：${article.articleCreateTime}</div>
                 <div class="article-update-time">修改时间：${article.articleUpdateTime}</div>
-                <div class="button" style="top: 10px;left: 67.5%;">
+                <div class="button" style="top: 10px;left: 66.5%;">
                     <button class="bttn" type="button" onclick="modifyArticle(${article.articleId})">修改</button>
                 </div>
-                <div class="button" style="top: 60%;left: 67.5%;background: red">
-                    <button class="bttn" type="button">删除</button>
+                <div class="button" style="top: 60%;left: 66.5%;background: red">
+                    <button class="bttn" type="button" onclick="deleteArticle(${article.articleId})">删除</button>
                 </div>
             </div>
         </c:forEach>
@@ -38,14 +38,43 @@
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript">
-        function modifyArticle(articleId){
+        function modifyArticle(articleId) {
             $.ajax({
-                url:"/modifyArticle",
-                data:{
-                    "articleId":articleId
+                url: "/modifyArticle",
+                data: {
+                    "articleId": articleId
                 },
-                async:"false",
-                dataType:"JSON"
+                async: "false",
+            });
+        }
+
+        function deleteArticle(articleId) {
+            $.confirm({
+                title: '删除确认!',
+                content: '此操作不可逆，确认删除该文章？',
+                type: 'red',
+                confirmButtonClass:'btn-danger',
+                cancelButtonClass:'btn-info',
+                buttons:{
+                    ok:{
+                        text:"确认",
+                        action:function(){
+                            $.ajax({
+                                url: "/deleteArticle",
+                                data: {
+                                    articleId: articleId
+                                },
+                                async: "false",
+                                success:function(){
+                                    alert("删除成功")
+                                }
+                            });
+                        }
+                    },
+                    cancel:{
+                        text:"取消"
+                    }
+                }
             });
         }
     </script>

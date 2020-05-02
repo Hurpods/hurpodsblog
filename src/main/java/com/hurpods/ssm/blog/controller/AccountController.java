@@ -215,7 +215,7 @@ public class AccountController {
                 file.delete();
             }
             map.put("status", "true");
-            msg = "删除账号成功，即将返回首页";
+            msg = "删除账号成功，3秒后返回首页";
             logout(req.getSession());
         } else {
             map.put("status", "false");

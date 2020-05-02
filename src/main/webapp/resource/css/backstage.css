@@ -48,10 +48,17 @@
     height: 40px;
     line-height: 40px;
     cursor: pointer;
+    font-size: 20px;
 }
 .side-list-child dd{
     display: block;
     margin-bottom: 6px;
+    margin-left: 40px;
+    font-size: 15px;
+    padding: 2px 0;
+}
+dl.side-list-child {
+    margin: 20px 0;
 }
 .menu-link{
     color:#9c9c9c;

@@ -124,9 +124,15 @@ $("#protocol").blur(function () {
 
 $("#register-button").click(function () {
     if (!check) {
-        alert("请勾选同意用户使用协议");
+        $.alert({
+            title:"提示",
+            content:"请勾选同意用户使用协议",
+        });
     } else if (!(name_flag && psw_flag && email_flag)) {
-        alert("请完成必填项");
+        $.alert({
+            title:"提示",
+            content:"请完成必填项",
+        });
         $("#username").blur();
         $("#repassword").blur();
         $("#e_mail").blur();
@@ -149,9 +155,15 @@ function login() {
     let token = $("#login-identity").val();
     let password = $("#login-password").val();
     if (token === "") {
-        alert("登录名不能为空");
+        $.alert({
+            title:"提示",
+            content:"登录名不能为空"
+        });
     } else if (password === "") {
-        alert("密码不能为空");
+        $.alert({
+            title:"提示",
+            content:"密码不能为空"
+        });
     } else {
         $.ajax({
             type: "POST",
@@ -161,7 +173,10 @@ function login() {
             success: function (result) {
                 console.log(result);
                 if (result.status === "false") {
-                    alert(result.msg);
+                    $.alert({
+                        title:"提示",
+                        content:result.msg
+                    });
                 } else {
                     window.location.href = "/";
                 }
@@ -218,12 +233,12 @@ $(document).ready(function () {
         $(this).addClass("on").siblings().removeClass("on");
     });
 
-    $(".pic .btn-left").click(function () {
+    $(".pic .mybtn-left").click(function () {
         index--;
         move();
     });
 
-    $(".pic .btn-right").click(function () {
+    $(".pic .mybtn-right").click(function () {
         index++;
         move();
     });

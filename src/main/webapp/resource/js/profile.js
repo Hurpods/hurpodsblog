@@ -39,33 +39,50 @@ $("#hide-detail").click(function () {
     $("#hide-detail").hide();
 });
 
-$("#delete").click(function () {
-    $(".delete-confirm").slideDown();
-    $(".delete-shadow").show();
-});
-
-$("#delete-cancel").click(function () {
-    $(".delete-confirm").hide();
-    $(".delete-shadow").hide();
-});
-
-$("#delete-confirm").click(function () {
-    let password = $("#delete-password").val();
-    $.ajax({
-        type: "POST",
-        url: "/deleteUser",
-        data: {
-            "password":password
-        },
-        sync: "false",
-        dataType: "JSON",
-        success: function (data) {
-            if (data.status === "false") {
-                alert(data.msg);
-                $("#delete-password").html("");
-            } else {
-                alert(data.msg);
-                window.location.replace("/");
+$("#delete").click(function(){
+    $.confirm({
+        title:'删除确认!',
+        content:'此操作不可逆，且为敏感操作！若要继续操作，请输入密码：' +
+            '<form action="" class="formName">' +
+            '<div class="form-group">' +
+            '<input type="password" placeholder="请输入密码" class="name form-control" required id="delete-password"/>' +
+            '</div>' +
+            '</form>',
+        type:'red',
+        confirmButtonClass:'btn-danger',
+        cancelButtonClass:'btn-info',
+        buttons:{
+            ok:{
+                text:"确认",
+                action:function(){
+                    $.ajax({
+                        type: "POST",
+                        url: "/deleteUser",
+                        data: {
+                            "password":$("#delete-password").val()
+                        },
+                        sync: "false",
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data.status === "false") {
+                                $.alert({
+                                    title:"提示",
+                                    content:data.msg
+                                });
+                                $("#delete-password").html("");
+                            } else {
+                                $.alert({
+                                    title:"提示",
+                                    content:data.msg
+                                });
+                                setTimeout(function(){window.location.replace("/");},3000);
+                            }
+                        }
+                    })
+                }
+            },
+            cancel:{
+                text:"取消"
             }
         }
     })
