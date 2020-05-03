@@ -52,6 +52,7 @@ public class BackstageArticleController {
         article.setArticleTitle(articleTitle);
         article.setArticleAuthorId(0);
         article.setArticleContent(htmlContent);
+        article.setIsError(0);
 
         if (matcher.find()) {
             article.setHasPic(1);
@@ -135,6 +136,7 @@ public class BackstageArticleController {
         article.setArticleTitle(articleTitle);
         article.setArticleUpdateTime(nowTime);
         article.setArticleContent(htmlContent);
+        article.setIsError(0);
 
         if (matcher.find()) {
             article.setHasPic(1);
@@ -178,7 +180,6 @@ public class BackstageArticleController {
             map.put("status", "false");
             map.put("msg", e.getMessage());
         }
-
         return new JSONObject(map).toString();
     }
 
