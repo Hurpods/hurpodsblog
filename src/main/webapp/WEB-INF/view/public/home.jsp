@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
@@ -17,7 +18,7 @@
     <div class="top-box">
         <div class="daily">
             <div class="daily-img">
-                <img class="img-cover" id="daily-img" src="http://bing.getlove.cn/bingImage" alt="每日一言图片">
+                <img class="img-cover" id="daily-img" src="https://api.dujin.org/bing/1920.php" alt="每日一言图片">
             </div>
             <div class="daily-words" id="daily-words">
 
@@ -28,7 +29,7 @@
         </div>
         <div class="daily-life">
             <div class="daily-life-img">
-<%--                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">--%>
+                <%--                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">--%>
             </div>
             <div class="daily-life-summary" id="daily-life-summary">
 
@@ -36,59 +37,62 @@
         </div>
     </div>
     <main id="main" class="site-main">
-        <article class="article-style1">
-            <div class="thumb">
-                <img alt="style-1" src=""/>
-            </div>
-            <div class="content">
-                <a href="/article/" class="article-title">此处应是一个标题</a>
-                <div class="summary">
-                    确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实
-                </div>
-            </div>
-            <div class="tags">
-                <ul class="tagList">
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                </ul>
-                <div class="time">发表时间：2020年4月27日</div>
-            </div>
-        </article>
-        <article class="article-style2">
-            <div class="content">
-                <a href="/article/" class="article-title">此处应是一个标题</a>
-                <div class="summary">
-                    确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实
-                </div>
-            </div>
-            <div class="tags">
-                <ul class="tagList">
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                    <li>
-                        <img src="/img/icon/tag.png" alt="tag" style="vertical-align: middle"/>
-                        <a class="tag-link">#java</a>
-                    </li>
-                </ul>
-                <div class="time">发表时间：2020年4月27日</div>
-            </div>
-        </article>
+        <c:if test="${articleList!=null}">
+            <c:forEach items="${articleList}" var="article">
+                <c:if test="${article.hasPic==0}">
+                    <article class="article-style1">
+                        <div class="thumb">
+                            <img alt="tag" width="160px"
+                                    <c:if test="${article.isError==1}">src="/img/tag/error.png"</c:if>
+                                    <c:if test="${article.isError==0}">src="/img/tag/code-1.png"</c:if>
+                            />
+                        </div>
+                        <div class="content">
+                            <a href="/article/${article.articleId}" class="article-title">${article.articleTitle}</a>
+                            <div class="summary">
+                                    ${article.articleSummary}
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <ul class="tagList">
+                                <c:forEach items="${article.tagList}" var="tag">
+                                    <li>
+                                        <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
+                                        <a class="tag-link" href="/tags/${tag.tagId}">#${tag.tagName}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                            <div class="time">最后修改时间：<fmt:formatDate value='${article.articleUpdateTime}'
+                                                                     pattern='yyyy-MM-dd'/></div>
+                        </div>
+                    </article>
+                </c:if>
+                <c:if test="${article.hasPic==1}">
+                    <article class="article-style2">
+                        <img src="${article.firstPicUrl}" alt="首图"
+                             style="position: absolute;width: 1351px;height: 500px;border-radius: 15px;"/>
+                        <div class="content">
+                            <a href="/article/${article.articleId}" class="article-title">${article.articleTitle}</a>
+                            <div class="summary">
+                                    ${article.articleSummary}
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <ul class="tagList">
+                                <c:forEach items="${article.tagList}" var="tag">
+                                    <li>
+                                        <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
+                                        <a class="tag-link" href="/tags/${tag.tagId}">#${tag.tagName}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                            <div class="time">最后修改时间：<fmt:formatDate value='${article.articleUpdateTime}'
+                                                                     pattern='yyyy-MM-dd'/></div>
+                        </div>
+                    </article>
+                </c:if>
+            </c:forEach>
+        </c:if>
     </main>
 </div>
 <%@ include file="../public/footer.jsp" %>

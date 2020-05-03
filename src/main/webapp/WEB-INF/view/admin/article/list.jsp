@@ -19,7 +19,7 @@
                 <div class="article-title">${article.articleTitle}</div>
                 <div>
                     <c:forEach items="${article.tagList}" var="tag">
-                        <img src="/img/icon/tag.png" style="vertical-align: middle;"/>#${tag.tagName}
+                        <img src="/img/tag/tag.png" style="vertical-align: middle;"/>#${tag.tagName}
                     </c:forEach>
                 </div>
                 <div class="article-create-time">攥写时间：${article.articleCreateTime}</div>
@@ -45,7 +45,7 @@
 
         function deleteArticle(articleId) {
             $.confirm({
-                title: '删除确认!',
+                title: '警告',
                 content: '此操作不可逆，确认删除该文章？',
                 type: 'red',
                 confirmButtonClass: 'btn-danger',

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Hurpods
@@ -57,26 +58,6 @@
                 <button class="bttn" id="delete" type="button" style="width: 102px;height: 36px;">删除账号</button>
             </div>
         </div>
-
-<%--        <div class="delete-confirm">--%>
-<%--            <br>--%>
-<%--            <p></p>--%>
-<%--            <label>删除账号为敏感操作，请输入当前密码：</label>--%>
-<%--            <input type="password" size="38" id="delete-password">--%>
-<%--            <div class="delete-confirm-button">--%>
-<%--                <div class="button"--%>
-<%--                     style="width: 102px;height: 36px;position: static;border-radius: 40px;background:red">--%>
-<%--                    <button class="bttn" id="delete-confirm" type="button" style="width: 102px;height: 36px;">确认删除--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="delete-cancel-button">--%>
-<%--                <div class="button" style="width: 102px;height: 36px;position: static;border-radius: 40px;">--%>
-<%--                    <button class="bttn" id="delete-cancel" type="button" style="width: 102px;height: 36px;">取消操作--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
     </div>
     <div class="user-detail">
         <ul>
@@ -91,9 +72,9 @@
                 </div>
             </li>
             <li>
-                <div>
+                <div class="detail-left">
                     <span>注册时间</span>
-                    <p id="register_date">${sessionScope.user.userRegisterTime}</p>
+                    <p id="register_date"><fmt:formatDate value='${sessionScope.user.userRegisterTime}' pattern='yyyy-MM-dd'/></p>
                 </div>
             </li>
             <li>

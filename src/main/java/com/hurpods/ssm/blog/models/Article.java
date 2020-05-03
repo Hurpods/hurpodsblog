@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
+
 @Data
 public class Article implements Serializable {
     private static final long serialVersionUID = 2791917326900161857L;
@@ -28,10 +29,14 @@ public class Article implements Serializable {
     private Timestamp articleUpdateTime;
     //文章摘要
     private String articleSummary;
-
+    //是否有图片
     private Integer hasPic;
+    //第一张图片地址
+    private String firstPicUrl;
+    //是否是error类文章
+    private Integer isError;
+    //以下非数据库字段
 
     //多对多级联
     private List<Tag> tagList;
-
 }

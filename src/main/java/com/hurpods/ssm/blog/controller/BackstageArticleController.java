@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/admin/article")
@@ -43,15 +45,37 @@ public class BackstageArticleController {
         Article article = new Article();
         List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
+        Pattern p = Pattern.compile("<(img|IMG)(.*?)(>|></img>|/>)");
+        Matcher matcher = p.matcher(htmlContent);
+        String firstPicUrl;
 
         article.setArticleTitle(articleTitle);
         article.setArticleAuthorId(0);
         article.setArticleContent(htmlContent);
 
-        if (htmlContent.contains("<img")) {
+        if (matcher.find()) {
             article.setHasPic(1);
+            String group = matcher.group(2);
+            Pattern srcText = Pattern.compile("(src|SRC)=(\"|\')(.*?)(\"|\')");
+            Matcher matcher2 = srcText.matcher(group);
+            if (matcher2.find()) {
+                firstPicUrl = matcher2.group(3);
+                article.setFirstPicUrl(firstPicUrl);
+            }
+
+            for (int i : articleTagIds) {
+                tagList.add(tagService.getTagById(i));
+            }
         } else {
             article.setHasPic(0);
+
+            for (int i : articleTagIds) {
+                Tag temp = tagService.getTagById(i);
+                tagList.add(temp);
+                if (temp.getTagName().equals("error")) {
+                    article.setIsError(1);
+                }
+            }
         }
 
         article.setArticleStatus(1);
@@ -61,14 +85,9 @@ public class BackstageArticleController {
             article.setArticleSummary(summary.substring(0, 122) + "... ...");
         }
 
-        for (int i : articleTagIds) {
-            tagList.add(tagService.getTagById(i));
-        }
-
         article.setTagList(tagList);
         try {
             articleService.insertArticle(article);
-            System.out.println(article.toString());
             map.put("status", "true");
             map.put("msg", "文章发表成功");
         } catch (Exception e) {
@@ -80,7 +99,7 @@ public class BackstageArticleController {
     }
 
     @RequestMapping("/editPage/{articleId}")
-    public ModelAndView editPage(@PathVariable("articleId") Integer articleId,HttpServletRequest req) {
+    public ModelAndView editPage(@PathVariable("articleId") Integer articleId, HttpServletRequest req) {
         ModelAndView modelAndView = new ModelAndView();
         Article article = articleService.getArticleById(articleId);
         List<Tag> tagList = articleService.getTagsByArticleId(articleId);
@@ -109,15 +128,37 @@ public class BackstageArticleController {
         Timestamp nowTime = new Timestamp(new Date().getTime());
         List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
+        Pattern p = Pattern.compile("<(img|IMG)(.*?)(>|></img>|/>)");
+        Matcher matcher = p.matcher(htmlContent);
+        String firstPicUrl;
 
         article.setArticleTitle(articleTitle);
         article.setArticleUpdateTime(nowTime);
         article.setArticleContent(htmlContent);
 
-        if (htmlContent.contains("<img")) {
+        if (matcher.find()) {
             article.setHasPic(1);
+            String group = matcher.group(2);
+            Pattern srcText = Pattern.compile("(src|SRC)=(\"|\')(.*?)(\"|\')");
+            Matcher matcher2 = srcText.matcher(group);
+            if (matcher2.find()) {
+                firstPicUrl = matcher2.group(3);
+                article.setFirstPicUrl(firstPicUrl);
+            }
+
+            for (int i : articleTagIds) {
+                tagList.add(tagService.getTagById(i));
+            }
         } else {
             article.setHasPic(0);
+
+            for (int i : articleTagIds) {
+                Tag temp = tagService.getTagById(i);
+                tagList.add(temp);
+                if (temp.getTagName().equals("error")) {
+                    article.setIsError(1);
+                }
+            }
         }
 
         article.setArticleStatus(1);
@@ -127,14 +168,10 @@ public class BackstageArticleController {
             article.setArticleSummary(summary.substring(0, 122) + "... ...");
         }
 
-        for (int i : articleTagIds) {
-            tagList.add(tagService.getTagById(i));
-        }
-
         article.setTagList(tagList);
 
         try {
-            System.out.println(article);
+            articleService.updateArticle(article);
             map.put("status", "true");
             map.put("msg", "更新成功");
         } catch (Exception e) {

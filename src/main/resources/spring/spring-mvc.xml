@@ -47,7 +47,7 @@
 <!--    <mvc:interceptors>-->
 <!--        <mvc:interceptor>-->
 <!--            <mvc:mapping path="/**"/>-->
-<!--            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>-->
+<!--            <bean class="com.hurpods.ssm.blog.interceptor.MainResourceInterceptor"/>-->
 <!--        </mvc:interceptor>-->
 <!--        <mvc:interceptor>-->
 <!--            <mvc:mapping path="/admin"/>-->

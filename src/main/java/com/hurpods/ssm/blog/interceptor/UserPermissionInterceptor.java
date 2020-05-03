@@ -10,11 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserPermissionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        if(httpServletRequest.getSession().getAttribute("user")!=null){
-            return true;
-        }else{
-            return false;
-        }
+        return httpServletRequest.getSession().getAttribute("user") != null;
     }
 
     @Override

@@ -127,7 +127,7 @@ input#delete-password {
 }
 
 .user-detail ul li {
-    height: 64px;
+    height: 55px;
     border-bottom: 1px solid #9c9c9c;
 }
 
@@ -139,6 +139,7 @@ input#delete-password {
 .user-detail ul li div p {
     font-weight: 500;
     font-size: 16px;
+    margin:10px 0;
 }
 
 .detail-left {

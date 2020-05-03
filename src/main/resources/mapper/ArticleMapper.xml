@@ -13,6 +13,8 @@
         <result column="article_update_time" property="articleUpdateTime" jdbcType="TIMESTAMP"/>
         <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
         <result column="has_pic" property="hasPic" jdbcType="TINYINT"/>
+        <result column="first_pic_url" property="firstPicUrl" jdbcType="VARCHAR"/>
+        <result column="is_error" property="isError" jdbcType="TINYINT"/>
     </resultMap>
 
     <select id="getAllArticle" resultMap="ArticleResultMap">
@@ -47,7 +49,7 @@
     <insert id="insertArticle" parameterType="com.hurpods.ssm.blog.models.Article" useGeneratedKeys="true"
             keyProperty="articleId">
         insert into article(article_author_id, article_title, article_content, article_status, article_create_time,
-                            article_update_time, article_summary, has_pic)
+                            article_update_time, article_summary, has_pic, first_pic_url, is_error)
         values (#{articleAuthorId,jdbcType=INTEGER},
                 #{articleTitle,jdbcType=VARCHAR},
                 #{articleContent,jdbcType=LONGVARCHAR},
@@ -55,7 +57,9 @@
                 #{articleCreateTime,jdbcType=TIMESTAMP},
                 #{articleUpdateTime,jdbcType=TIMESTAMP},
                 #{articleSummary,jdbcType=VARCHAR},
-                #{hasPic,jdbcType=TINYINT})
+                #{hasPic,jdbcType=TINYINT},
+                #{firstPicUrl,jdbcType=VARCHAR},
+                #{isError,jdbcType=TINYINT})
     </insert>
 
     <update id="updateArticle" parameterType="com.hurpods.ssm.blog.models.Article">
@@ -68,7 +72,9 @@
             <if test="articleStatus!=null">article_status=#{articleStatus,jdbcType=INTEGER},</if>
             <if test="articleUpdateTime!=null">article_update_time=#{articleUpdateTime,jdbcType=TIMESTAMP},</if>
             <if test="articleSummary!=null">article_summary=#{articleSummary,jdbcType=TIMESTAMP},</if>
-            <if test="hasPic!=null">has_pic=#{hasPic,jdbcType=TINYINT}</if>
+            <if test="hasPic!=null">has_pic=#{hasPic,jdbcType=TINYINT},</if>
+            <if test="firstPicUrl!=null">first_pic_url=#{firstPicUrl,jdbcType=VARCHAR},</if>
+            <if test="isError!=null">is_error=#{isError,jdbcType=TINYINT}</if>
         </set>
         where article_id=#{articleId,jdbcType=INTEGER}
     </update>
@@ -92,12 +98,9 @@
     </select>
 
     <select id="getArticleByPage" resultMap="ArticleResultMap">
-        select *from article
-        <where>
-            <if test="status!=null">
-                article_status=#{status,jdbcType=INTEGER}
-            </if>
-        </where>
+        select *
+        from article
+        order by article_id desc
         limit #{pageIndex},#{pageSize}
     </select>
 

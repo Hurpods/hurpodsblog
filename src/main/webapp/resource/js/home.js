@@ -1,8 +1,8 @@
-function getTalks() {
+function getDaily() {
     $.ajax({
         url:"https://v1.hitokoto.cn/?c=d",
         dataType:"json",
-        async:true,
+        async:false,
         success:function(data){
             let str;
             if(data.from_who!==null){
@@ -13,7 +13,7 @@ function getTalks() {
             $("#daily-words").html(data.hitokoto);
             $("#daily-sign").html(str);
         }
-    })
+    });
 }
 
-$(document).ready(getTalks());
+$(document).ready(getDaily());

@@ -24,8 +24,7 @@ public interface ArticleDao {
 
     Integer getArticleComment();
 
-    List<Article> getArticleByPage(@Param(value = "status") Integer status,
-                                   @Param(value = "pageIndex") Integer pageIndex,
+    List<Article> getArticleByPage(@Param(value = "pageIndex") Integer pageIndex,
                                    @Param(value = "pageSize") Integer pageSize);
 
     Article getNextArticle(@Param(value = "articleId") Integer articleId);

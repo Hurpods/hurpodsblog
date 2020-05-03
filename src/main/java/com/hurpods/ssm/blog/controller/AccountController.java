@@ -102,6 +102,7 @@ public class AccountController {
     public String login(HttpServletRequest req) {
         String token = req.getParameter("token");
         String psw = req.getParameter("password");
+        Timestamp nowTime = new Timestamp(new Date().getTime());
         String msg;
         Map<String, String> map = new HashMap<>();
         User user = userService.getUserByOthers(token);
@@ -110,6 +111,10 @@ public class AccountController {
             String name = user.getUserName();
             psw = myUtil.hashPass(psw, name);
             if (psw.equals(user.getUserPsw())) {
+                user.setUserLastLoginTime(nowTime);
+                user.setUserLastLoginIp(myUtil.getIpAddress(req));
+
+                userService.updateUserInfo(user);
                 map.put("status", "true");
                 msg = "";
                 req.getSession().setAttribute("user", user);
@@ -122,6 +127,7 @@ public class AccountController {
             msg = "该账号未注册";
         }
         map.put("msg", msg);
+
         return new JSONObject(map).toString();
     }
 

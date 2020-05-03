@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -82,8 +81,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getArticleByPage(Integer status, Integer pageIndex, Integer pageSize) {
-        return articleDao.getArticleByPage(status, pageIndex, pageSize);
+    public List<Article> getArticleByPage(Integer pageIndex, Integer pageSize) {
+        return articleDao.getArticleByPage(pageIndex, pageSize);
     }
 
     @Override
