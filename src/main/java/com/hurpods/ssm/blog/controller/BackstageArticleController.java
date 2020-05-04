@@ -43,11 +43,11 @@ public class BackstageArticleController {
                               @RequestParam("htmlContent") String htmlContent,
                               @RequestParam("summary") String summary) {
         Article article = new Article();
-        List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
         Pattern p = Pattern.compile("<(img|IMG)(.*?)(>|></img>|/>)");
         Matcher matcher = p.matcher(htmlContent);
         String firstPicUrl;
+        List<Tag> tagList = tagService.batchGetTag(Arrays.asList(articleTagIds));
 
         article.setArticleTitle(articleTitle);
         article.setArticleAuthorId(0);
@@ -63,17 +63,11 @@ public class BackstageArticleController {
                 firstPicUrl = matcher2.group(3);
                 article.setFirstPicUrl(firstPicUrl);
             }
-
-            for (int i : articleTagIds) {
-                tagList.add(tagService.getTagById(i));
-            }
         } else {
             article.setHasPic(0);
 
-            for (int i : articleTagIds) {
-                Tag temp = tagService.getTagById(i);
-                tagList.add(temp);
-                if (temp.getTagName().equalsIgnoreCase("error")) {
+            for (Tag tag : tagList) {
+                if (tag.getTagName().equalsIgnoreCase("error")) {
                     article.setIsError(1);
                 }
             }
@@ -109,7 +103,7 @@ public class BackstageArticleController {
         }
         List<Tag> tagsList = tagService.getAllTags();
 
-        modelAndView.addObject("tagList",tagsList);
+        modelAndView.addObject("tagList", tagsList);
         modelAndView.addObject("article", article);
         modelAndView.addObject("tagIds", tagIds);
         modelAndView.setViewName("admin/article/edit");
@@ -126,11 +120,11 @@ public class BackstageArticleController {
                                 @RequestParam("articleId") Integer articleId) {
         Article article = articleService.getArticleById(articleId);
         Timestamp nowTime = new Timestamp(new Date().getTime());
-        List<Tag> tagList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
         Pattern p = Pattern.compile("<(img|IMG)(.*?)(>|></img>|/>)");
         Matcher matcher = p.matcher(htmlContent);
         String firstPicUrl;
+        List<Tag> tagList = tagService.batchGetTag(Arrays.asList(articleTagIds));
 
         article.setArticleTitle(articleTitle);
         article.setArticleUpdateTime(nowTime);
@@ -147,16 +141,11 @@ public class BackstageArticleController {
                 article.setFirstPicUrl(firstPicUrl);
             }
 
-            for (int i : articleTagIds) {
-                tagList.add(tagService.getTagById(i));
-            }
         } else {
             article.setHasPic(0);
 
-            for (int i : articleTagIds) {
-                Tag temp = tagService.getTagById(i);
-                tagList.add(temp);
-                if (temp.getTagName().equalsIgnoreCase("error")) {
+            for (Tag tag : tagList) {
+                if (tag.getTagName().equalsIgnoreCase("error")) {
                     article.setIsError(1);
                 }
             }

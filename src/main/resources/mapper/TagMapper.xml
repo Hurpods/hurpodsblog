@@ -17,6 +17,13 @@
         where tag_id = #{tagId,jdbcType=INTEGER}
     </select>
 
+    <select id="batchGetTag" resultMap="TagResultMap" parameterType="java.util.List">
+        select *from tag where tag_id in
+        <foreach collection="tagIdList" open="(" close=")" separator="," item="id">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </select>
+
     <delete id="deleteTagById" parameterType="java.lang.Integer">
         delete
         from tag

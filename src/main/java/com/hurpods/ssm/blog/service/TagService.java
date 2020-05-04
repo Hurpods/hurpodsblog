@@ -9,6 +9,8 @@ public interface TagService {
 
     Tag getTagById(Integer tagId);
 
+    List<Tag> batchGetTag(List<Integer> tagIdList);
+
     void deleteTagById(Integer tagId);
 
     Tag createTag(Tag tag);

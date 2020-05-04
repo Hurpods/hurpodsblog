@@ -24,6 +24,11 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public List<Tag> batchGetTag(List<Integer> tagIdList) {
+        return tagDao.batchGetTag(tagIdList);
+    }
+
+    @Override
     public void deleteTagById(Integer tagId) {
         tagDao.deleteTagById(tagId);
     }
