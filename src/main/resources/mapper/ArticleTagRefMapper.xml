@@ -13,6 +13,13 @@
         VALUES (#{articleId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})
     </insert>
 
+    <insert id="batchInsert" parameterType="java.util.Map">
+        insert into article_tag_ref(article_id, tag_id)values
+        <foreach collection="tagIdList" item="tagId"  separator="," >
+            (#{articleId,jdbcType=INTEGER},#{tagId,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+
     <delete id="deleteByArticleId">
         delete
         from article_tag_ref

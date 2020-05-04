@@ -21,9 +21,6 @@ public class LocateController {
     @RequestMapping("/")
     public String index(Model model) {
         List<Article> articleList = articleService.getArticleByPage(0, 10);
-        for (Article article : articleList) {
-            article.setTagList(articleService.getTagsByArticleId(article.getArticleId()));
-        }
         model.addAttribute("articleList", articleList);
         return "public/home";
     }
@@ -45,6 +42,6 @@ public class LocateController {
 
     @RequestMapping("/admin")
     public String backstage() {
-        return "admin/backstage";
+        return "admin/index";
     }
 }

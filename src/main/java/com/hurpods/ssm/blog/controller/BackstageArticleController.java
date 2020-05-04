@@ -73,7 +73,7 @@ public class BackstageArticleController {
             for (int i : articleTagIds) {
                 Tag temp = tagService.getTagById(i);
                 tagList.add(temp);
-                if (temp.getTagName().equals("error")) {
+                if (temp.getTagName().equalsIgnoreCase("error")) {
                     article.setIsError(1);
                 }
             }
@@ -103,14 +103,13 @@ public class BackstageArticleController {
     public ModelAndView editPage(@PathVariable("articleId") Integer articleId, HttpServletRequest req) {
         ModelAndView modelAndView = new ModelAndView();
         Article article = articleService.getArticleById(articleId);
-        List<Tag> tagList = articleService.getTagsByArticleId(articleId);
         List<Integer> tagIds = new ArrayList<>();
-        for (Tag tag : tagList) {
+        for (Tag tag : article.getTagList()) {
             tagIds.add(tag.getTagId());
         }
         List<Tag> tagsList = tagService.getAllTags();
-        req.setAttribute("tagList", tagsList);
 
+        modelAndView.addObject("tagList",tagsList);
         modelAndView.addObject("article", article);
         modelAndView.addObject("tagIds", tagIds);
         modelAndView.setViewName("admin/article/edit");
@@ -157,7 +156,7 @@ public class BackstageArticleController {
             for (int i : articleTagIds) {
                 Tag temp = tagService.getTagById(i);
                 tagList.add(temp);
-                if (temp.getTagName().equals("error")) {
+                if (temp.getTagName().equalsIgnoreCase("error")) {
                     article.setIsError(1);
                 }
             }
@@ -178,6 +177,7 @@ public class BackstageArticleController {
             map.put("msg", "更新成功");
         } catch (Exception e) {
             map.put("status", "false");
+            System.out.println(e.getMessage());
             map.put("msg", e.getMessage());
         }
         return new JSONObject(map).toString();
@@ -187,10 +187,6 @@ public class BackstageArticleController {
     public String getAllArticle(HttpServletRequest req) {
         List<Article> articleList = articleService.getAllArticle();
         Map<String, Integer> map = new HashMap<>();
-
-        for (Article article : articleList) {
-            article.setTagList(articleService.getTagsByArticleId(article.getArticleId()));
-        }
 
         map.put("count", articleService.getArticleCount());
         map.put("view", articleService.getArticleView());

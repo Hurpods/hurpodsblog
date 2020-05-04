@@ -9,6 +9,9 @@ import java.util.List;
 public interface ArticleTagRefDao {
     void createArticleTagRef(ArticleTagRef articleTagRef);
 
+    void batchInsert(@Param(value = "articleId") Integer articleId,
+                     @Param(value = "tagIdList") List<Integer> tagIdList);
+
     void deleteByArticleId(@Param(value = "articleId") Integer articleId);
 
     List<Tag> getTagsByArticleId(@Param(value = "articleId") Integer articleId);

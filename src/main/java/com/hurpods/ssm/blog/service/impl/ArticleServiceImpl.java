@@ -6,12 +6,12 @@ import com.hurpods.ssm.blog.models.Article;
 import com.hurpods.ssm.blog.models.ArticleTagRef;
 import com.hurpods.ssm.blog.models.Tag;
 import com.hurpods.ssm.blog.service.ArticleService;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -42,27 +42,31 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Options(useGeneratedKeys=true,keyProperty="articleTagRefId")
     public void insertArticle(Article article) {
         Timestamp nowTime = new Timestamp(new Date().getTime());
         article.setArticleCreateTime(nowTime);
         article.setArticleUpdateTime(nowTime);
 
         articleDao.insertArticle(article);
+        List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : article.getTagList()) {
-            ArticleTagRef atr = new ArticleTagRef(article.getArticleId(), tag.getTagId());
-            atrDao.createArticleTagRef(atr);
+            tagIdList.add(tag.getTagId());
         }
+        atrDao.batchInsert(article.getArticleId(),tagIdList);
     }
 
     @Override
+    @Options(useGeneratedKeys=true,keyProperty="articleTagRefId")
     public void updateArticle(Article article) {
         articleDao.updateArticle(article);
-        atrDao.deleteByArticleId(article.getArticleId());
 
+        atrDao.deleteByArticleId(article.getArticleId());
+        List<Integer> tagIdList = new ArrayList<>();
         for (Tag tag : article.getTagList()) {
-            ArticleTagRef atr = new ArticleTagRef(article.getArticleId(), tag.getTagId());
-            atrDao.createArticleTagRef(atr);
+            tagIdList.add(tag.getTagId());
         }
+        atrDao.batchInsert(article.getArticleId(),tagIdList);
     }
 
     @Override

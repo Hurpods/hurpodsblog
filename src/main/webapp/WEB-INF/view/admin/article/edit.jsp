@@ -22,7 +22,7 @@
             </div>
             <label class="tags-tag">标签</label>
             <ul class="article-tagList">
-                <c:forEach items="${requestScope.tagList}" var="tag">
+                <c:forEach items="${tagList}" var="tag">
                     <label>
                         <input type="checkbox" name="articleTagIds" value="${tag.tagId}"
                         <c:if test="${tagIds!=null}">

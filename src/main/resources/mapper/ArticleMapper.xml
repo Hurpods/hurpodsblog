@@ -15,19 +15,31 @@
         <result column="has_pic" property="hasPic" jdbcType="TINYINT"/>
         <result column="first_pic_url" property="firstPicUrl" jdbcType="VARCHAR"/>
         <result column="is_error" property="isError" jdbcType="TINYINT"/>
+        <collection property="tagList" ofType="com.hurpods.ssm.blog.models.Tag">
+            <id column="tag_id" property="tagId" jdbcType="INTEGER"/>
+            <result column="tag_name" property="tagName" jdbcType="VARCHAR"/>
+        </collection>
     </resultMap>
 
     <select id="getAllArticle" resultMap="ArticleResultMap">
-        select *
-        from article
-        where article_status = 1
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where article.article_status = 1
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
         order by article_id DESC
     </select>
 
     <select id="getArticleById" resultMap="ArticleResultMap">
-        select *
-        from article
-        where article_id = #{articleId,jdbcType=INTEGER}
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where article.article_id = #{articleId,jdbcType=INTEGER}
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
     </select>
 
     <delete id="deleteById">
@@ -98,25 +110,38 @@
     </select>
 
     <select id="getArticleByPage" resultMap="ArticleResultMap">
-        select *
-        from article
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where article.article_status = 1
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
         order by article_id desc
         limit #{pageIndex},#{pageSize}
     </select>
 
     <select id="getNextArticle" resultMap="ArticleResultMap">
-        select *
-        from article
-        where article_id > #{articleId}
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where article.article_id > #{articleId}
           and article_status = 1
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
         limit 1
     </select>
 
     <select id="getPreArticle" resultMap="ArticleResultMap">
-        select *
-        from article
-        where article_id &lt; #{articleId}
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where article.article_id &lt; #{articleId}
           and article_status = 1
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
         limit 1
     </select>
 
