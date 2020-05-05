@@ -17,13 +17,13 @@
     <select id="getUserAllCommentsById" resultMap="CommentResultMap" parameterType="java.lang.Integer">
         select *
         from comments
-        where comment_author_id = ${commentAuthorId,jdbcType=INTEGER}
+        where comment_author_id = #{commentAuthorId,jdbcType=INTEGER}
     </select>
 
     <select id="getArticleAllCommentsById" resultMap="CommentResultMap" parameterType="java.lang.Integer">
         select *
         from comments
-        where comment_article_id = ${commentArticleId,jdbcType=INTEGER}
+        where comment_article_id = #{commentArticleId,jdbcType=INTEGER}
     </select>
 
     <select id="getAllComments" resultMap="CommentResultMap">
@@ -34,7 +34,7 @@
     <delete id="deleteCommentById" parameterType="java.lang.Integer">
         delete
         from comments
-        where comment_id = ${commentId,jdbcType=INTEGER}
+        where comment_id = #{commentId,jdbcType=INTEGER}
     </delete>
 
     <select id="getCommentsNumber" resultType="java.lang.Integer">
@@ -57,14 +57,14 @@
         update comments
         <set>
             <if test="commentAuthorNickName != null">
-                comment_author_nick_name=${commentAuthorNickName,jdbcType=VARCHAR},
+                comment_author_nick_name=#{commentAuthorNickName,jdbcType=VARCHAR},
             </if>
             <if test="commentAuthorAvatar != null">
-                comment_author_avatar=${commentAuthorAvatar,jdbcType=VARCHAR},
+                comment_author_avatar=#{commentAuthorAvatar,jdbcType=VARCHAR},
             </if>
-            <if test="commentContent != null">comment_content=${commentContent,jdbcType=VARCHAR},</if>
-            <if test="commentIp != null">comment_ip=${commentIp,jdbcType=VARCHAR},</if>
-            <if test="commentTime != null">comment_time=${commentTime,jdbcType=TIMESTAMP},</if>
+            <if test="commentContent != null">comment_content=#{commentContent,jdbcType=VARCHAR},</if>
+            <if test="commentIp != null">comment_ip=#{commentIp,jdbcType=VARCHAR},</if>
+            <if test="commentTime != null">comment_time=#{commentTime,jdbcType=TIMESTAMP},</if>
         </set>
     </update>
 </mapper>

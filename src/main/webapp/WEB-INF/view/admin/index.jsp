@@ -11,7 +11,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <rapid:override name="content">
+    <div class="article-relative">
+        <div class="article-overview">
+            <span>概览</span>
+        </div>
+        <div class="most-view">
+            <span>浏览最多</span>
+        </div>
+        <div class="most-comment">
+            <span>评论最多</span>
+        </div>
+        <div class="update-recent">
+            <span>最近更新</span>
+        </div>
+    </div>
+    <div class="user-relative">
+        <div class="user-overview">
+            <span>概览</span>
+        </div>
+    </div>
+    <div class="comment-relative">
 
+    </div>
 </rapid:override>
 <rapid:override name="script">
 

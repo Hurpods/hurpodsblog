@@ -69,6 +69,40 @@ dl.side-list-child {
 }
 /*左侧菜单栏end*/
 
+/*index start*/
+
+.article-relative {
+    border: solid 2px #9c9c9c;
+    border-radius: 15px;
+    position: relative;
+    float: left;
+    width: 30%;
+    height: 731px;
+    margin-bottom: 10px;
+}
+
+.user-relative {
+    position: relative;
+    width: 69.2%;
+    height: 360px;
+    border: solid 2px #9c9c9c;
+    border-radius: 15px;
+    float: left;
+    margin-left: 10px;
+}
+
+.comment-relative {
+    position: relative;
+    width: 69.2%;
+    height: 360px;
+    border: solid 2px #9c9c9c;
+    border-radius: 15px;
+    float: left;
+    margin: 10px 0 0 10px;
+}
+
+/*index end*/
+
 /*文章列表start*/
 .article{
     position: relative;
@@ -85,7 +119,7 @@ dl.side-list-child {
     position: relative;
     width: 60%;
 }
-
+/*文章列表end*/
 
 
 /*文章攥写start*/
