@@ -50,7 +50,7 @@ public class BackstageArticleController {
         List<Tag> tagList = tagService.batchGetTag(Arrays.asList(articleTagIds));
 
         article.setArticleTitle(articleTitle);
-        article.setArticleAuthorId(0);
+        article.setArticleAuthorId(1);
         article.setArticleContent(htmlContent);
         article.setIsError(0);
 
@@ -188,8 +188,17 @@ public class BackstageArticleController {
     }
 
     @RequestMapping("/deleteArticle")
-    public void deleteArticle(@RequestParam(value = "articleId") Integer articleId) {
-        articleService.deleteById(articleId);
-        articleService.deleteByArticleId(articleId);
+    @ResponseBody
+    public String deleteArticle(@RequestParam(value = "articleId") Integer articleId) {
+        Map<String,String>map=new HashMap<>();
+        try{
+            articleService.deleteById(articleId);
+            map.put("status","true");
+            map.put("msg","删除成功");
+        }catch (Exception e){
+            map.put("status","false");
+            map.put("msg",e.getMessage());
+        }
+        return new JSONObject(map).toString();
     }
 }

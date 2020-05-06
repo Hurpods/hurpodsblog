@@ -222,8 +222,7 @@ footer {
     background: rgb(36, 97, 246);
     border-radius: 4px;
     position: absolute;
-    left: 42%;
-    top: 82%;
+
     transition: all 0.3s ease 0s;
 }
 
@@ -237,7 +236,7 @@ div.button:hover {
     font-size: 18px;
     font-weight: 500;
     border: 0;
-    width: 228px;
+    width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0);
     outline: none;

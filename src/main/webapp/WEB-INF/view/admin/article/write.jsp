@@ -34,7 +34,7 @@
         </div>
 
     </form>
-    <div class="button" style="position: relative;margin: 15px 0 25px;">
+    <div class="button" style="position: relative;margin: 15px auto 25px;">
         <button class="bttn" type="button" id="article-submit">提交</button>
     </div>
     <div class="operator-shadow"></div>
@@ -51,31 +51,55 @@
                 },
                 image: {
                     toolbar: [
-                        'imageStyle:full',
-                        'imageStyle:side',
+                        'imageTextAlternative',
                         '|',
-                        'imageTextAlternative'
+                        'imageStyle:alignLeft',
+                        'imageStyle:full',
+                        'imageStyle:alignRight'
+                    ],
+                    styles: [
+                        'full',
+                        'alignLeft',
+                        'alignRight'
                     ]
                 },
-                language: 'zh-cn',
+                fontSize: {
+                    options: [
+                        9,
+                        11,
+                        13,
+                        'default',
+                        17,
+                        19,
+                        21,
+                        24,
+                        45
+                    ],
+                    supportAllValues: true
+                },
                 toolbar: [
                     'heading',
                     '|',
+                    'fontSize',
+                    'fontColor',
+                    'FontBackgroundColor',
                     'bold',
                     'italic',
-                    'link',
+                    '|',
                     'alignment:left',
                     'alignment:right',
                     'alignment:center',
                     'alignment:justify',
                     'bulletedList',
                     'numberedList',
+                    'link',
                     '|',
                     'indent',
                     'outdent',
                     '|',
                     'imageUpload',
                     'blockQuote',
+                    'codeBlock',
                     'insertTable',
                     'undo',
                     'redo'
@@ -90,9 +114,8 @@
 
         $("#article-submit").click(function () {
             let serializeData = $("#article").serialize();
-            serializeData += "&htmlContent=" + myEditor.getData();
+            serializeData += "&htmlContent=" + encodeURIComponent(myEditor.getData());
             serializeData += "&summary=" + $(myEditor.getData()).text();
-            serializeData = decodeURIComponent(serializeData);
             $.ajax({
                 type: "POST",
                 url: "/admin/article/saveArticle",
@@ -103,10 +126,10 @@
                     $.alert({
                         title: "提示",
                         content: data.msg,
-                        confirm: function(){
-                            if(data.status==="true"){
-                                let a=document.createElement("a");
-                                a.href="/admin/article/getAllArticle";
+                        confirm: function () {
+                            if (data.status === "true") {
+                                let a = document.createElement("a");
+                                a.href = "/admin/article/getAllArticle";
                                 document.body.appendChild(a);
                                 a.click();
                             }

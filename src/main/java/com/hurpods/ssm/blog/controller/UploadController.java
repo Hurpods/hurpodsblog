@@ -56,7 +56,7 @@ public class UploadController {
         }
         while (descFile.exists()) {
             String parentPath = descFile.getParent();
-            descFile = new File(parentPath + File.separator + myUtil.getRandomString(8) + suffix);
+            descFile = new File(parentPath + File.separator + myUtil.getRandomString(12) + suffix);
         }
 
         //写入文件

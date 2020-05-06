@@ -42,7 +42,7 @@
         </div>
 
     </form>
-    <div class="button" style="position: relative;margin: 15px 0 25px;">
+    <div class="button" style="position: relative;margin: 15px auto 25px;">
         <button class="bttn" type="button" id="article-submit" onclick="modifyArticle(${article.articleId})">提交</button>
     </div>
     <div class="operator-shadow"></div>
@@ -59,31 +59,55 @@
                 },
                 image: {
                     toolbar: [
-                        'imageStyle:full',
-                        'imageStyle:side',
+                        'imageTextAlternative',
                         '|',
-                        'imageTextAlternative'
+                        'imageStyle:alignLeft',
+                        'imageStyle:full',
+                        'imageStyle:alignRight'
+                    ],
+                    styles: [
+                        'full',
+                        'alignLeft',
+                        'alignRight'
                     ]
                 },
-                language: 'zh-cn',
+                fontSize: {
+                    options: [
+                        9,
+                        11,
+                        13,
+                        'default',
+                        17,
+                        19,
+                        21,
+                        24,
+                        45
+                    ],
+                    supportAllValues: true
+                },
                 toolbar: [
                     'heading',
                     '|',
+                    'fontSize',
+                    'fontColor',
+                    'FontBackgroundColor',
                     'bold',
                     'italic',
-                    'link',
+                    '|',
                     'alignment:left',
                     'alignment:right',
                     'alignment:center',
                     'alignment:justify',
                     'bulletedList',
                     'numberedList',
+                    'link',
                     '|',
                     'indent',
                     'outdent',
                     '|',
                     'imageUpload',
                     'blockQuote',
+                    'codeBlock',
                     'insertTable',
                     'undo',
                     'redo'
@@ -98,10 +122,9 @@
 
         function modifyArticle(articleId) {
             let serializeData = $("#article").serialize();
-            serializeData += "&htmlContent=" + myEditor.getData();
+            serializeData += "&htmlContent=" + encodeURIComponent(myEditor.getData());
             serializeData += "&summary=" + $(myEditor.getData()).text();
             serializeData += "&articleId=" + articleId;
-            serializeData = decodeURIComponent(serializeData);
             $.ajax({
                 type: "POST",
                 url: "/admin/article/modifyArticle",

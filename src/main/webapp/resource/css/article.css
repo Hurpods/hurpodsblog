@@ -4,29 +4,33 @@
 }
 
 .author-detail {
-    position: fixed;
-    width: 14%;
-    height: 500px;
-    background: cadetblue;
-    left: 4%;
-    border: solid 2px #9c9c9c;
-    border-radius: 15px;
+    position: relative;
+    width: 100%;
+    background: rgba(255,255,255,0.53);
+    border: solid #9c9c9c;
+    border-left: 0;
+    border-right: 0;
+}
+.author-avatar {
+    position: relative;
+    width: fit-content;
+    height: auto;
+    margin: 5px auto;
 }
 
 .article-detail {
     position: relative;
-    width: 55%;
+    width: 50%;
     margin: 0 auto;
-    height: 800px;
-    background: antiquewhite;
 }
 
 .article-navigation {
     position: relative;
-    width: 55%;
+    width: 50%;
     height: 80px;
     margin: 20px auto;
     text-align: center;
+    border-bottom: 2px solid #9c9c9c;
 }
 
 .pre-nav {
@@ -42,11 +46,44 @@
     margin: inherit;
     right: 10%;
 }
-
+.ck-content{
+    min-height:250px;
+}
 .comment-relative {
     position: relative;
-    width: 55%;
-    height: 500px;
+    width: 50%;
     margin: 0 auto 50px;
-    background: aqua;
+}
+.comment-textarea {
+    position: relative;
+    height: auto;
+}
+.comment-detail {
+    position: relative;
+    width: 100%;
+    background: rgba(255,255,255,0.53);
+}
+.comment-box {
+    /* border: 2px solid #9c9c9c; */
+    /* border-left: 0; */
+    /* border-right: 0; */
+    padding: 15px;
+    margin: 15px 0;
+    height: auto;
+    position: relative;
+}
+.comment-author-avatar {
+    position: relative;
+    width: fit-content;
+}
+.comment-content {
+    position: relative;
+    width: 96%;
+    margin: 15px 0;
+    padding-left: 35px;
+}
+.comment-post-time {
+    position: relative;
+    width: fit-content;
+    margin-left: 35px;
 }

@@ -114,10 +114,14 @@ dl.side-list-child {
     width: 45%;
     margin: 0 27px 27px;
 }
-.article-title{
-    font-size: 30px;
+.article-title {
+    font-size: 25px;
     position: relative;
-    width: 60%;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
 }
 /*文章列表end*/
 

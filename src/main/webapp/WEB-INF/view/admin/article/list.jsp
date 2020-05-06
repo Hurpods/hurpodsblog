@@ -25,12 +25,12 @@
                 <div class="article-create-time">攥写时间：${article.articleCreateTime}</div>
                 <div class="article-update-time">修改时间：${article.articleUpdateTime}</div>
                 <a href="/admin/article/editPage/${article.articleId}"
-                   style="display: block;position: relative;bottom: 132px;left: 3px;">
-                    <div class="button" style="top: 10px;left: 66.5%;">
+                   style="display: block;width: fit-content;position: relative;left: 70%;bottom: 45px;">
+                    <div class="button" style="width: 100px;">
                         <button class="bttn" type="button">修改</button>
                     </div>
                 </a>
-                <div class="button" style="top: 58%;left: 66.5%;background: red">
+                <div class="button" style="bottom:5px;left: 85%;width: 100px;background: red;">
                     <button class="bttn" type="button" onclick="deleteArticle(${article.articleId})">删除</button>
                 </div>
             </div>
@@ -41,8 +41,6 @@
 </rapid:override>
 <rapid:override name="script">
     <script type="text/javascript">
-
-
         function deleteArticle(articleId) {
             $.confirm({
                 title: '警告',
@@ -59,9 +57,13 @@
                                 data: {
                                     articleId: articleId
                                 },
+                                dataType:"JSON",
                                 async: "false",
-                                success: function () {
-                                    alert("删除成功")
+                                success: function (data) {
+                                    $.alert(data.msg);
+                                    if(data.status==="true"){
+                                        $("#article-"+articleId).remove();
+                                    }
                                 }
                             });
                         }
