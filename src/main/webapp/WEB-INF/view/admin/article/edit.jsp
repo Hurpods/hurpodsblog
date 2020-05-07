@@ -135,10 +135,10 @@
                     $.alert({
                         title: "提示",
                         content: data.msg,
-                        confirm: function(){
-                            if(data.status==="true"){
-                                let a=document.createElement("a");
-                                a.href="/admin/article/getAllArticle";
+                        confirm: function () {
+                            if (data.status === "true") {
+                                let a = document.createElement("a");
+                                a.href = "/admin/article/getAllArticle";
                                 document.body.appendChild(a);
                                 a.click();
                             }

@@ -1,5 +1,6 @@
 package com.hurpods.ssm.blog.controller;
 
+import cn.hutool.http.HtmlUtil;
 import com.hurpods.ssm.blog.models.Article;
 import com.hurpods.ssm.blog.models.Comment;
 import com.hurpods.ssm.blog.models.User;
@@ -42,6 +43,9 @@ public class ArticleController {
         model.addAttribute("next", nextArticle);
 
         List<Comment> commentList = commentService.getArticleAllCommentsById(articleId);
+//        for (Comment comment : commentList) {
+//            comment.setCommentContent(HtmlUtil.unescape(comment.getCommentContent()));
+//        }
         model.addAttribute("commentList", commentList);
 
         return "public/articleDetail";

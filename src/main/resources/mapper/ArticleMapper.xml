@@ -150,11 +150,7 @@
 
     <update id="updateCommentCount">
         update article
-        set article_comments_count=(
-            select count(*)
-            from comments
-            where article_id = comment_article_id
-        )
+        set article_comments_count=article_comments_count + 1
         where article_id = #{articleId,jdbcType=INTEGER}
     </update>
 </mapper>

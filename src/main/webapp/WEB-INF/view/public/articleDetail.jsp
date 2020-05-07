@@ -11,11 +11,13 @@
 <html>
 <head>
     <title>${article.articleTitle}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugin/jquery-confirm/jquery-confirm.min.css" type="text/css"/>
     <link rel="shortcut icon" href="/img/logo/black_128.png" type="image/x-icon"/>
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css"/>
     <link rel="stylesheet" href="/css/article.css" type="text/css"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <meta name="description" content="Hurpods的个人Blog">
     <meta name="keywords" content="摸鱼，Java，数据库，Spring">
 </head>
@@ -55,25 +57,71 @@
     </div>
     <div class="comment-relative">
         <div class="comment-textarea">
-            <textarea id="comment-area"></textarea>
-            <div class="button" style="width: 100px;position: relative;margin: 15px 0;left: 89.5%;">
+            <form id="comment-form" method="post">
+                <c:if test="${sessionScope.user!=null}">
+                    <input type="hidden" name="commentAuthorId" value="${sessionScope.user.userId}"/>
+                    <input type="hidden" name="commentArticleId" value="${articleId}"/>
+                    <input type="hidden" name="commentAuthorNickName" value="${sessionScope.user.userNickName}"/>
+                    <input type="hidden" name="commentAuthorAvatar" value="${sessionScope.user.userAvatar}"/>
+                    <input type="hidden" name="commentContent" value=""/>
+                    <input type="hidden" name="commentPreId" value="0"/>
+                    <input type="hidden" name="commentPreNickName" value=""/>
+                </c:if>
+                <textarea id="comment-area"></textarea>
+            </form>
+            <div class="button" style="width: 100px;position: relative;margin: 15px 0;left: 89.5%;" id="comment-submit">
                 <button class="bttn" type="button">提交</button>
             </div>
         </div>
         <div class="comment-detail">
-            <div class="comment-box">
-                <div class="comment-author-avatar">
-                    <img src="/img/avatar/0.png" style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
-                    <span style="width: fit-content;">小老虎不做梦</span>
-                </div>
-                <div class="comment-content">
-                    确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实确实
-                </div>
-                <a style="position: absolute;right: 2%;top: 17.5px;cursor: pointer;">回复</a>
-                <div class="comment-post-time">
-                    <span>发表时间：2020年5月6日</span>
-                </div>
-            </div>
+            <ul style="padding-left: 0;padding-bottom: 10px;">
+                <c:forEach items="${commentList}" var="comment">
+                    <c:if test="${comment.commentPreId==0}">
+                        <li>
+                            <div class="comment-box" id="comment-${comment.commentAuthorId}">
+                                <div class="comment-author-avatar">
+                                    <img src="${comment.commentAuthorAvatar}"
+                                         style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
+                                    <span style="width: fit-content;"><strong>${comment.commentAuthorNickName}</strong></span>
+                                </div>
+                                <div class="comment-content">
+                                    <div class="ck-content" style="min-height: 0;">
+                                            ${comment.commentContent}
+                                    </div>
+                                </div>
+                                <a class="reply-link">回复</a>
+                                <div class="comment-post-time">
+                                    <span>发表时间：<fmt:formatDate value="${comment.commentTime}" pattern='yyyy-MM-dd'/></span>
+                                </div>
+                            </div>
+                            <ul>
+                                <c:forEach items="${commentList}" var="reply">
+                                    <c:if test="${reply.commentPreId==comment.commentAuthorId}">
+                                        <li>
+                                            <div class="reply-comment" id="reply-${reply.commentAuthorId}">
+                                                <div class="comment-author-avatar">
+                                                    <img src="${reply.commentAuthorAvatar}"
+                                                         style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
+                                                    <span style="width: fit-content;"><strong>${reply.commentAuthorNickName}</strong></span>
+                                                </div>
+                                                <div class="comment-content">
+                                                    <div class="ck-content" style="min-height: 0;">
+                                                        ${reply.commentContent}
+                                                    </div>
+                                                </div>
+                                                <a class="reply-link">回复</a>
+                                                <div class="comment-post-time">
+                                                    <span>发表时间：<fmt:formatDate value="${reply.commentTime}" pattern='yyyy-MM-dd'/></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </div>
@@ -81,9 +129,10 @@
 </body>
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
 <script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/js/defaultpart.js"></script>
+<script type="text/javascript" src="/plugin/jquery-confirm/jquery-confirm.min.js"></script>
 <script type="text/javascript">
     let myEditor = null;
-
     ClassicEditor
         .create(document.querySelector('#comment-area'), {
             fontSize: {
