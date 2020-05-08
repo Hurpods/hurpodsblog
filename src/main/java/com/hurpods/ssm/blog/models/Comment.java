@@ -28,4 +28,6 @@ public class Comment implements Serializable {
     private Integer commentPreId;
     //层主昵称
     private String commentPreNickName;
+
+    private Integer commentRootId;
 }

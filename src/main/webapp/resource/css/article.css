@@ -74,27 +74,11 @@
     list-style: none;
 }
 
-.comment-box {
-    /* border: 2px solid #9c9c9c; */
-    /* border-left: 0; */
-    /* border-right: 0; */
-    padding: 10px 10px 0;
-    margin: 15px 0;
-    height: auto;
-    position: relative;
-}
-
 .reply-link {
     position: absolute;
     right: 2%;
     top: 17.5px;
     cursor: pointer;
-}
-
-.reply-comment {
-    position: relative;
-    border-left: 5px solid skyblue;
-    padding: 10px 10px 0;
 }
 
 .comment-author-avatar {

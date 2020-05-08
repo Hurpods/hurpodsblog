@@ -66,11 +66,15 @@
                     <input type="hidden" name="commentContent" value=""/>
                     <input type="hidden" name="commentPreId" value="0"/>
                     <input type="hidden" name="commentPreNickName" value=""/>
+                    <input type="hidden" name="commentRootId" value="0"/>
                 </c:if>
                 <textarea id="comment-area"></textarea>
             </form>
-            <div class="button" style="width: 100px;position: relative;margin: 15px 0;left: 89.5%;" id="comment-submit">
-                <button class="bttn" type="button">提交</button>
+            <div class="button" id="cancel-reply" style="width: 100px;float: right;position: relative;right: 110px;display:none">
+                <button class="bttn" type="button">取消评论</button>
+            </div>
+            <div class="button" style="width: 100px;position: relative;left: 89.5%;" id="comment-submit">
+                <button class="bttn" type="button">发表评论</button>
             </div>
         </div>
         <div class="comment-detail">
@@ -78,7 +82,7 @@
                 <c:forEach items="${commentList}" var="comment">
                     <c:if test="${comment.commentPreId==0}">
                         <li>
-                            <div class="comment-box" id="comment-${comment.commentAuthorId}">
+                            <div class="comment-${comment.commentId}" style="padding: 10px 10px 0;margin: 15px 0;height: auto;position: relative;">
                                 <div class="comment-author-avatar">
                                     <img src="${comment.commentAuthorAvatar}"
                                          style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
@@ -93,12 +97,15 @@
                                 <div class="comment-post-time">
                                     <span>发表时间：<fmt:formatDate value="${comment.commentTime}" pattern='yyyy-MM-dd'/></span>
                                 </div>
+                                <div class="locate-div">
+                                    <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
+                                </div>
                             </div>
                             <ul>
                                 <c:forEach items="${commentList}" var="reply">
-                                    <c:if test="${reply.commentPreId==comment.commentAuthorId}">
+                                    <c:if test="${reply.commentRootId==comment.commentId}">
                                         <li>
-                                            <div class="reply-comment" id="reply-${reply.commentAuthorId}">
+                                            <div class="reply-${reply.commentId}" style="position: relative;border-left: 5px solid skyblue;padding: 10px 10px 0;">
                                                 <div class="comment-author-avatar">
                                                     <img src="${reply.commentAuthorAvatar}"
                                                          style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
@@ -112,6 +119,9 @@
                                                 <a class="reply-link">回复</a>
                                                 <div class="comment-post-time">
                                                     <span>发表时间：<fmt:formatDate value="${reply.commentTime}" pattern='yyyy-MM-dd'/></span>
+                                                </div>
+                                                <div class="locate-div">
+                                                    <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
                                                 </div>
                                             </div>
                                         </li>

@@ -12,6 +12,7 @@
         <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP"/>
         <result column="comment_pre_nick_name" property="commentPreNickName" jdbcType="VARCHAR"/>
         <result column="comment_pre_id" property="commentPreId" jdbcType="INTEGER"/>
+        <result column="comment_root_id" property="commentRootId" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getUserAllCommentsById" resultMap="CommentResultMap" parameterType="java.lang.Integer">
@@ -24,6 +25,7 @@
         select *
         from comments
         where comment_article_id = #{commentArticleId,jdbcType=INTEGER}
+        order by comment_id;
     </select>
 
     <select id="getAllComments" resultMap="CommentResultMap">
@@ -49,7 +51,8 @@
         values (#{commentId,jdbcType=INTEGER}, #{commentAuthorId,jdbcType=INTEGER},
                 #{commentArticleId,jdbcType=INTEGER}, #{commentAuthorNickName,jdbcType=VARCHAR},
                 #{commentAuthorAvatar,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR},
-                #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP}, #{commentPreNickName,jdbcType=VARCHAR},
+                #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP},
+                #{commentPreNickName,jdbcType=VARCHAR},
                 #{commentPreId,jdbcType=INTEGER})
     </insert>
 
