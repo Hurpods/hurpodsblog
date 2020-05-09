@@ -55,7 +55,7 @@
             </div>
         </c:if>
     </div>
-    <div class="comment-relative">
+    <div class="comment-relative" id="torch">
         <div class="comment-textarea">
             <form id="comment-form" method="post">
                 <c:if test="${sessionScope.user!=null}">
@@ -71,7 +71,7 @@
                 <textarea id="comment-area"></textarea>
             </form>
             <div class="button" id="cancel-reply" style="width: 100px;float: right;position: relative;right: 110px;display:none">
-                <button class="bttn" type="button">取消评论</button>
+                <button class="bttn" type="button">取消回复</button>
             </div>
             <div class="button" style="width: 100px;position: relative;left: 89.5%;" id="comment-submit">
                 <button class="bttn" type="button">发表评论</button>
@@ -93,7 +93,7 @@
                                             ${comment.commentContent}
                                     </div>
                                 </div>
-                                <a class="reply-link">回复</a>
+                                <a class="reply-link" href="#torch">回复</a>
                                 <div class="comment-post-time">
                                     <span>发表时间：<fmt:formatDate value="${comment.commentTime}" pattern='yyyy-MM-dd'/></span>
                                 </div>
@@ -116,7 +116,7 @@
                                                         ${reply.commentContent}
                                                     </div>
                                                 </div>
-                                                <a class="reply-link">回复</a>
+                                                <a class="reply-link" href="#torch">回复</a>
                                                 <div class="comment-post-time">
                                                     <span>发表时间：<fmt:formatDate value="${reply.commentTime}" pattern='yyyy-MM-dd'/></span>
                                                 </div>

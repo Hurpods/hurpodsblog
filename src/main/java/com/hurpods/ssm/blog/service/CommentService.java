@@ -1,6 +1,7 @@
 package com.hurpods.ssm.blog.service;
 
 import com.hurpods.ssm.blog.models.Comment;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface CommentService {
     void postComment(Comment comment);
 
     void editComment(Comment comment);
+
+    void updateCommentUser(@Param(value = "commentAuthorNickName") String commentAuthorNickName,
+                           @Param(value = "commentAuthorAvatar") String commentAuthorAvatar,
+                           @Param(value = "commentAuthorId") Integer commentAuthorId);
 }

@@ -79,7 +79,23 @@ function uploadFile() {
 }
 
 $("#file").change(function () {
-    $("#submit-button").click();
+    // $("#submit-button").click();
+    let formData = new FormData();
+    formData.append("avatar", $(this).get(0).files[0]);
+    $.ajax({
+        url: "/uploadAvatar",
+        type: "POST",
+        data: formData,
+        dataType: "JSON",
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            $.alert(data.msg);
+            if (data.status === "true") {
+                window.setTimeout(window.location.replace("/profile"),1500)
+            }
+        }
+    })
 });
 
 const error = $(".error-box-common");
@@ -159,10 +175,10 @@ $("#update-password-save").click(function () {
         dataType: "JSON",
         success: function (data) {
             if (data.status === "false") {
-                alert("密码修改失败");
+                $.alert("密码修改失败");
             } else {
-                alert("密码修改成功，请重新登陆");
-                window.location.replace("/loginPage");
+                $.alert("密码修改成功，请重新登陆");
+                window.setTimeout(window.location.replace("/loginPage"),1500);
             }
             error.html(data.msg);
         }
@@ -170,14 +186,18 @@ $("#update-password-save").click(function () {
 });
 
 $("#update-other-save").click(function () {
-    $.ajax({
-        type: "POST",
-        url: "/updateInfo",
-        sync: "false",
-        data: $(".edit-other").serialize(),
-        success: function () {
-            alert("修改资料成功,即将返回个人中心");
-            window.location.replace("/profile");
-        }
-    })
+    if(error.html()!==""){
+        $.alert("输入信息错误！请重新输入");
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/updateInfo",
+            sync: "false",
+            data: $(".edit-other").serialize(),
+            success: function () {
+                $.alert("修改资料成功,即将返回个人中心");
+                window.setTimeout(window.location.replace("/profile"),1500)
+            }
+        })
+    }
 });

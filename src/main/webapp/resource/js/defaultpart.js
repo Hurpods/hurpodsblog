@@ -42,15 +42,33 @@ $("#comment-submit").click(function () {
     }
 })
 
+let cancel=$("#cancel-reply");
+let nowPlace;
+
 $(".reply-link").click(function () {
     let preNickName = $(this).parent().find("strong").text();
     let preId = $(this).parent().attr("class").match(/\d+/g);
-    let rootId=$(this).parents("li").find("div").attr("class").match(/\d+/g);
+    let rootId = $(this).parents("li").find("div").attr("class").match(/\d+/g);
 
 
     $("input[name=commentPreId]").attr("value", preId);
     $("input[name=commentPreNickName]").attr("value", preNickName);
-    $("input[name=commentRootId]").attr("value",rootId);
+    $("input[name=commentRootId]").attr("value", rootId);
 
-    myEditor.setData("@"+preNickName+"\n");
+    myEditor.setData("@" + preNickName + "<br>");
+    cancel.fadeIn(400);
+    nowPlace=$(this).offset().top;
+    $("#comment-submit .bttn").html("发表回复");
+
+    $("html,body").animate({
+        scrollTop: $($(this).attr('href')).offset().top-400
+    }, 500)
+});
+
+cancel.click(function () {
+    cancel.fadeOut(400);
+    $("html,body").animate({
+        scrollTop: nowPlace
+    }, 500);
+    $("#comment-submit .bttn").html("发表评论");
 });

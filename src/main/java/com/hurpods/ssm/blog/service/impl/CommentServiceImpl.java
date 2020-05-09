@@ -40,4 +40,9 @@ public class CommentServiceImpl implements CommentService {
     public void editComment(Comment comment) {
         commentDao.editComment(comment);
     }
+
+    @Override
+    public void updateCommentUser(String commentAuthorNickName, String commentAuthorAvatar, Integer commentAuthorId) {
+        commentDao.updateCommentUser(commentAuthorNickName, commentAuthorAvatar, commentAuthorId);
+    }
 }

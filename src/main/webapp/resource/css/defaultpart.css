@@ -5,7 +5,12 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-
+pre{
+    margin:0;
+}
+p{
+    margin:0;
+}
 img {
     border-radius: 10px;
 }

@@ -44,11 +44,12 @@
         from comments;
     </select>
 
-    <insert id="postComment" parameterType="com.hurpods.ssm.blog.models.Comment">
-        insert into comments(comment_id, comment_author_id, comment_article_id, comment_author_nick_name,
+    <insert id="postComment" parameterType="com.hurpods.ssm.blog.models.Comment" useGeneratedKeys="true"
+            keyProperty="comment_id">
+        insert into comments(comment_author_id, comment_article_id, comment_author_nick_name,
                              comment_author_avatar,
                              comment_content, comment_ip, comment_time, comment_pre_nick_name, comment_pre_Id)
-        values (#{commentId,jdbcType=INTEGER}, #{commentAuthorId,jdbcType=INTEGER},
+        values (#{commentAuthorId,jdbcType=INTEGER},
                 #{commentArticleId,jdbcType=INTEGER}, #{commentAuthorNickName,jdbcType=VARCHAR},
                 #{commentAuthorAvatar,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR},
                 #{commentIp,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP},
@@ -59,15 +60,23 @@
     <update id="editComment" parameterType="com.hurpods.ssm.blog.models.Comment">
         update comments
         <set>
+            <if test="commentContent != null">comment_content=#{commentContent,jdbcType=VARCHAR},</if>
+            <if test="commentIp != null">comment_ip=#{commentIp,jdbcType=VARCHAR},</if>
+            <if test="commentTime != null">comment_time=#{commentTime,jdbcType=TIMESTAMP}</if>
+        </set>
+        where comment_id=#{commentId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateCommentUser">
+        update comments
+        <set>
             <if test="commentAuthorNickName != null">
                 comment_author_nick_name=#{commentAuthorNickName,jdbcType=VARCHAR},
             </if>
             <if test="commentAuthorAvatar != null">
                 comment_author_avatar=#{commentAuthorAvatar,jdbcType=VARCHAR},
             </if>
-            <if test="commentContent != null">comment_content=#{commentContent,jdbcType=VARCHAR},</if>
-            <if test="commentIp != null">comment_ip=#{commentIp,jdbcType=VARCHAR},</if>
-            <if test="commentTime != null">comment_time=#{commentTime,jdbcType=TIMESTAMP},</if>
         </set>
+        where comment_author_id =#{commentAuthorId,jdbcType=INTEGER}
     </update>
 </mapper>

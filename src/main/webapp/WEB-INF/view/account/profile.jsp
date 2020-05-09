@@ -99,7 +99,26 @@
         <label>近期回复</label>
         <hr>
         <div class="recent-comment">
-            <ul id="recent-comment"></ul>
+            <ul id="recent-comment">
+                <c:choose>
+                    <c:when test="${commentList.size()>0}">
+                        <c:forEach items="${commentList}" var="comment">
+                            <li>
+                                <div class="ck-content">
+                                        ${comment.commentContent}
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <div style="text-align: center;">
+                                暂时没有发表过评论，快去试试吧~
+                            </div>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
         </div>
     </div>
 </div>
@@ -107,6 +126,7 @@
 </body>
 
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>
+<script type="text/javascript" src="/plugin/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/js/defaultpart.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 <script type="text/javascript" src="/plugin/jquery-confirm/jquery-confirm.min.js"></script>

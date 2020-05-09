@@ -142,9 +142,15 @@ public class AccountController {
     public String updateUser(HttpServletRequest req) {
         String nickName = req.getParameter("update_nickname");
         String provinceCode = req.getParameter("province_code");
-        String province = provinceService.getProvinceByCode(provinceCode).getProvinceName();
+        String province = "";
+        if (!provinceCode.equals("0")) {
+            province = provinceService.getProvinceByCode(provinceCode).getProvinceName();
+        }
         String cityCode = req.getParameter("city_code");
-        String city = cityService.getCityByCode(cityCode).getCityName();
+        String city = "";
+        if (cityCode != null) {
+            city = cityService.getCityByCode(cityCode).getCityName();
+        }
         String email = req.getParameter("update_email");
         String tel = req.getParameter("update_tel");
 
@@ -168,6 +174,7 @@ public class AccountController {
 
         userService.updateUserInfo(user);
 
+        commentService.updateCommentUser(user.getUserNickName(), user.getUserAvatar(), user.getUserId());
         logout(req.getSession());
         req.getSession().setAttribute("user", user);
 

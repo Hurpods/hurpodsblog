@@ -43,9 +43,7 @@ public class ArticleController {
         model.addAttribute("next", nextArticle);
 
         List<Comment> commentList = commentService.getArticleAllCommentsById(articleId);
-//        for (Comment comment : commentList) {
-//            comment.setCommentContent(HtmlUtil.unescape(comment.getCommentContent()));
-//        }
+
         model.addAttribute("commentList", commentList);
 
         return "public/articleDetail";

@@ -1,28 +1,6 @@
-function getUserComment() {
-    $.ajax({
-        type: "get",
-        url: "query",
-        data: "method=getUserComment",
-        dataType: "json",
-        sync: false,
-        success: function (data) {
-            let ul = $("#recent-comment");
-            let str = "";
-            $.each(data, function (key, value) {
-                if (!(value.status === "none")) {
-                    str += "<li style='font-size:20px;font-weight:bold;'>"
-                        + value.words
-                        + "<br><span style='font-size:15px;font-weight:normal;'>评论发布时间："
-                        + value.time
-                        + "</span>"
-                        + "</li>";
-                } else {
-                    str += "<li>目前没有评论，快去试试评论吧！</li>"
-                }
-                ul.empty();
-                ul.append(str);
-            })
-        }
+window.onload=function(){
+    $(".ck-content").each(function(){
+        $(this).html(unescapeHTML($(this).html()));
     });
 }
 

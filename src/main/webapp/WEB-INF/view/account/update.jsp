@@ -11,6 +11,8 @@
 <head>
     <link rel="shortcut icon" href="/img/logo/black_128.png" type="image/x-icon"/>
     <link rel="icon" href="/img/logo/black_64.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugin/jquery-confirm/jquery-confirm.min.css" type="text/css"/>
     <link rel="stylesheet" href="/css/edit.css" type="text/css">
     <link rel="stylesheet" href="/css/defaultpart.css" type="text/css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -38,7 +40,7 @@
             <span>修改头像</span>
         </div>
         <div id="collect-avatar" style="height:100%;width:100%">
-            <form method="post" enctype="multipart/form-data" action="upload">
+            <form method="post" enctype="multipart/form-data"  id="avatar-form">
                 <input style="display:none" type="file" name="avatar" accept="image/jpg,image/jpeg,image/png" id="file">
                 <input type="submit" style="display:none" id="submit-button">
             </form>
@@ -99,4 +101,5 @@
 <script type="text/javascript" src="<c:url value="js/jquery-3.2.1.js"/>"></script>
 <script type="text/javascript" src="/js/defaultpart.js"></script>
 <script type="text/javascript" src="/js/edit.js"></script>
+<script type="text/javascript" src="/plugin/jquery-confirm/jquery-confirm.min.js"></script>
 </html>

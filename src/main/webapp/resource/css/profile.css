@@ -174,12 +174,23 @@ input#delete-password {
 
 .user-comment {
     margin: 0 auto 60px;
-    width: 1100px;
-    height: 600px;
+    width: 55%;
     position: relative;
     font-size: 20px;
+    text-align: center;
 }
 
 .user-comment .recent-comment {
     font-size: 16px;
+    text-align: left;
+}
+ul#recent-comment {
+    list-style: none;
+    padding: 5px 10px;
+}
+#recent-comment li{
+    margin: 10px 0;
+    border: 2px solid #abcd;
+    border-radius: 15px;
+    padding: 10px;
 }
