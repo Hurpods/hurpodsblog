@@ -39,4 +39,6 @@ public interface ArticleService {
 
     List<Tag> getTagsByArticleId(Integer articleId);
 
+    List<Article> getArticleByTagId(@Param(value = "tagId") Integer tagId);
+
 }

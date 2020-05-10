@@ -42,6 +42,17 @@
           and tag.tag_id = atr.tag_id
     </select>
 
+    <select id="getArticleByTagId" resultMap="ArticleResultMap">
+        select article.*, tag.*
+        from article,
+             tag,
+             article_tag_ref as atr
+        where tag.tag_id = #{tagId,jdbcType=INTEGER}
+          and article.article_id = atr.article_id
+          and tag.tag_id = atr.tag_id
+        order by article.article_id desc
+    </select>
+
     <delete id="deleteById">
         delete
         from article
@@ -109,17 +120,45 @@
         where article_status = 1
     </select>
 
-    <select id="getArticleByPage" resultMap="ArticleResultMap">
-        select article.*, tag.*
+
+    <resultMap id="PageArticleMap" type="com.hurpods.ssm.blog.models.Article">
+        <id column="article_id" property="articleId" jdbcType="INTEGER"/>
+        <result column="article_author_id" property="articleAuthorId" jdbcType="INTEGER"/>
+        <result column="article_title" property="articleTitle" jdbcType="VARCHAR"/>
+        <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR"/>
+        <result column="article_view_count" property="articleViewCount" jdbcType="INTEGER"/>
+        <result column="article_comments_count" property="articleCommentsCount" jdbcType="INTEGER"/>
+        <result column="article_status" property="articleStatus" jdbcType="INTEGER"/>
+        <result column="article_create_time" property="articleCreateTime" jdbcType="TIMESTAMP"/>
+        <result column="article_update_time" property="articleUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
+        <result column="has_pic" property="hasPic" jdbcType="TINYINT"/>
+        <result column="first_pic_url" property="firstPicUrl" jdbcType="VARCHAR"/>
+        <result column="is_error" property="isError" jdbcType="TINYINT"/>
+        <collection property="tagList" ofType="com.hurpods.ssm.blog.models.Tag" select="selectTagForArticle" column="article_id">
+            <id column="tag_id" property="tagId" jdbcType="INTEGER"/>
+            <result column="tag_name" property="tagName" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="getArticleByPage" resultMap="PageArticleMap">
+        select article.*
         from article,
-             tag,
              article_tag_ref as atr
         where article.article_status = 1
           and article.article_id = atr.article_id
-          and tag.tag_id = atr.tag_id
         group by article.article_id
         order by article_id desc
         limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectTagForArticle" resultType="com.hurpods.ssm.blog.models.Tag">
+        select tag.*
+        from tag,
+             article_tag_ref as atr
+        where tag.tag_id = atr.tag_id
+          and atr.article_id = #{articleId,jdbcType=INTEGER}
     </select>
 
     <select id="getNextArticle" resultMap="ArticleResultMap">

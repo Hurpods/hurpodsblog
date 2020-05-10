@@ -58,7 +58,7 @@
                                 <c:forEach items="${article.tagList}" var="tag">
                                     <li>
                                         <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
-                                        <a class="tag-link" href="/tags/${tag.tagId}">#${tag.tagName}</a>
+                                        <a class="tag-link" href="/article/tags/${tag.tagId}">#${tag.tagName}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -82,7 +82,7 @@
                                 <c:forEach items="${article.tagList}" var="tag">
                                     <li>
                                         <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
-                                        <a class="tag-link" href="/tags/${tag.tagId}">#${tag.tagName}</a>
+                                        <a class="tag-link" href="/article/tags/${tag.tagId}">#${tag.tagName}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

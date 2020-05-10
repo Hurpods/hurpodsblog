@@ -12,7 +12,7 @@ public interface ArticleDao {
 
     void deleteById(@Param(value = "articleId") Integer articleId);
 
-    void batchDelete(@Param(value="idList") List<Integer> idList);
+    void batchDelete(@Param(value = "idList") List<Integer> idList);
 
     void insertArticle(Article article);
 
@@ -32,4 +32,6 @@ public interface ArticleDao {
     Article getPreArticle(@Param(value = "articleId") Integer articleId);
 
     void updateCommentCount(@Param(value = "articleId") Integer articleId);
+
+    List<Article> getArticleByTagId(@Param(value = "tagId") Integer tagId);
 }

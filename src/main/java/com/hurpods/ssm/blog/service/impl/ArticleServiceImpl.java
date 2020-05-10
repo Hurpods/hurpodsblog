@@ -42,7 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    @Options(useGeneratedKeys=true,keyProperty="articleTagRefId")
+    @Options(useGeneratedKeys = true, keyProperty = "articleTagRefId")
     public void insertArticle(Article article) {
         Timestamp nowTime = new Timestamp(new Date().getTime());
         article.setArticleCreateTime(nowTime);
@@ -53,11 +53,11 @@ public class ArticleServiceImpl implements ArticleService {
         for (Tag tag : article.getTagList()) {
             tagIdList.add(tag.getTagId());
         }
-        atrDao.batchInsert(article.getArticleId(),tagIdList);
+        atrDao.batchInsert(article.getArticleId(), tagIdList);
     }
 
     @Override
-    @Options(useGeneratedKeys=true,keyProperty="articleTagRefId")
+    @Options(useGeneratedKeys = true, keyProperty = "articleTagRefId")
     public void updateArticle(Article article) {
         articleDao.updateArticle(article);
 
@@ -66,7 +66,7 @@ public class ArticleServiceImpl implements ArticleService {
         for (Tag tag : article.getTagList()) {
             tagIdList.add(tag.getTagId());
         }
-        atrDao.batchInsert(article.getArticleId(),tagIdList);
+        atrDao.batchInsert(article.getArticleId(), tagIdList);
     }
 
     @Override
@@ -112,5 +112,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Tag> getTagsByArticleId(Integer articleId) {
         return atrDao.getTagsByArticleId(articleId);
+    }
+
+    @Override
+    public List<Article> getArticleByTagId(Integer tagId) {
+        return articleDao.getArticleByTagId(tagId);
     }
 }

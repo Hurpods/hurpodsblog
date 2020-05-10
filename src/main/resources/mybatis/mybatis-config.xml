@@ -7,6 +7,7 @@
     <settings>
         <setting name="useGeneratedKeys" value="false"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 
     <plugins>

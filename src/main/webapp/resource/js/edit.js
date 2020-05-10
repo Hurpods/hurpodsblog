@@ -186,6 +186,9 @@ $("#update-password-save").click(function () {
 });
 
 $("#update-other-save").click(function () {
+    $("#update-tel").blur();
+    $("#update-email").blur();
+    $("#update-nickname").blur();
     if(error.html()!==""){
         $.alert("输入信息错误！请重新输入");
     }else{

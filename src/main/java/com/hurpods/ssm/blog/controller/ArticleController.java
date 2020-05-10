@@ -1,11 +1,12 @@
 package com.hurpods.ssm.blog.controller;
 
-import cn.hutool.http.HtmlUtil;
 import com.hurpods.ssm.blog.models.Article;
 import com.hurpods.ssm.blog.models.Comment;
+import com.hurpods.ssm.blog.models.Tag;
 import com.hurpods.ssm.blog.models.User;
 import com.hurpods.ssm.blog.service.ArticleService;
 import com.hurpods.ssm.blog.service.CommentService;
+import com.hurpods.ssm.blog.service.TagService;
 import com.hurpods.ssm.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class ArticleController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    TagService tagService;
+
     @RequestMapping(value = "/{articleId}")
     public String getArticleDetail(@PathVariable("articleId") Integer articleId, Model model) {
         Article article = articleService.getArticleById(articleId);
@@ -47,5 +51,19 @@ public class ArticleController {
         model.addAttribute("commentList", commentList);
 
         return "public/articleDetail";
+    }
+
+    @RequestMapping(value="/tags/{tagId}")
+    public String getArticleByTag(@PathVariable("tagId")Integer tagId,Model model){
+
+        List<Article> articleList=articleService.getArticleByTagId(tagId);
+        Integer number=articleList.size();
+        Tag tag=tagService.getTagById(tagId);
+
+        model.addAttribute("number",number);
+        model.addAttribute("tag",tag);
+        model.addAttribute("articleList",articleList);
+
+        return "public/relativeArticle";
     }
 }
