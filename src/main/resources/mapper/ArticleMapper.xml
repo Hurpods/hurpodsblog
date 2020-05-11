@@ -120,37 +120,11 @@
         where article_status = 1
     </select>
 
-
-    <resultMap id="PageArticleMap" type="com.hurpods.ssm.blog.models.Article">
-        <id column="article_id" property="articleId" jdbcType="INTEGER"/>
-        <result column="article_author_id" property="articleAuthorId" jdbcType="INTEGER"/>
-        <result column="article_title" property="articleTitle" jdbcType="VARCHAR"/>
-        <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR"/>
-        <result column="article_view_count" property="articleViewCount" jdbcType="INTEGER"/>
-        <result column="article_comments_count" property="articleCommentsCount" jdbcType="INTEGER"/>
-        <result column="article_status" property="articleStatus" jdbcType="INTEGER"/>
-        <result column="article_create_time" property="articleCreateTime" jdbcType="TIMESTAMP"/>
-        <result column="article_update_time" property="articleUpdateTime" jdbcType="TIMESTAMP"/>
-        <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
-        <result column="has_pic" property="hasPic" jdbcType="TINYINT"/>
-        <result column="first_pic_url" property="firstPicUrl" jdbcType="VARCHAR"/>
-        <result column="is_error" property="isError" jdbcType="TINYINT"/>
-        <collection property="tagList" ofType="com.hurpods.ssm.blog.models.Tag" select="selectTagForArticle" column="article_id">
-            <id column="tag_id" property="tagId" jdbcType="INTEGER"/>
-            <result column="tag_name" property="tagName" jdbcType="VARCHAR"/>
-        </collection>
-    </resultMap>
-
-
-    <select id="getArticleByPage" resultMap="PageArticleMap">
-        select article.*
-        from article,
-             article_tag_ref as atr
-        where article.article_status = 1
-          and article.article_id = atr.article_id
-        group by article.article_id
-        order by article_id desc
-        limit #{pageIndex},#{pageSize}
+    <select id="getArticleByPage" resultMap="ArticleResultMap">
+        select *
+        from (select * from article order by article_id desc limit #{pageIndex},#{pageSize}) a
+                 left join article_tag_ref atr on a.article_id = atr.article_id
+                 left join tag on tag.tag_id = atr.tag_id
     </select>
 
     <select id="selectTagForArticle" resultType="com.hurpods.ssm.blog.models.Tag">
