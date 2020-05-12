@@ -70,9 +70,9 @@
                 <c:if test="${article.hasPic==1}">
                     <article class="article-style2">
                         <img src="${article.firstPicUrl}" alt="首图"
-                             style="position: absolute;width: 99.6%;height: 500px;border-radius: 15px;"/>
+                             style="position: absolute;width: 99.6%;height: 500px;border-radius: 15px;object-fit: cover;filter: brightness(0.5) contrast(80%);"/>
                         <div class="content">
-                            <a href="/article/${article.articleId}" class="article-title">${article.articleTitle}</a>
+                            <a href="/article/${article.articleId}" class="article-title" style="color: white">${article.articleTitle}</a>
                             <div class="summary">
                                     ${article.articleSummary}
                             </div>
@@ -81,8 +81,8 @@
                             <ul class="tagList">
                                 <c:forEach items="${article.tagList}" var="tag">
                                     <li>
-                                        <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
-                                        <a class="tag-link" href="/article/tags/${tag.tagId}">#${tag.tagName}</a>
+                                        <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle;"/>
+                                        <a class="tag-link" href="/article/tags/${tag.tagId}" style="color: white">#${tag.tagName}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

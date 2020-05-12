@@ -49,7 +49,6 @@ public class ArticleController {
         List<Comment> commentList = commentService.getArticleAllCommentsById(articleId);
 
         model.addAttribute("commentList", commentList);
-
         return "public/articleDetail";
     }
 

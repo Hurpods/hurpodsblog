@@ -79,58 +79,65 @@
         </div>
         <div class="comment-detail">
             <ul style="padding-left: 0;padding-bottom: 10px;">
-                <c:forEach items="${commentList}" var="comment">
-                    <c:if test="${comment.commentPreId==0}">
-                        <li>
-                            <div class="comment-${comment.commentId}" style="padding: 10px 10px 0;margin: 15px 0;height: auto;position: relative;">
-                                <div class="comment-author-avatar">
-                                    <img src="${comment.commentAuthorAvatar}"
-                                         style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
-                                    <span style="width: fit-content;"><strong>${comment.commentAuthorNickName}</strong></span>
-                                </div>
-                                <div class="comment-content">
-                                    <div class="ck-content" style="min-height: 0;">
-                                            ${comment.commentContent}
-                                    </div>
-                                </div>
-                                <a class="reply-link" href="#torch">回复</a>
-                                <div class="comment-post-time">
-                                    <span>发表时间：<fmt:formatDate value="${comment.commentTime}" pattern='yyyy-MM-dd'/></span>
-                                </div>
-                                <div class="locate-div">
-                                    <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
-                                </div>
-                            </div>
-                            <ul>
-                                <c:forEach items="${commentList}" var="reply">
-                                    <c:if test="${reply.commentRootId==comment.commentId}">
-                                        <li>
-                                            <div class="reply-${reply.commentId}" style="position: relative;border-left: 5px solid skyblue;padding: 10px 10px 0;">
-                                                <div class="comment-author-avatar">
-                                                    <img src="${reply.commentAuthorAvatar}"
-                                                         style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
-                                                    <span style="width: fit-content;"><strong>${reply.commentAuthorNickName}</strong></span>
-                                                </div>
-                                                <div class="comment-content">
-                                                    <div class="ck-content" style="min-height: 0;">
-                                                        ${reply.commentContent}
-                                                    </div>
-                                                </div>
-                                                <a class="reply-link" href="#torch">回复</a>
-                                                <div class="comment-post-time">
-                                                    <span>发表时间：<fmt:formatDate value="${reply.commentTime}" pattern='yyyy-MM-dd'/></span>
-                                                </div>
-                                                <div class="locate-div">
-                                                    <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
-                                                </div>
+                <c:choose>
+                    <c:when test="${commentList.size()!=0}">
+                        <c:forEach items="${commentList}" var="comment">
+                            <c:if test="${comment.commentPreId==0}">
+                                <li>
+                                    <div class="comment-${comment.commentId}" style="padding: 10px 10px 0;margin: 15px 0;height: auto;position: relative;">
+                                        <div class="comment-author-avatar">
+                                            <img src="${comment.commentAuthorAvatar}"
+                                                 style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
+                                            <span style="width: fit-content;"><strong>${comment.commentAuthorNickName}</strong></span>
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="ck-content" style="min-height: 0;">
+                                                    ${comment.commentContent}
                                             </div>
-                                        </li>
-                                    </c:if>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </c:if>
-                </c:forEach>
+                                        </div>
+                                        <a class="reply-link" href="#torch">回复</a>
+                                        <div class="comment-post-time">
+                                            <span>发表时间：<fmt:formatDate value="${comment.commentTime}" pattern='yyyy-MM-dd'/></span>
+                                        </div>
+                                        <div class="locate-div">
+                                            <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <c:forEach items="${commentList}" var="reply">
+                                            <c:if test="${reply.commentRootId==comment.commentId}">
+                                                <li>
+                                                    <div class="reply-${reply.commentId}" style="position: relative;border-left: 5px solid skyblue;padding: 10px 10px 0;">
+                                                        <div class="comment-author-avatar">
+                                                            <img src="${reply.commentAuthorAvatar}"
+                                                                 style="width: 35px;border-radius: 50%;vertical-align: middle;"/>
+                                                            <span style="width: fit-content;"><strong>${reply.commentAuthorNickName}</strong></span>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="ck-content" style="min-height: 0;">
+                                                                    ${reply.commentContent}
+                                                            </div>
+                                                        </div>
+                                                        <a class="reply-link" href="#torch">回复</a>
+                                                        <div class="comment-post-time">
+                                                            <span>发表时间：<fmt:formatDate value="${reply.commentTime}" pattern='yyyy-MM-dd'/></span>
+                                                        </div>
+                                                        <div class="locate-div">
+                                                            <div class="reply-textarea" style="width: 96%;padding-left: 35px;"></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+                            </c:if>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li style="text-align: center;font-size: 20px;">暂时还没有评论哦~赶紧来试试吧</li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>

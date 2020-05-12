@@ -27,9 +27,6 @@ public class LocateController {
     @RequestMapping("/")
     public String index(Model model) {
         List<Article> articleList = articleService.getArticleByPage(0,10);
-        for(Article article:articleList){
-            System.out.println(article.getTagList());
-        }
         model.addAttribute("articleList", articleList);
         return "public/home";
     }

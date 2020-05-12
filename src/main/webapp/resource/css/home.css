@@ -109,6 +109,7 @@
     height: 500px;
     border: solid 2px #9c9c9c;
     border-radius: 15px;
+    color: white;
 }
 .article-style2 .content {
     position: relative;

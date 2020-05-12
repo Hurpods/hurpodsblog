@@ -29,7 +29,7 @@
     position: relative;
     width: 50%;
     height: 80px;
-    margin: 20px auto;
+    margin: 100px auto;
     text-align: center;
     border-bottom: 2px solid #9c9c9c;
 }
@@ -37,14 +37,14 @@
 .pre-nav {
     position: relative;
     float: left;
-    margin: inherit;
+    margin: 18px;
     left: 10%;
 }
 
 .next-nav {
     position: relative;
     float: right;
-    margin: inherit;
+    margin: 18px;
     right: 10%;
 }
 
@@ -55,7 +55,7 @@
 .comment-relative {
     position: relative;
     width: 50%;
-    margin: 0 auto 50px;
+    margin: 150px auto 50px;
 }
 
 .comment-textarea {
