@@ -38,7 +38,7 @@
     <update id="updateTag" parameterType="com.hurpods.ssm.blog.models.Tag">
         update tag
         <set>
-            <if test="tagName!=null">tag_name=#{tagName,jdbc=VARCHAR}</if>
+            <if test="tagName!=null">tag_name=#{tagName,jdbcType=VARCHAR}</if>
         </set>
         where tag_id=#{tagId}
     </update>

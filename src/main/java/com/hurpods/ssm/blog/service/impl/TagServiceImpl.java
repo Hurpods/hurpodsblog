@@ -39,8 +39,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag createTag(Tag tag) {
-        return tagDao.createTag(tag);
+    public void createTag(Tag tag) {
+        tagDao.createTag(tag);
     }
 
     @Override

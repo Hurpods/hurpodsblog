@@ -14,26 +14,27 @@
 <rapid:override name="content">
     <span style="position: relative;display: block;left: 27px;width: fit-content;">标签总数：${tagList.size()}</span>
     <c:if test="${tagList.size()!=0}">
-        <c:forEach items="${tagList}" var="tag">
-            <div class="tag" id="tag-${tag.tagId}">
-                <form id="tags" style="width: fit-content;display: inline;">
+        <form id="tags">
+            <c:forEach items="${tagList}" var="tag">
+                <div class="tag" id="tag-${tag.tagId}">
                     <input type="checkbox" name="tagIds" style="margin-right: 50px;" value="${tag.tagId}">
-                </form>
-                <img src="/img/tag/tag.png" style="vertical-align: middle;"/>#${tag.tagName}
-                <div class="button" style="width: 100px;background: red;position: relative;float: right;"
-                     onclick="deleteTag(${tag.tagId})">
-                    <button class="bttn" type="button">删除</button>
+                    <img src="/img/tag/tag.png" style="vertical-align: middle;"/>#${tag.tagName}
+                    <div class="button" style="width: 100px;background: red;position: relative;float: right;"
+                         onclick="deleteTag(${tag.tagId})">
+                        <button class="bttn" type="button">删除</button>
+                    </div>
+                    <div class="button" style="width: 100px;position: relative;float: right;margin-right: 60px;"
+                         onclick="updateTag(${tag.tagId},'${tag.tagName}')">
+                        <button class="bttn" type="button">修改</button>
+                    </div>
                 </div>
-                <div class="button" style="width: 100px;position: relative;float: right;margin-right: 60px;"
-                     onclick="updateTag(${tag.tagId},'${tag.tagName}')">
-                    <button class="bttn" type="button">修改</button>
-                </div>
-            </div>
-        </c:forEach>
-        <div style="cursor:pointer;position: relative;float: left;margin: 15px;">
+            </c:forEach>
+        </form>
+        <div style="cursor:pointer;position: relative;float: left;margin: 15px;" onclick="addTag()">
             <img src="/img/tag/add.png" alt="增加" style="width: 50px"/>
         </div>
-        <div class="button" style="width: 100px;position: relative;float: right;margin: 15px;background: red" onclick="batchDelete()">
+        <div class="button" style="width: 100px;position: relative;float: right;margin: 15px;background: red"
+             onclick="batchDelete()">
             <button class="bttn" type="button">全部删除</button>
         </div>
         <div class="button" style="width: 100px;position: relative;float: right;margin: 15px;background: lightseagreen"
@@ -62,7 +63,7 @@
                         text: "确认",
                         action: function () {
                             $.ajax({
-                                url: "/admin/article/deleteTag/"+tagId,
+                                url: "/admin/article/deleteTag/" + tagId,
                                 dataType: "JSON",
                                 async: "false",
                                 success: function (data) {
@@ -86,12 +87,12 @@
                 title: '修改',
                 content: '<div class="form-group">'
                     + '<label>请输入想要修改的标签名：</label>'
-                    + '<input type="text" class="name form-control" required id="newTagName" value="#'
+                    + '<input type="text" class="name form-control" required id="newTagName" value="'
                     + tagName
                     + '"/>'
                     + '</div>'
                     + '<p class="text-danger" style="display:none"></p>',
-                type:'blue',
+                type: 'blue',
                 confirmButtonClass: 'btn-info',
                 cancelButtonClass: 'btn-info',
                 buttons: {
@@ -101,14 +102,14 @@
                             $.ajax({
                                 url: "/admin/article/updateTag",
                                 data: {
-                                    tagId:tagId,
-                                    newTagName:$("#newTagName").val();
+                                    tagId: tagId,
+                                    newTagName: $("#newTagName").val()
                                 },
-                                dataType:"JSON",
+                                dataType: "JSON",
                                 async: "false",
                                 success: function (data) {
                                     $.alert(data.msg);
-                                    if(data.status==="true"){
+                                    if (data.status === "true") {
                                         window.location.reload();
                                     }
                                 }
@@ -132,7 +133,7 @@
                     + '<p class="text-danger" style="display:none"></p>',
                 confirmButtonClass: 'btn-info',
                 cancelButtonClass: 'btn-info',
-                type:'blue',
+                type: 'blue',
                 buttons: {
                     ok: {
                         text: "确认",
@@ -140,13 +141,13 @@
                             $.ajax({
                                 url: "/admin/article/createTag",
                                 data: {
-                                    tagName:$("#newTagName").val()
+                                    tagName: $("#newTagName").val()
                                 },
-                                dataType:"JSON",
+                                dataType: "JSON",
                                 async: "false",
                                 success: function (data) {
                                     $.alert(data.msg);
-                                    if(data.status==="true"){
+                                    if (data.status === "true") {
                                         window.location.reload();
                                     }
                                 }
@@ -191,9 +192,7 @@
                         action: function () {
                             $.ajax({
                                 url: "/admin/article/batchDeleteTags",
-                                data: {
-                                    tagIds: $("#tags").serialize()
-                                },
+                                data: $("#tags").serialize(),
                                 dataType: "JSON",
                                 async: "false",
                                 success: function (data) {
@@ -201,7 +200,7 @@
                                     if (data.status === "true") {
                                         tagIds.each(function () {
                                             if ($(this).prop("checked")) {
-                                                $(this).remove();
+                                                $(this).parent().remove();
                                             }
                                         });
                                     }
