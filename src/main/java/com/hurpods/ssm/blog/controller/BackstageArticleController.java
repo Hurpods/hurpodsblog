@@ -3,10 +3,12 @@ package com.hurpods.ssm.blog.controller;
 import com.hurpods.ssm.blog.models.Article;
 import com.hurpods.ssm.blog.models.Tag;
 import com.hurpods.ssm.blog.service.ArticleService;
+import com.hurpods.ssm.blog.service.CommentService;
 import com.hurpods.ssm.blog.service.TagService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +30,8 @@ public class BackstageArticleController {
     @Autowired
     ArticleService articleService;
 
+    @Autowired
+    CommentService commentService;
 
     @RequestMapping("/write")
     public String writeArticle(HttpServletRequest req) {
@@ -190,14 +194,36 @@ public class BackstageArticleController {
     @RequestMapping("/deleteArticle")
     @ResponseBody
     public String deleteArticle(@RequestParam(value = "articleId") Integer articleId) {
-        Map<String,String>map=new HashMap<>();
-        try{
+        Map<String, String> map = new HashMap<>();
+        try {
             articleService.deleteById(articleId);
-            map.put("status","true");
-            map.put("msg","删除成功");
-        }catch (Exception e){
-            map.put("status","false");
-            map.put("msg",e.getMessage());
+            map.put("status", "true");
+            map.put("msg", "删除成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
+        return new JSONObject(map).toString();
+    }
+
+    @RequestMapping("/tags")
+    public String getAllTags(Model model) {
+        List<Tag> tagList = tagService.getAllTags();
+        model.addAttribute(tagList);
+        return "admin/article/tags";
+    }
+
+    @RequestMapping("/deleteTag/{tagId}")
+    @ResponseBody
+    public String deleteTag(@PathVariable("tagId") Integer tagId){
+        Map<String, String> map = new HashMap<>();
+        try {
+            tagService.deleteTagById(tagId);
+            map.put("status", "true");
+            map.put("msg", "删除成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
         }
         return new JSONObject(map).toString();
     }

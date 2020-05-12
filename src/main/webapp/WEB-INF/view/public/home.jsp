@@ -44,7 +44,7 @@
                         <div class="thumb">
                             <img alt="tag" width="160px"
                                     <c:if test="${article.isError==1}">src="/img/tag/error.png"</c:if>
-                                    <c:if test="${article.isError==0}">src="/img/tag/code-1.png"</c:if>
+                                    <c:if test="${article.isError==0}">src="/img/tag/code.png"</c:if>
                             />
                         </div>
                         <div class="content">

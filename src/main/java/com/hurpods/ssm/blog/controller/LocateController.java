@@ -51,6 +51,6 @@ public class LocateController {
 
     @RequestMapping("/admin")
     public String backstage() {
-        return "admin/index";
+        return "redirect:/admin/article/getAllArticle";
     }
 }

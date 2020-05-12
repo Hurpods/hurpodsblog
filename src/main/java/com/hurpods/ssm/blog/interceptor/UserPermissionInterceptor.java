@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public class UserPermissionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        System.out.println("pre");
         boolean flag = false;
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         if (user != null) {
@@ -20,7 +19,10 @@ public class UserPermissionInterceptor implements HandlerInterceptor {
         }
         if (httpServletRequest.getRequestURL().indexOf("admin") != -1) {
             assert user != null;
-            flag=user.isAdmin();
+            flag= user.getIsAdmin()==1;
+        }
+        if(!flag){
+            httpServletResponse.sendError(500,"访问禁止！您没有权限访问本页面");
         }
         return flag;
     }

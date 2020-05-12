@@ -7,7 +7,7 @@
     <settings>
         <setting name="useGeneratedKeys" value="false"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <setting name="logImpl" value="STDOUT_LOGGING" />
+<!--        <setting name="logImpl" value="STDOUT_LOGGING" />-->
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>

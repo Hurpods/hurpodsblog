@@ -44,18 +44,22 @@
     <mvc:resources mapping="/plugin/**" location="resource/plugin/"/>
 
     <!--  mvc过滤器  -->
-<!--    <mvc:interceptors>-->
+    <mvc:interceptors>
 <!--        <mvc:interceptor>-->
 <!--            <mvc:mapping path="/**"/>-->
 <!--            <bean class="com.hurpods.ssm.blog.interceptor.MainResourceInterceptor"/>-->
 <!--        </mvc:interceptor>-->
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/admin"/>-->
-<!--            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/admin/**"/>-->
-<!--            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-<!--    </mvc:interceptors>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin"/>
+            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/account/**"/>
+            <bean class="com.hurpods.ssm.blog.interceptor.UserPermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

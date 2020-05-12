@@ -31,7 +31,7 @@
             </c:choose>
             <div class="user-operator">
                 <a href="/profile">个人信息</a>
-                <c:if test="${sessionScope.user.admin}">
+                <c:if test="${sessionScope.user.isAdmin==1}">
                     <a href="/admin">进入后台</a>
                 </c:if>
                 <a href="/logout">退出</a>

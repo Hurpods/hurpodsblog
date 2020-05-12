@@ -32,5 +32,5 @@ public class User implements Serializable {
     private String province;
     private String city;
     //权限
-    private boolean isAdmin;
+    private Integer isAdmin;
 }

@@ -13,7 +13,7 @@
 
 <rapid:override name="content">
     <span style="position: relative;display: block;left: 27px;width: fit-content;">文章总数：${requestScope.status.count}，观看总数：${requestScope.status.view}，评论总数：${requestScope.status.comment}</span>
-    <c:if test="${requestScope.articleList!=null}">
+    <c:if test="${requestScope.articleList.size()!=0}">
         <c:forEach items="${requestScope.articleList}" var="article">
             <div class="article" id="article-${article.articleId}">
                 <div class="article-title">${article.articleTitle}</div>
