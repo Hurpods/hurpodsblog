@@ -14,4 +14,8 @@ public interface TagService {
     void deleteTagById(Integer tagId);
 
     Tag createTag(Tag tag);
+
+    void updateTag(Tag tag);
+
+    void batchDeleteTag(List<Integer> tagIds);
 }

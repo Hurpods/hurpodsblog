@@ -17,4 +17,8 @@ public interface ArticleTagRefDao {
     List<Tag> getTagsByArticleId(@Param(value = "articleId") Integer articleId);
 
     List<Tag> getTagsByTagId(@Param(value = "tagId") Integer tagId);
+
+    void deleteByTagId(@Param(value = "tagId") Integer tagId);
+
+    void batchDeleteByTagId(@Param(value = "tagIds") List<Integer> tagIds);
 }

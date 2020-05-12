@@ -34,4 +34,19 @@
         insert into tag(tag_name)
         values (#{tagName,jdbcType=VARCHAR})
     </insert>
+
+    <update id="updateTag" parameterType="com.hurpods.ssm.blog.models.Tag">
+        update tag
+        <set>
+            <if test="tagName!=null">tag_name=#{tagName,jdbc=VARCHAR}</if>
+        </set>
+        where tag_id=#{tagId}
+    </update>
+
+    <delete id="batchDeleteTag">
+        delete from tag where tag_id in
+        <foreach collection="tagIds" item="tagId" separator="," close=")" open="(">
+            #{tagId}
+        </foreach>
+    </delete>
 </mapper>

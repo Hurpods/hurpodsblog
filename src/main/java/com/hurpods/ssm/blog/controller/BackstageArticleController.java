@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -215,7 +216,7 @@ public class BackstageArticleController {
 
     @RequestMapping("/deleteTag/{tagId}")
     @ResponseBody
-    public String deleteTag(@PathVariable("tagId") Integer tagId){
+    public String deleteTag(@PathVariable("tagId") Integer tagId) {
         Map<String, String> map = new HashMap<>();
         try {
             tagService.deleteTagById(tagId);
@@ -225,6 +226,60 @@ public class BackstageArticleController {
             map.put("status", "false");
             map.put("msg", e.getMessage());
         }
+        return new JSONObject(map).toString();
+    }
+
+    @RequestMapping("/updateTag")
+    @ResponseBody
+    public String updateTag(@RequestParam("tagId") Integer tagId, @RequestParam("newTagName") String newTagName) {
+        Map<String, String> map = new HashMap<>();
+        Tag tag = tagService.getTagById(tagId);
+        newTagName = HtmlUtils.htmlEscape(newTagName);
+        tag.setTagName(newTagName);
+        try {
+            tagService.updateTag(tag);
+            map.put("status", "true");
+            map.put("msg", "修改成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
+        return new JSONObject(map).toString();
+    }
+
+    @RequestMapping("/createTag")
+    @ResponseBody
+    public String createTag(@RequestParam("tagName") String tagName) {
+        Map<String, String> map = new HashMap<>();
+        Tag tag = new Tag();
+        tagName = HtmlUtils.htmlEscape(tagName);
+        tag.setTagName(tagName);
+
+        try {
+            tagService.createTag(tag);
+            map.put("status", "true");
+            map.put("msg", "添加成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
+
+        return new JSONObject(map).toString();
+    }
+
+    @RequestMapping("/batchDeleteTags")
+    @ResponseBody
+    public String batchDeleteTags(@RequestParam("tagIds") List<Integer> tagIds) {
+        Map<String, String> map = new HashMap<>();
+        try {
+            tagService.batchDeleteTag(tagIds);
+            map.put("status", "true");
+            map.put("msg", "删除成功");
+        } catch (Exception e) {
+            map.put("status", "false");
+            map.put("msg", e.getMessage());
+        }
+
         return new JSONObject(map).toString();
     }
 }

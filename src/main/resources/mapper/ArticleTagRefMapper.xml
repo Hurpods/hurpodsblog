@@ -15,7 +15,7 @@
 
     <insert id="batchInsert" parameterType="java.util.Map">
         insert into article_tag_ref(article_id, tag_id)values
-        <foreach collection="tagIdList" item="tagId"  separator="," >
+        <foreach collection="tagIdList" item="tagId" separator=",">
             (#{articleId,jdbcType=INTEGER},#{tagId,jdbcType=INTEGER})
         </foreach>
     </insert>
@@ -40,4 +40,19 @@
              article_tag_ref as atr
         where atr.tag_id = #{tagId,jdbcType=INTEGER}
     </select>
+
+    <delete id="deleteByTagId">
+        delete
+        from article_tag_ref
+        where tag_id = #{tagId}
+    </delete>
+
+    <delete id="batchDeleteByTagId">
+        delete
+        from article_tag_ref
+        where tag_id in
+        <foreach collection="tagIds" open="(" close=")" separator="," item="tagId">
+            #{tagId}
+        </foreach>
+    </delete>
 </mapper>

@@ -10,9 +10,13 @@ public interface TagDao {
 
     Tag getTagById(Integer tagId);
 
-    List<Tag> batchGetTag(@Param(value="tagIdList") List<Integer> tagIdList);
+    List<Tag> batchGetTag(@Param(value = "tagIdList") List<Integer> tagIdList);
 
     void deleteTagById(Integer tagId);
 
     Tag createTag(Tag tag);
+
+    void updateTag(Tag tag);
+
+    void batchDeleteTag(@Param("tagIds")List<Integer>tagIds);
 }

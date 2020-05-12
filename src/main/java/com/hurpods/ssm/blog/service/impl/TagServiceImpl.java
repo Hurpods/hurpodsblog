@@ -1,5 +1,6 @@
 package com.hurpods.ssm.blog.service.impl;
 
+import com.hurpods.ssm.blog.dao.ArticleTagRefDao;
 import com.hurpods.ssm.blog.dao.TagDao;
 import com.hurpods.ssm.blog.models.Tag;
 import com.hurpods.ssm.blog.service.TagService;
@@ -12,6 +13,9 @@ import java.util.List;
 public class TagServiceImpl implements TagService {
     @Autowired
     TagDao tagDao;
+
+    @Autowired
+    ArticleTagRefDao articleTagRefDao;
 
     @Override
     public List<Tag> getAllTags() {
@@ -31,10 +35,22 @@ public class TagServiceImpl implements TagService {
     @Override
     public void deleteTagById(Integer tagId) {
         tagDao.deleteTagById(tagId);
+        articleTagRefDao.deleteByTagId(tagId);
     }
 
     @Override
     public Tag createTag(Tag tag) {
         return tagDao.createTag(tag);
+    }
+
+    @Override
+    public void updateTag(Tag tag) {
+        tagDao.updateTag(tag);
+    }
+
+    @Override
+    public void batchDeleteTag(List<Integer> tagIds) {
+        tagDao.batchDeleteTag(tagIds);
+        articleTagRefDao.batchDeleteByTagId(tagIds);
     }
 }
