@@ -1,5 +1,5 @@
 /*左侧菜单栏start*/
-.side-menu{
+.side-menu {
     width: 310px;
     height: auto;
     background: rgb(75, 80, 93);
@@ -7,41 +7,47 @@
     border-radius: 0 15px 15px 0;
     transition: 0.3s;
     position: relative;
-    top:10px;
+    top: 10px;
 }
+
 .admin-info {
     height: auto;
     position: relative;
     color: floralwhite;
 }
+
 .admin-avatar {
     width: 160px;
     height: 160px;
     margin: 35px auto 15px;
     position: relative;
 }
+
 .admin-nickname {
     font-size: 26px;
     font-weight: 600;
     text-align: center;
 }
-.main-content{
+
+.main-content {
     height: auto;
     width: 83%;
     float: left;
     left: 10px;
-    top:10px;
+    top: 10px;
     position: relative;
     transition: 0.3s;
 }
-.side-list{
+
+.side-list {
     list-style: none;
     padding: 0;
     margin-top: 45px;
 }
-.side-cat{
+
+.side-cat {
     display: block;
-    background: rgba(57, 61, 73,0.5);
+    background: rgba(57, 61, 73, 0.5);
     color: rgb(255, 246, 214);
     overflow: hidden;
     padding: 0 40px;
@@ -50,27 +56,32 @@
     cursor: pointer;
     font-size: 20px;
 }
-.side-list-child dd{
+
+.side-list-child dd {
     display: block;
     margin-bottom: 6px;
     margin-left: 40px;
     font-size: 15px;
     padding: 2px 0;
 }
+
 dl.side-list-child {
     margin: 20px 0;
 }
-.menu-link{
-    color:#9c9c9c;
+
+.menu-link {
+    color: #9c9c9c;
     cursor: pointer;
 }
-.side-list-meta{
+
+.side-list-meta {
     display: block;
 }
+
 /*左侧菜单栏end*/
 
 /*文章列表start*/
-.article{
+.article {
     position: relative;
     float: left;
     top: 10px;
@@ -80,6 +91,7 @@ dl.side-list-child {
     width: 45%;
     margin: 0 27px 27px;
 }
+
 .article-title {
     font-size: 25px;
     position: relative;
@@ -89,6 +101,7 @@ dl.side-list-child {
     display: block;
     white-space: nowrap;
 }
+
 /*文章列表end*/
 
 
@@ -99,7 +112,7 @@ dl.side-list-child {
     height: auto;
     border-radius: 6px;
     border: solid 2px #9c9c9c;
-    background: rgba(242, 242, 242,0.7);
+    background: rgba(242, 242, 242, 0.7);
 }
 
 .title-input {
@@ -109,6 +122,7 @@ dl.side-list-child {
     right: 10px;
     width: 95%;
 }
+
 ul.article-tagList {
     position: relative;
     margin: 0;
@@ -116,7 +130,8 @@ ul.article-tagList {
     left: 65px;
     width: 95%;
 }
-.article-tagList label{
+
+.article-tagList label {
     margin-right: 15px;
 }
 
@@ -125,6 +140,7 @@ label.tags-tag {
     left: -30px;
     top: 50px;
 }
+
 ul.article-tagList {
     position: relative;
     margin: 0;
@@ -132,13 +148,16 @@ ul.article-tagList {
     left: 69px;
     width: 95%;
 }
+
 .ck-content {
     min-height: 520px;
 }
+
 .article-content {
     position: relative;
     margin: 15px 0;
 }
+
 /*文章攥写end*/
 
 /*tag管理start*/
@@ -154,3 +173,16 @@ ul.article-tagList {
 }
 
 /*tag管理end*/
+
+/*评论管理start*/
+.comment {
+    width: 60%;
+    margin: 30px 275px;
+    padding: 15px;
+    border: 2px solid #9c9c9c;
+    border-radius: 15px;
+    position: relative;
+    float: left;
+}
+
+/*评论管理end*/

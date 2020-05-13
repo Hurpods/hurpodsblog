@@ -12,6 +12,8 @@ public interface ArticleService {
 
     Article getArticleById(Integer articleId);
 
+    List<Article> getArticleByIdList(@Param("articleIds") List<Integer> articleIds);
+
     void deleteById(@Param(value = "articleId") Integer articleId);
 
     void batchDelete(List<Integer> idList);

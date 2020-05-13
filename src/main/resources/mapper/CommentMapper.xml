@@ -31,12 +31,21 @@
     <select id="getAllComments" resultMap="CommentResultMap">
         select *
         from comments
+        order by comment_id desc
     </select>
 
     <delete id="deleteCommentById" parameterType="java.lang.Integer">
         delete
         from comments
         where comment_id = #{commentId,jdbcType=INTEGER}
+    </delete>
+
+
+    <delete id="batchDeleteComments">
+        delete from comments where comment_id in
+        <foreach collection="commentIds" open="(" close=")" separator="," item="commentId">
+            #{commentId}
+        </foreach>
     </delete>
 
     <select id="getCommentsNumber" resultType="java.lang.Integer">
@@ -56,16 +65,6 @@
                 #{commentPreNickName,jdbcType=VARCHAR},
                 #{commentPreId,jdbcType=INTEGER})
     </insert>
-
-    <update id="editComment" parameterType="com.hurpods.ssm.blog.models.Comment">
-        update comments
-        <set>
-            <if test="commentContent != null">comment_content=#{commentContent,jdbcType=VARCHAR},</if>
-            <if test="commentIp != null">comment_ip=#{commentIp,jdbcType=VARCHAR},</if>
-            <if test="commentTime != null">comment_time=#{commentTime,jdbcType=TIMESTAMP}</if>
-        </set>
-        where comment_id=#{commentId,jdbcType=INTEGER}
-    </update>
 
     <update id="updateCommentUser">
         update comments

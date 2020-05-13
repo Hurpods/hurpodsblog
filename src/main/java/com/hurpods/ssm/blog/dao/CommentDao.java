@@ -17,11 +17,12 @@ public interface CommentDao {
 
     void deleteCommentById(Integer id);
 
+    void batchDeleteComments(@Param("commentIds") List<Integer> commentIds);
+
     Integer getCommentsNumber();
 
     void postComment(Comment comment);
 
-    void editComment(Comment comment);
 
     void updateCommentUser(@Param(value = "commentAuthorNickName") String commentAuthorNickName,
                            @Param(value = "commentAuthorAvatar") String commentAuthorAvatar,

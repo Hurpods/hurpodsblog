@@ -13,32 +13,39 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentDao commentDao;
 
+    @Override
     public List<Comment> getUserAllCommentsById(Integer id) {
         return commentDao.getUserAllCommentsById(id);
     }
 
+    @Override
     public List<Comment> getArticleAllCommentsById(Integer id) {
         return commentDao.getArticleAllCommentsById(id);
     }
 
+    @Override
     public List<Comment> getAllComments() {
         return commentDao.getAllComments();
     }
 
+    @Override
     public void deleteCommentById(Integer id) {
         commentDao.deleteCommentById(id);
     }
 
+    @Override
+    public void batchDeleteComments(List<Integer> commentIds) {
+        commentDao.batchDeleteComments(commentIds);
+    }
+
+    @Override
     public Integer getCommentsNumber() {
         return commentDao.getCommentsNumber();
     }
 
+    @Override
     public void postComment(Comment comment) {
         commentDao.postComment(comment);
-    }
-
-    public void editComment(Comment comment) {
-        commentDao.editComment(comment);
     }
 
     @Override

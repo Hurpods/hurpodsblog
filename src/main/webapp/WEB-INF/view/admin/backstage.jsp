@@ -40,22 +40,20 @@
                 <li class="side-list-meta">
                     <a class="side-cat">文章</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link" href="/admin/article/getAllArticle">全部文章</a></dd>
+                        <dd><a class="menu-link" href="/admin/article/getAllArticle">文章管理</a></dd>
                         <dd><a class="menu-link" href="/admin/article/write">攥写文章</a></dd>
-                        <dd><a class="menu-link" href="/admin/article/tags">Tag管理</a></dd>
+                        <dd><a class="menu-link" href="/admin/article/tags">标签管理</a></dd>
                     </dl>
                 </li>
                 <li class="side-list-meta">
                     <a class="side-cat">评论</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link" href="/admin/comment/getAllComment">全部评论</a></dd>
-                        <dd><a class="menu-link" href="/admin/comment/commentManager">评论管理</a></dd>
+                        <dd><a class="menu-link" href="/admin/comment/getAllComment">评论管理</a></dd>
                     </dl>
                 </li>
                 <li class="side-list-meta">
                     <a class="side-cat">用户</a>
                     <dl class="side-list-child">
-                        <dd><a class="menu-link" href="/admin/user/list">全部用户</a></dd>
                         <dd><a class="menu-link" href="/admin/user/userManager">用户管理</a></dd>
                     </dl>
                 </li>

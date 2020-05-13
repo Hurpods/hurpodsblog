@@ -14,15 +14,14 @@ public class UserPermissionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         boolean flag = false;
         User user = (User) httpServletRequest.getSession().getAttribute("user");
-        if (user != null) {
+        if (user.getUserName() != null) {
             flag = true;
         }
         if (httpServletRequest.getRequestURL().indexOf("admin") != -1) {
-            assert user != null;
             flag= user.getIsAdmin()==1;
         }
         if(!flag){
-            httpServletResponse.sendError(500,"访问禁止！您没有权限访问本页面");
+            httpServletResponse.sendError(403,"访问禁止！您没有权限访问本页面");
         }
         return flag;
     }

@@ -32,6 +32,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticleByIdList(List<Integer> articleIds) {
+        return articleDao.getArticleByIdList(articleIds);
+    }
+
+    @Override
     public void deleteById(Integer articleId) {
         articleDao.deleteById(articleId);
     }

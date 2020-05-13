@@ -42,6 +42,21 @@
           and tag.tag_id = atr.tag_id
     </select>
 
+    <select id="getArticleByIdList" resultMap="ArticleResultMap">
+        select article.*, tag.*
+        from article,
+        tag,
+        article_tag_ref as atr
+        where article.article_status = 1
+        and article.article_id in
+        <foreach collection="articleIds" item="articleId" separator="," close=")" open="(">
+            #{articleId}
+        </foreach>
+        and article.article_id = atr.article_id
+        and tag.tag_id = atr.tag_id
+        order by article_id DESC
+    </select>
+
     <select id="getArticleByTagId" resultMap="ArticleResultMap">
         select article.*, tag.*
         from article,

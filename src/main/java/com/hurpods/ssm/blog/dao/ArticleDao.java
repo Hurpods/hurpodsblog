@@ -10,6 +10,8 @@ public interface ArticleDao {
 
     Article getArticleById(Integer articleId);
 
+    List<Article> getArticleByIdList(@Param("articleIds") List<Integer> articleIds);
+
     void deleteById(@Param(value = "articleId") Integer articleId);
 
     void batchDelete(@Param(value = "idList") List<Integer> idList);
