@@ -26,8 +26,10 @@ public class LocateController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        List<Article> articleList = articleService.getArticleByPage(0,10);
+        List<Article> articleList = articleService.getArticleByPage(0, 10);
+        Article recentDaily = articleService.getDaily();
         model.addAttribute("articleList", articleList);
+        model.addAttribute("daily", recentDaily);
         return "public/home";
     }
 

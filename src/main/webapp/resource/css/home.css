@@ -14,9 +14,11 @@
 .daily {
     width: 48%;
     height: 400px;
-    position: absolute;
+    position: relative;
     margin: auto;
-    border-radius: 10px
+    border-radius: 10px;
+    float: left;
+    cursor: default;
 }
 
 .daily-img {
@@ -57,11 +59,17 @@
 .daily-life {
     width: 48%;
     height: 400px;
-    position: absolute;
-    right: 0;
+    position: relative;
     cursor: default;
+    color: white;
+    float: right;
 }
-
+.daily-life-content {
+    position: relative;
+    top: 45%;
+    width: 80%;
+    margin: 0 auto;
+}
 .site-main{
     position: relative;
     width: 62%;

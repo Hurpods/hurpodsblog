@@ -28,23 +28,35 @@
             </div>
         </div>
         <div class="daily-life">
-            <div class="daily-life-img">
-                <%--                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="">--%>
+            <div style="position: absolute;z-index: -5;">
+                <img class="img-cover" id="daily-life-img" alt="日常生活配图" src="${daily.firstPicUrl}">
             </div>
-            <div class="daily-life-summary" id="daily-life-summary">
-
+            <div class="daily-life-content">
+                <a href="/article/daily" style="color: white;font-size: 22px;">${daily.articleTitle}</a>
+                <div style="margin-top: 15px;">
+                    ${daily.articleSummary}
+                </div>
+            </div>
+            <div style="position: relative;top: 55%;left: 16px;width: fit-content;">
+                <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle"/>
+                <a href="/article/tags/${daily.tagList.get(0).tagId}" style="color:white">
+                    #${daily.tagList.get(0).tagName}
+                </a>
+            </div>
+            <div style="position: relative;float: right;top: 48%;right: 16px;font-size: 13px;">
+                最后修改时间：<fmt:formatDate value='${daily.articleUpdateTime}' pattern='yyyy-MM-dd'/>
             </div>
         </div>
     </div>
     <main id="main" class="site-main">
-        <c:if test="${articleList!=null}">
+        <c:if test="${articleList.size()!=0}">
             <c:forEach items="${articleList}" var="article">
                 <c:if test="${article.hasPic==0}">
                     <article class="article-style1">
                         <div class="thumb">
                             <img alt="tag" width="160px"
-                                    <c:if test="${article.isError==1}">src="/img/tag/error.png"</c:if>
-                                    <c:if test="${article.isError==0}">src="/img/tag/code.png"</c:if>
+                                 <c:if test="${article.isError==1}">src="/img/tag/error.png"</c:if>
+                                 <c:if test="${article.isError==0}">src="/img/tag/code.png"</c:if>
                             />
                         </div>
                         <div class="content">
@@ -62,8 +74,9 @@
                                     </li>
                                 </c:forEach>
                             </ul>
-                            <div class="time">最后修改时间：<fmt:formatDate value='${article.articleUpdateTime}'
-                                                                     pattern='yyyy-MM-dd'/></div>
+                            <div class="time">
+                                最后修改时间：<fmt:formatDate value='${article.articleUpdateTime}' pattern='yyyy-MM-dd'/>
+                            </div>
                         </div>
                     </article>
                 </c:if>
@@ -72,7 +85,8 @@
                         <img src="${article.firstPicUrl}" alt="首图"
                              style="position: absolute;width: 99.6%;height: 500px;border-radius: 15px;object-fit: cover;filter: brightness(0.5) contrast(80%);"/>
                         <div class="content">
-                            <a href="/article/${article.articleId}" class="article-title" style="color: white">${article.articleTitle}</a>
+                            <a href="/article/${article.articleId}" class="article-title"
+                               style="color: white">${article.articleTitle}</a>
                             <div class="summary">
                                     ${article.articleSummary}
                             </div>
@@ -82,7 +96,8 @@
                                 <c:forEach items="${article.tagList}" var="tag">
                                     <li>
                                         <img src="/img/tag/tag.png" alt="tag" style="vertical-align: middle;"/>
-                                        <a class="tag-link" href="/article/tags/${tag.tagId}" style="color: white">#${tag.tagName}</a>
+                                        <a class="tag-link" href="/article/tags/${tag.tagId}"
+                                           style="color: white">#${tag.tagName}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

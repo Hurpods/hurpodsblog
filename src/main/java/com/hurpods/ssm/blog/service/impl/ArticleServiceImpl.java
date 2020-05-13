@@ -37,6 +37,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article getDaily() {
+        return articleDao.getDaily();
+    }
+
+    @Override
     public void deleteById(Integer articleId) {
         articleDao.deleteById(articleId);
     }
