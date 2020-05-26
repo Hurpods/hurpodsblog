@@ -34,10 +34,14 @@ public class BackStageCommentController {
         List<Integer> articleIdList = commentList
                 .stream().map(Comment::getCommentArticleId).collect(Collectors.toList());
 
-        List<Article> articleList=articleService.getArticleByIdList(articleIdList);
-
+        if(articleIdList.size()==0){
+            model.addAttribute("status","error");
+        }else{
+            List<Article> articleList=articleService.getArticleByIdList(articleIdList);
+            model.addAttribute(articleList);
+        }
         model.addAttribute(commentList);
-        model.addAttribute(articleList);
+
         return "/admin/comment/list";
     }
 

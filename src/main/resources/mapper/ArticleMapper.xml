@@ -48,12 +48,12 @@
         tag,
         article_tag_ref as atr
         where article.article_status = 1
+        and article.article_id = atr.article_id
+        and tag.tag_id = atr.tag_id
         and article.article_id in
         <foreach collection="articleIds" item="articleId" separator="," close=")" open="(">
             #{articleId}
         </foreach>
-        and article.article_id = atr.article_id
-        and tag.tag_id = atr.tag_id
         order by article_id DESC
     </select>
 
@@ -151,6 +151,7 @@
         from (select * from article order by article_id desc limit #{pageIndex},#{pageSize}) a
                  left join article_tag_ref atr on a.article_id = atr.article_id
                  left join tag on tag.tag_id = atr.tag_id
+        order by a.article_id desc
     </select>
 
     <select id="selectTagForArticle" resultType="com.hurpods.ssm.blog.models.Tag">

@@ -83,7 +83,7 @@
                 <c:if test="${article.hasPic==1}">
                     <article class="article-style2">
                         <img src="${article.firstPicUrl}" alt="首图"
-                             style="position: absolute;width: 99.6%;height: 500px;border-radius: 15px;object-fit: cover;filter: brightness(0.5) contrast(80%);"/>
+                             style="position: absolute;width: 99.6%;height: 500px;border-radius: 13px;object-fit: cover;filter: brightness(0.5) contrast(80%);"/>
                         <div class="content">
                             <a href="/article/${article.articleId}" class="article-title"
                                style="color: white">${article.articleTitle}</a>
@@ -110,7 +110,7 @@
         </c:if>
     </main>
 </div>
-<%@ include file="../public/footer.jsp" %>
+
 </body>
 
 <script type="text/javascript" src="<c:url value="/js/jquery-3.2.1.js"/>"></script>

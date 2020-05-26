@@ -11,15 +11,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <rapid:override name="content">
-    <span style="position: relative;display: block;left: 27px;width: fit-content;">评论总数：${commentList.size()}</span>
-    <c:if test="${commentList.size()!=0}">
-        <form id="comments">
-            <c:forEach items="${commentList}" var="comment">
-                <div class="comment" id="comment-${comment.commentId}">
-                    <input type="checkbox" name="commentIds" style="margin-right: 50px;" value="${comment.commentId}">
-                    <img src="${comment.commentAuthorAvatar}" width="80px" alt="头像"/>
-                    <span style="bottom: 10px;left: 3%;position: relative;">${comment.commentAuthorNickName}</span>
-                    <span style="position: relative;left: -60px;top: 15px;">
+    <c:if test="${!status.equals('error')}">
+        <span style="position: relative;display: block;left: 27px;width: fit-content;">评论总数：${commentList.size()}</span>
+        <c:if test="${commentList.size()!=0}">
+            <form id="comments">
+                <c:forEach items="${commentList}" var="comment">
+                    <div class="comment" id="comment-${comment.commentId}">
+                        <input type="checkbox" name="commentIds" style="margin-right: 50px;" value="${comment.commentId}">
+                        <img src="${comment.commentAuthorAvatar}" width="80px" alt="头像"/>
+                        <span style="bottom: 10px;left: 3%;position: relative;">${comment.commentAuthorNickName}</span>
+                        <span style="position: relative;left: -60px;top: 15px;">
                         评论文章：
                         <a href="/article/${comment.commentArticleId}">
                         <c:forEach items="${articleList}" var="article">
@@ -29,24 +30,30 @@
                         </c:forEach>
                     </a>
                     </span>
-                    <div class="button" style="width: 100px;background: red;position: relative;float: right;top: 10px;" onclick="deleteComment(${comment.commentId})">
-                        <button class="bttn" type="button">删除</button>
+                        <div class="button" style="width: 100px;background: red;position: relative;float: right;top: 10px;" onclick="deleteComment(${comment.commentId})">
+                            <button class="bttn" type="button">删除</button>
+                        </div>
+                        <div class="ck-content" style="min-height: 0;margin: 15px;">
+                                ${comment.commentContent}
+                        </div>
                     </div>
-                    <div class="ck-content" style="min-height: 0;margin: 15px;">
-                            ${comment.commentContent}
-                    </div>
+                </c:forEach>
+                <div class="button" style="width: 100px;background: lightseagreen;position: fixed;top: 6%;right: 10%;" onclick="selectAll()">
+                    <button class="bttn" type="button">全选</button>
                 </div>
-            </c:forEach>
-            <div class="button" style="width: 100px;background: lightseagreen;position: fixed;top: 6%;right: 10%;" onclick="selectAll()">
-                <button class="bttn" type="button">全选</button>
-            </div>
-            <div class="button" style="width: 100px;background: lightseagreen;position: fixed;top: 16%;right: 10%;" onclick="reserve()">
-                <button class="bttn" type="button">反选</button>
-            </div>
-            <div class="button" style="width: 100px;background: red;position: fixed;top: 26%;right: 10%;" onclick="batchDeleteComments()">
-                <button class="bttn" type="button">全部删除</button>
-            </div>
-        </form>
+                <div class="button" style="width: 100px;background: lightseagreen;position: fixed;top: 16%;right: 10%;" onclick="reserve()">
+                    <button class="bttn" type="button">反选</button>
+                </div>
+                <div class="button" style="width: 100px;background: red;position: fixed;top: 26%;right: 10%;" onclick="batchDeleteComments()">
+                    <button class="bttn" type="button">全部删除</button>
+                </div>
+            </form>
+        </c:if>
+    </c:if>
+    <c:if test="${status.equals('error')}">
+        <div style="width: 55%;text-align: center;font-size: 35px;margin: 335px auto 0;">
+            目前还没有评论
+        </div>
     </c:if>
 </rapid:override>
 <rapid:override name="script">
